@@ -39,7 +39,6 @@ const postComments = computed(() =>
       </div>
     </div>
 
-    <!-- Comments List -->
     <div v-if="postComments.length" class="space-y-6">
       <CommentItem v-for="comment in postComments" :key="comment.id" :comment="comment" />
     </div>

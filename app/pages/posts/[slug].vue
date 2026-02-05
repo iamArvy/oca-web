@@ -22,13 +22,12 @@ const { post, relatedPosts } = data.value
 
 <template>
   <main>
-    <!-- Post Content -->
     <!-- Hero Image -->
     <div class="relative h-75 md:h-112.5 overflow-hidden">
       <NuxtImg :src="post.image" :alt="post.title" :placeholder="placeholder" class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
     </div>
-    <AppContent>
+    <AppContent class="-mt-32 relative z-10">
       <template #main>
         <PostArticle :post="post" />
         <CommentSection :postId="post.id" />

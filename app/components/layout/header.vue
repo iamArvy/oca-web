@@ -83,11 +83,6 @@ const isSearchOpen = ref(false)
             @click="isMenuOpen = false">
             {{ category.name }}
           </NuxtLink>
-          <!-- <NuxtLink to="/admin"
-            class="px-4 py-3 text-sm font-medium text-primary hover:bg-primary/10 rounded-lg transition-colors"
-            @click="isMenuOpen = false">
-            Dashboard
-          </NuxtLink> -->
         </div>
       </nav>
     </div>

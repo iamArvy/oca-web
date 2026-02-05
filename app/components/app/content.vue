@@ -1,8 +1,9 @@
 <template>
-  <div class="container-lg -mt-32 relative z-10">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+  <div class="container-lg">
+    <slot name="header" />
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
       <!-- Main Content -->
-      <div class="lg:col-span-2">
+      <div class="lg:col-span-2 space-y-8">
         <slot name="main" />
       </div>
 

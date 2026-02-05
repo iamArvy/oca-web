@@ -1,3 +1,5 @@
+import type { Category } from "./category.interface";
+
 export enum PostStatus {
   DRAFT = 'draft',
   PUBLISHED = 'published',

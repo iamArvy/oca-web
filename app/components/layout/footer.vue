@@ -119,7 +119,7 @@ const tickerContent = trendingPosts.map(p => p.title).join(' • ')
     <div class="border-t border-primary-foreground/10">
       <div
         class="container-lg py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60 mx-auto">
-        <p>© 2026 AfricaNews. All rights reserved.</p>
+        <p>© 2026 OneClick Africa. All rights reserved.</p>
         <div class="flex gap-6">
           <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
           <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>

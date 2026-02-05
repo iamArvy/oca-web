@@ -4,20 +4,21 @@ import { FolderOpen, ChevronDown, ChevronRight } from "lucide-vue-next";
 // import { categories } from "@/lib/mocks"; // same data source
 import { cn } from "@/lib/utils"; // optional, only if you use a class merging util
 import { APP_ROUTES } from "~/constants";
+import type { Category } from "~/types";
 
-interface Subcategory {
-  id: string;
-  name: string;
-  slug: string;
-}
+// interface Subcategory {
+//   id: string;
+//   name: string;
+//   slug: string;
+// }
 
-interface Category {
-  id: string;
-  name: string;
-  slug: string;
-  count: number;
-  subcategories?: Subcategory[];
-}
+// interface Category {
+//   id: string;
+//   name: string;
+//   slug: string;
+//   count: number;
+//   subcategories?: Subcategory[];
+// }
 
 interface MegaMenuProps {
   categories?: Category[];

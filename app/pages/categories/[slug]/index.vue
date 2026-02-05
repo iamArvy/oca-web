@@ -1,19 +1,11 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { posts, categories } from '@/lib/mocks'
+import { categories } from '@/lib/mocks'
 import { APP_ROUTES } from '~/constants'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
-
-// const category = computed(() =>
-//   categories.find((c) => c.slug === slug.value)
-// )
-
-// const categoryPosts = computed(() =>
-//   posts.filter((p) => p.category.toLowerCase() === slug.value)
-// )
 
 const { data: category, error } = await useFetch(`/api/category`, {
   params: {
@@ -23,21 +15,12 @@ const { data: category, error } = await useFetch(`/api/category`, {
 </script>
 
 <template>
-  <!-- Main Content -->
-  <main class="container-lg py-8 md:py-12">
-    <!-- Category Header -->
-    <div class="mb-8">
-      <h1 class="font-display text-4xl md:text-5xl font-bold mb-2">
-        {{ category?.name || slug }}
-      </h1>
-      <p class="text-muted-foreground">
-        {{ category?.posts?.length || 0 }} articles in this category
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- Posts Grid -->
-      <div class="lg:col-span-2">
+  <main>
+    <AppContent class="py-8 md:py-12">
+      <template #header>
+        <CategoryHeader :name="category?.name || slug" :postCount="category?.posts?.length || 0" />
+      </template>
+      <template #main>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
           <PostCard v-for="post in category?.posts || []" :key="post.id" :post="post" />
         </div>
@@ -45,10 +28,9 @@ const { data: category, error } = await useFetch(`/api/category`, {
         <div v-if="(category?.posts || []).length === 0" class="text-center py-12 text-muted-foreground">
           <p>No posts found in this category.</p>
         </div>
-      </div>
+      </template>
 
-      <!-- Sidebar -->
-      <aside class="space-y-6">
+      <template #sidebar>
         <AdComponent size="sidebar" />
 
         <div class="bg-card rounded-2xl p-6 card-interactive">
@@ -68,7 +50,7 @@ const { data: category, error } = await useFetch(`/api/category`, {
         </div>
 
         <AdComponent size="sidebar" />
-      </aside>
-    </div>
+      </template>
+    </AppContent>
   </main>
 </template>
