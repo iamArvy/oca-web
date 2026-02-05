@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
-import type { IPost } from '~/types'
+import type { Post } from '~/types'
 
 interface Props {
-  post: IPost
+  post: Post
   variant?: 'default' | 'featured' | 'compact'
 }
 
@@ -37,7 +37,7 @@ const props = defineProps<Props>()
         <div class="flex items-center gap-4 text-sm text-primary-foreground/70">
           <span class="flex items-center gap-1.5">
             <Icon name="lucide:user" class="w-4 h-4" />
-            {{ props.post.author }}
+            {{ props.post.author.name }}
           </span>
           <span class="flex items-center gap-1.5">
             <Icon name="lucide:clock" class="w-4 h-4" />
@@ -97,7 +97,7 @@ const props = defineProps<Props>()
           <div class="flex items-center gap-3">
             <span class="flex items-center gap-1">
               <Icon name="lucide:user" class="w-3 h-3" />
-              {{ props.post.author }}
+              {{ props.post.author.name }}
             </span>
             <span class="flex items-center gap-1">
               <Icon name="lucide:clock" class="w-3 h-3" />

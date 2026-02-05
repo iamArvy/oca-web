@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants'
-import type { TPosts } from '~/types'
+import type { Posts } from '~/types'
 
 
 interface Post {
@@ -14,7 +14,7 @@ interface Post {
 
 interface Props {
   title: string
-  posts: TPosts
+  posts: Posts
   slug: string
 }
 

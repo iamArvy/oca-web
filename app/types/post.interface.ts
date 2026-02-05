@@ -1,24 +1,24 @@
-export interface IPostCategory {
-  id: string;
-  name: string;
-  slug: string;
-}
-
 export enum PostStatus {
   DRAFT = 'draft',
   PUBLISHED = 'published',
   ARCHIVED = 'archived'
 }
 
-export interface IPost {
+export interface Author {
+  id: string;
+  name: string;
+  role: string;
+  avatar?: string;
+}
+export interface Post {
   id: string;
   title: string;
   slug: string;
   excerpt: string;
   content: string;
-  category: IPostCategory;
-  subcategory: IPostCategory;
-  author: string;
+  category: Category;
+  subcategory: Category;
+  author: Author;
   date: string;
   readTime: string;
   image: string;
@@ -27,10 +27,7 @@ export interface IPost {
   hotTopic?: boolean;
   status: PostStatus;
   tags: string[];
-  source?: {
-    name: string;
-    url: string;
-  }
+  externalUrl?: string;
 }
 
-export type TPosts = IPost[]
+export type Posts = Post[]

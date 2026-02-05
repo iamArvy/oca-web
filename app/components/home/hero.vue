@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import type { TPosts } from '~/types'
+import type { Posts } from '~/types'
 
 interface Props {
-  posts: TPosts
+  posts: Posts
 }
 
 const props = defineProps<Props>()
