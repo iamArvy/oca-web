@@ -7,13 +7,19 @@ import { APP_ROUTES } from '~/constants'
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const category = computed(() =>
-  categories.find((c) => c.slug === slug.value)
-)
+// const category = computed(() =>
+//   categories.find((c) => c.slug === slug.value)
+// )
 
-const categoryPosts = computed(() =>
-  posts.filter((p) => p.category.toLowerCase() === slug.value)
-)
+// const categoryPosts = computed(() =>
+//   posts.filter((p) => p.category.toLowerCase() === slug.value)
+// )
+
+const { data: category, error } = await useFetch(`/api/category`, {
+  params: {
+    slug: slug.value
+  }
+})
 </script>
 
 <template>
@@ -25,7 +31,7 @@ const categoryPosts = computed(() =>
         {{ category?.name || slug }}
       </h1>
       <p class="text-muted-foreground">
-        {{ categoryPosts.length }} articles in this category
+        {{ category?.posts?.length || 0 }} articles in this category
       </p>
     </div>
 
@@ -33,10 +39,10 @@ const categoryPosts = computed(() =>
       <!-- Posts Grid -->
       <div class="lg:col-span-2">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-          <PostCard v-for="post in categoryPosts" :key="post.id" :post="post" />
+          <PostCard v-for="post in category?.posts || []" :key="post.id" :post="post" />
         </div>
 
-        <div v-if="categoryPosts.length === 0" class="text-center py-12 text-muted-foreground">
+        <div v-if="(category?.posts || []).length === 0" class="text-center py-12 text-muted-foreground">
           <p>No posts found in this category.</p>
         </div>
       </div>

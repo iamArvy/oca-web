@@ -4,13 +4,13 @@ import { posts, categories } from '@/lib/mocks'
 import { APP_ROUTES } from '~/constants'
 
 const technologyPosts = computed(() =>
-  posts.filter((p) => p.category === 'Technology')
+  posts.filter((p) => p.category.name === 'Technology')
 )
 const sportsPosts = computed(() =>
-  posts.filter((p) => p.category === 'Sports')
+  posts.filter((p) => p.category.name === 'Sports')
 )
 const entertainmentPosts = computed(() =>
-  posts.filter((p) => p.category === 'Entertainment')
+  posts.filter((p) => p.category.name === 'Entertainment')
 )
 </script>
 

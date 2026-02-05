@@ -13,10 +13,10 @@ const props = defineProps<Props>()
 <template>
   <!-- FEATURED VARIANT -->
   <NuxtLink v-if="props.variant === 'featured'" :to="APP_ROUTES.post.path(post.slug)" class="group block">
-    <article class="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden card-interactive">
+    <article class="relative h-100 md:h-125 rounded-2xl overflow-hidden card-interactive">
       <img :src="props.post.image" :alt="props.post.title"
         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-      <div class="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/40 to-transparent" />
+      <div class="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/40 to-transparent" />
 
       <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-primary-foreground">
         <div v-if="props.post.trending"
@@ -25,7 +25,7 @@ const props = defineProps<Props>()
           TRENDING
         </div>
         <span class="inline-block px-3 py-1 bg-primary-foreground/20 rounded-full text-xs font-medium mb-3">
-          {{ props.post.category }}
+          {{ props.post.category.name }}
         </span>
         <h2
           class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">
@@ -58,7 +58,7 @@ const props = defineProps<Props>()
       <img :src="props.post.image" :alt="props.post.title" class="w-20 h-20 object-cover rounded-lg shrink-0" />
       <div class="flex-1 min-w-0">
         <span class="text-xs font-medium text-primary">
-          {{ props.post.category }}
+          {{ props.post.category.name }}
         </span>
         <h3 class="font-semibold text-sm mt-1 line-clamp-2 group-hover:text-primary transition-colors">
           {{ props.post.title }}
@@ -74,7 +74,7 @@ const props = defineProps<Props>()
   <!-- DEFAULT VARIANT -->
   <NuxtLink v-else :to="APP_ROUTES.post.path(post.slug)" class="group block">
     <article class="bg-card rounded-2xl overflow-hidden card-interactive h-full">
-      <div class="relative overflow-hidden aspect-[16/10]">
+      <div class="relative overflow-hidden aspect-16/10">
         <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <div v-if="props.post.trending"
@@ -85,7 +85,7 @@ const props = defineProps<Props>()
       </div>
 
       <div class="p-5">
-        <span class="category-pill mb-3">{{ props.post.category }}</span>
+        <span class="category-pill mb-3">{{ props.post.category.name }}</span>
         <h3 class="font-display text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {{ props.post.title }}
         </h3>

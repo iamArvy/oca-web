@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { IPost, TPosts } from '~/types'
 import placeholder from "~/assets/images/oca-placeholder.png"
+import { APP_ROUTES } from '~/constants'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
@@ -43,7 +44,18 @@ const { post, relatedPosts } = data.value
             </NuxtLink>
 
             <!-- Category -->
-            <span class="category-pill mb-4">{{ post.category }}</span>
+            <div class="flex items-center gap-2 mb-4">
+              <NuxtLink :to="APP_ROUTES.category.path(post.category.slug)" class="category-pill">
+                {{ post.category.name }}
+              </NuxtLink>
+              <template v-if="post.subcategory">
+                <span class="text-muted-foreground">/</span>
+                <NuxtLink :to="APP_ROUTES.subcategory.path(post.category.slug, post.subcategory.slug)"
+                  class="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {{ post.subcategory.name }}
+                </NuxtLink>
+              </template>
+            </div>
 
             <!-- Title -->
             <h1 class="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
@@ -83,29 +95,14 @@ const { post, relatedPosts } = data.value
             </p>
 
             <!-- Content -->
-            <div class="prose prose-lg max-w-none">
-              <p class="mb-4">{{ post.content }}</p>
-              <p class="mb-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                do eiusmod tempor incididunt ut labore et dolore magna
-                aliqua.
-              </p>
-              <p class="mb-4">
-                Duis aute irure dolor in reprehenderit in voluptate velit
-                esse cillum dolore eu fugiat nulla pariatur.
-              </p>
-              <p>
-                Sed ut perspiciatis unde omnis iste natus error sit
-                voluptatem accusantium doloremque laudantium.
-              </p>
-            </div>
+            <div v-html="post.content" class="prose prose-lg max-w-none" />
 
             <!-- Read Original -->
-            <div class="mt-8 p-6 bg-muted/50 rounded-xl">
+            <div v-if="post.source" class="mt-8 p-6 bg-muted/50 rounded-xl">
               <p class="text-sm text-muted-foreground mb-3">
                 This article was sourced from an external publication.
               </p>
-              <Button class="gap-2 bg-gradient-hero hover:opacity-90">
+              <Button @click="openExternal(post.source.url)" class="gap-2 bg-gradient-hero hover:opacity-90">
                 <Icon name="lucide:external-link" class="w-4 h-4" />
                 Read Original Post
               </Button>
@@ -119,15 +116,21 @@ const { post, relatedPosts } = data.value
                   Share this article
                 </span>
                 <div class="flex gap-2">
-                  <Button variant="outline" size="icon"
+                  <Button @click="copyPostLink(post.slug)" variant="outline" size="icon"
+                    class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
+                    <Icon name="lucide:copy" class="w-4 h-4" />
+                  </Button>
+                  <Button @click="shareTo(SocialPlatform.FACEBOOK, post.slug, post.excerpt)" variant="outline"
+                    size="icon"
                     class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
                     <Icon name="lucide:facebook" class="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="icon"
+                  <Button @click="shareTo(SocialPlatform.X, post.slug, post.excerpt)" variant="outline" size="icon"
                     class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
-                    <Icon name="lucide:twitter" class="w-4 h-4" />
+                    <Icon name="lucide:x" class="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="icon"
+                  <Button @click="shareTo(SocialPlatform.LINKEDIN, post.slug, post.excerpt)" variant="outline"
+                    size="icon"
                     class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
                     <Icon name="lucide:linkedin" class="w-4 h-4" />
                   </Button>

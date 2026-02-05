@@ -7,6 +7,10 @@ export const APP_ROUTES = {
     path: (slug: string) => '/categories/' + slug,
     name: 'categories-slug'
   },
+  subcategory: {
+    path: (categorySlug: string, subcategorySlug: string) => '/categories/' + categorySlug + '/' + subcategorySlug,
+    name: 'categories-slug-subslug'
+  },
   post: {
     path: (slug: string) => '/posts/' + slug,
     name: 'posts-slug'
@@ -14,5 +18,9 @@ export const APP_ROUTES = {
   search: {
     path: (q: string) => '/search?q=' + q,
     name: 'search'
-  }
+  },
+  contact: {
+    path: '/contact',
+    name: 'contact'
+  },
 }

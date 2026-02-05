@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { categories } from '@/lib/mocks'
 import { APP_ROUTES } from '~/constants';
+import { FolderOpen, ChevronDown, ChevronRight } from "lucide-vue-next";
 
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
@@ -31,12 +32,22 @@ const isSearchOpen = ref(false)
 
         <!-- Desktop Navigation -->
         <nav class="hidden lg:flex items-center gap-1">
-          <NuxtLink v-for="category in categories.slice(0, 6)" :key="category.id"
+          <!-- <NuxtLink v-for="category in categories.slice(0, 6)" :key="category.id"
             :to="APP_ROUTES.category.path(category.slug)"
             class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
             {{ category.name }}
+          </NuxtLink> -->
+          <LayoutMegaMenu2 :categories="categories">
+            <FolderOpen class="w-4 h-4" />
+            Categories
+          </LayoutMegaMenu2>
+          <NuxtLink :to="APP_ROUTES.contact.path" aria-label="Advertise with Us"
+            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+            active-class="text-foreground bg-muted">
+            Advertise with Us
           </NuxtLink>
         </nav>
+        <!-- <LayoutMegaMenu class="hidden lg:block" /> -->
 
         <!-- Actions -->
         <div class="flex items-center gap-2">
