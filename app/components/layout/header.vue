@@ -6,6 +6,8 @@ import { FolderOpen, ChevronDown, ChevronRight } from "lucide-vue-next";
 
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
+
+const { date, time } = useDateTime()
 </script>
 
 <template>
@@ -15,9 +17,9 @@ const isSearchOpen = ref(false)
       <div class="container-lg flex justify-between items-center text-sm mx-auto">
         <span class="font-medium">Your source for African news & stories</span>
         <div class="hidden md:flex items-center gap-4">
-          <NuxtLink to="/admin" class="hover:underline">Dashboard</NuxtLink>
+          <span>{{ date }}</span>
           <span>|</span>
-          <span>{{ new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) }}</span>
+          <span>{{ time }}</span>
         </div>
       </div>
     </div>
@@ -31,12 +33,12 @@ const isSearchOpen = ref(false)
         </NuxtLink>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-1">
-          <!-- <NuxtLink v-for="category in categories.slice(0, 6)" :key="category.id"
-            :to="APP_ROUTES.category.path(category.slug)"
-            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
-            {{ category.name }}
-          </NuxtLink> -->
+        <nav class="hidden lg:flex items-center gap-1 flex-1 justify-end">
+          <NuxtLink :to="APP_ROUTES.home.path" aria-label="Home"
+            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+            active-class="text-foreground bg-muted">
+            Home
+          </NuxtLink>
           <LayoutMegaMenu2 :categories="categories">
             <FolderOpen class="w-4 h-4" />
             Categories
@@ -47,12 +49,11 @@ const isSearchOpen = ref(false)
             Advertise with Us
           </NuxtLink>
         </nav>
-        <!-- <LayoutMegaMenu class="hidden lg:block" /> -->
 
         <!-- Actions -->
         <div class="flex items-center gap-2">
           <!-- Search -->
-          <div :class="[isSearchOpen ? 'flex' : 'hidden md:flex', 'items-center']">
+          <div class="items-center" :class="isSearchOpen ? 'flex' : 'hidden md:flex'">
             <div class="relative">
               <Icon name="lucide:search"
                 class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -76,15 +77,7 @@ const isSearchOpen = ref(false)
       </div>
 
       <!-- Mobile Navigation -->
-      <nav v-if="isMenuOpen" class="lg:hidden mt-4 pb-4 border-t border-border pt-4 animate-fade-in">
-        <div class="flex flex-col gap-2">
-          <NuxtLink v-for="category in categories" :key="category.id" :to="APP_ROUTES.category.path(category.slug)"
-            class="px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            @click="isMenuOpen = false">
-            {{ category.name }}
-          </NuxtLink>
-        </div>
-      </nav>
+      <LayoutMobileMenu :categories="categories" v-if="isMenuOpen" @close="isMenuOpen = false" />
     </div>
   </header>
 </template>
