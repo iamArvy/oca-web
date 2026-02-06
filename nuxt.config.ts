@@ -38,7 +38,14 @@ export default defineNuxtConfig({
     componentDir: '@/components/ui'
   },
   site:{
-    title: "One Click Africa",
-    name: "OneClick Africa"
-  }
+    name: "OneClick Africa",
+    description: "Stay ahead with OneClick Africa | Your premier source for African news, culture, and stories. Connecting the continent with the world.",
+    url: "https://oneclickafrica.com",
+    image: "https://oneclickafrica.com/og-image.jpg",
+  },
+  // runtimeConfig: {
+  //   public: {
+  //     apiBase: process.env.API_BASE || 'http://localhost:3000/api',
+  //   }
+  // }
 })

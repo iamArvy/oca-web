@@ -29,7 +29,7 @@ const { date, time } = useDateTime()
       <div class="flex items-center justify-between gap-4">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2">
-          <AppLogo class="w-50" />
+          <AppLogo class="w-20 sm:w-30 md:w-35 lg:w-40" />
         </NuxtLink>
 
         <!-- Desktop Navigation -->

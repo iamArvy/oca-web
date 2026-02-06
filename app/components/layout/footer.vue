@@ -27,7 +27,7 @@ const tickerContent = trendingPosts.map(p => p.title).join(' • ')
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- About -->
         <div class="space-y-4">
-          <AppLogo class="w-50" />
+          <AppLogo class="w-40 lg:w-50" />
           <p class="text-primary-foreground/70 text-sm leading-relaxed">
             Your premier source for African news, culture, and stories.
             Connecting the continent with the world.
