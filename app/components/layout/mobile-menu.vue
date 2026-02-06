@@ -69,12 +69,13 @@ const props = defineProps<Props>()
         <!-- Subcategories -->
         <AccordionContent v-if="category.subcategories && category.subcategories.length > 0" class="pb-0">
           <div class="pl-4 space-y-1 pb-2">
-            <NuxtLink :to="`/category/${category.slug}`"
+            <NuxtLink :to="APP_ROUTES.category.path(category.slug)"
               class="block px-4 py-2 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors"
               @click="props.onClose">
               All {{ category.name }}
             </NuxtLink>
-            <NuxtLink v-for="sub in category.subcategories" :key="sub.id" :to="`/category/${category.slug}/${sub.slug}`"
+            <NuxtLink v-for="sub in category.subcategories" :key="sub.id"
+              :to="APP_ROUTES.subcategory.path(category.slug, sub.slug)"
               class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
               @click="props.onClose">
               {{ sub.name }}
