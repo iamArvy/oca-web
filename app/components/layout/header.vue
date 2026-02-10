@@ -25,7 +25,7 @@ const { date, time } = useDateTime()
     </div>
 
     <!-- Main Header -->
-    <div class="container-lg py-4 mx-auto">
+    <div class="container-lg py-4 mx-auto space-y-3">
       <div class="flex items-center justify-between gap-4">
         <!-- Logo -->
         <NuxtLink to="/" class="flex items-center gap-2">
@@ -33,7 +33,7 @@ const { date, time } = useDateTime()
         </NuxtLink>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-1 flex-1 justify-end">
+        <!-- <nav class="hidden lg:flex items-center gap-1 flex-1 justify-end">
           <NuxtLink :to="APP_ROUTES.home.path" aria-label="Home"
             class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
             active-class="text-foreground bg-muted">
@@ -48,7 +48,7 @@ const { date, time } = useDateTime()
             active-class="text-foreground bg-muted">
             Advertise with Us
           </NuxtLink>
-        </nav>
+        </nav> -->
 
         <!-- Actions -->
         <div class="flex items-center gap-2">
@@ -69,15 +69,14 @@ const { date, time } = useDateTime()
 
           <AppTheme />
 
-          <!-- Toggle Menu (Mobile) -->
-          <Button variant="ghost" size="icon" class="lg:hidden" @click="isMenuOpen = !isMenuOpen">
-            <Icon :name="isMenuOpen ? 'lucide:x' : 'lucide:menu'" class="w-5 h-5" />
-          </Button>
+          <LayoutMobileMenu :categories="categories" />
         </div>
       </div>
+      <LayoutMenu :categories="categories" />
 
       <!-- Mobile Navigation -->
-      <LayoutMobileMenu :categories="categories" v-if="isMenuOpen" @close="isMenuOpen = false" />
+      <!-- <LayoutMobileMenu :categories="categories" v-if="isMenuOpen" @close="isMenuOpen = false" /> -->
     </div>
+
   </header>
 </template>
