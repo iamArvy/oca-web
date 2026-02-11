@@ -13,7 +13,7 @@ const { date, time } = useDateTime()
 <template>
   <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
     <!-- Top Bar -->
-    <div class="bg-gradient-hero text-primary-foreground py-2">
+    <div class="bg-primary text-primary-foreground py-2">
       <div class="container-lg flex justify-between items-center text-sm mx-auto">
         <span class="font-medium">Your source for African news & stories</span>
         <div class="hidden md:flex items-center gap-4">

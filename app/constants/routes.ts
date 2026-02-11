@@ -19,6 +19,10 @@ export const APP_ROUTES = {
     path: (q: string) => '/search?q=' + q,
     name: 'search'
   },
+  tags:{
+    path: (slug: string) => '/tags/' + slug,
+    name: 'tags-slug'
+  },
   contact: {
     path: '/contact',
     name: 'contact'

@@ -14,7 +14,7 @@ const props = defineProps<Props>()
   <!-- FEATURED VARIANT -->
   <NuxtLink v-if="props.variant === 'featured'" :to="APP_ROUTES.post.path(post.slug)" class="group block">
     <article class="relative h-100 md:h-125 rounded-2xl overflow-hidden card-interactive">
-      <img :src="props.post.image" :alt="props.post.title"
+      <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
         class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
       <div class="absolute inset-0 bg-linear-to-t from-foreground/90 via-foreground/40 to-transparent" />
 
@@ -39,14 +39,6 @@ const props = defineProps<Props>()
             <Icon name="lucide:user" class="w-4 h-4" />
             {{ props.post.author.name }}
           </span>
-          <span class="flex items-center gap-1.5">
-            <Icon name="lucide:clock" class="w-4 h-4" />
-            {{ props.post.readTime }}
-          </span>
-          <span class="flex items-center gap-1.5">
-            <Icon name="lucide:eye" class="w-4 h-4" />
-            {{ props.post.views.toLocaleString() }}
-          </span>
         </div>
       </div>
     </article>
@@ -55,7 +47,8 @@ const props = defineProps<Props>()
   <!-- COMPACT VARIANT -->
   <NuxtLink v-else-if="props.variant === 'compact'" :to="APP_ROUTES.post.path(post.slug)" class="group block">
     <article class="flex gap-4 p-3 rounded-xl hover:bg-muted/50 transition-colors">
-      <img :src="props.post.image" :alt="props.post.title" class="w-20 h-20 object-cover rounded-lg shrink-0" />
+      <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
+        class="w-20 h-20 object-cover rounded-lg shrink-0" />
       <div class="flex-1 min-w-0">
         <span class="text-xs font-medium text-primary">
           {{ props.post.category.name }}
@@ -64,8 +57,8 @@ const props = defineProps<Props>()
           {{ props.post.title }}
         </h3>
         <div class="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
-          <Icon name="lucide:clock" class="w-3 h-3" />
-          {{ props.post.readTime }}
+          <Icon name="lucide:user" class="w-3 h-3" />
+          {{ props.post.author.name }}
         </div>
       </div>
     </article>
@@ -86,7 +79,7 @@ const props = defineProps<Props>()
 
       <div class="p-5">
         <span class="category-pill mb-3">{{ props.post.category.name }}</span>
-        <h3 class="font-display text-xl font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+        <h3 class="font-display text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {{ props.post.title }}
         </h3>
         <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
@@ -99,15 +92,7 @@ const props = defineProps<Props>()
               <Icon name="lucide:user" class="w-3 h-3" />
               {{ props.post.author.name }}
             </span>
-            <span class="flex items-center gap-1">
-              <Icon name="lucide:clock" class="w-3 h-3" />
-              {{ props.post.readTime }}
-            </span>
           </div>
-          <span class="flex items-center gap-1">
-            <Icon name="lucide:eye" class="w-3 h-3" />
-            {{ props.post.views.toLocaleString() }}
-          </span>
         </div>
       </div>
     </article>

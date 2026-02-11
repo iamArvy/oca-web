@@ -28,11 +28,8 @@ if (!category.value) {
         <CategoryHeader :name="category?.name || slug" :postCount="category?.posts?.length || 0" />
       </template>
       <template #main>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 stagger-children">
-          <PostCard v-for="post in category?.posts || []" :key="post.id" :post="post" />
-        </div>
-
-        <div v-if="(category?.posts || []).length === 0" class="text-center py-12 text-muted-foreground">
+        <PostFeed v-if="category?.posts && category.posts.length > 0" :posts="category.posts" />
+        <div v-else class="text-center py-12 text-muted-foreground">
           <p>No posts found in this category.</p>
         </div>
       </template>

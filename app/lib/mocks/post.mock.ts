@@ -253,28 +253,44 @@ interface getPostsParams {
   trending?: boolean;
   hotTopic?: boolean;
   status?: PostStatus;
+  limit?: number;
+  page?: number;
 }
 export const mockGetPosts = (params: getPostsParams): Posts => {
-  return posts.filter(post => {
-    let isValid = true;
+  // 1️⃣ Filter posts based on params
+  const filtered = posts.filter(post => {
+    let isValid = true
+
     if (params.category && post.category.id !== params.category) {
-      isValid = false;
+      isValid = false
     }
     if (params.subcategory && post.subcategory.id !== params.subcategory) {
-      isValid = false;
+      isValid = false
     }
     if (params.trending !== undefined && post.trending !== params.trending) {
-      isValid = false;
+      isValid = false
     }
     if (params.hotTopic !== undefined && post.hotTopic !== params.hotTopic) {
-      isValid = false;
+      isValid = false
     }
     if (params.status && post.status !== params.status) {
-      isValid = false;
+      isValid = false
     }
-    return isValid;
-  });
-};
+
+    return isValid
+  })
+
+  const limit = params.limit ?? 10  // default 10 per page
+  const page = params.page ?? 1
+
+  const start = (page - 1) * limit
+  const end = start + limit
+
+  const paginated = filtered.slice(start, end)
+
+  return paginated
+}
+
 
 export const getPost = (slug: string) => {
  const post = posts.find((p) => String(p.slug) === slug);

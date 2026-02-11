@@ -59,9 +59,9 @@
   --popover: hsl(40 40% 99%);
   --popover-foreground: hsl(235 14% 26%);
 
-  /* Terracotta - Primary brand color */
-  --primary: hsl(14 70% 62%);
-  --primary-foreground: hsl(40 33% 98%);
+   /* Brand amber - Primary */
+  --primary: hsl(36 79% 51%);
+  --primary-foreground: hsl(0 0% 100%);
 
   /* Warm cream - Secondary */
   --secondary: hsl(43 56% 81%);

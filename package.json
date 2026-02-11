@@ -22,6 +22,7 @@
     "@nuxt/image": "^2.0.0",
     "@nuxt/test-utils": "^3.23.0",
     "@nuxtjs/seo": "^3.4.0",
+    "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^14.1.0",
     "@vueuse/motion": "^3.0.3",
     "class-variance-authority": "^0.7.1",
@@ -33,11 +34,14 @@
     "reka-ui": "^2.7.0",
     "shadcn-nuxt": "2.4.3",
     "tailwind-merge": "^3.4.0",
+    "vee-validate": "^4.15.1",
     "vue": "^3.5.27",
     "vue-router": "^4.6.4",
-    "vue-sonner": "^2.0.9"
+    "vue-sonner": "^2.0.9",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.90",
     "@tailwindcss/vite": "^4.1.18",
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/test-utils": "^2.4.6",
