@@ -43,6 +43,13 @@ export default defineNuxtConfig({
     url: "https://oneclickafrica.com",
     image: "https://oneclickafrica.com/og-image.jpg",
   },
+  runtimeConfig: {
+    mailchimp: {
+      apiKey: '', // will be overridden by environment variables
+      serverPrefix: '',
+      listId: '',
+    },
+  },
   // runtimeConfig: {
   //   public: {
   //     apiBase: process.env.API_BASE || 'http://localhost:3000/api',

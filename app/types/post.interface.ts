@@ -30,6 +30,7 @@ export interface Post {
   status: PostStatus;
   tags: string[];
   externalUrl?: string;
+  videoThumbnail?: string;
 }
 
 export type Posts = Post[]

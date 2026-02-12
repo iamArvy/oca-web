@@ -3,7 +3,7 @@ import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
 
 export const useNewsletterForm = () => {
-  const { success } = useToast()
+  const { success, error } = useToast()
   const formSchema = toTypedSchema(z.object({
     email: z.string().email().nonempty('Email is required'),
   }))
@@ -13,8 +13,20 @@ const { handleSubmit, isSubmitting } = useForm({
 })
 
 const onSubmit = handleSubmit(async (values) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000))
+  try {
+  const response = await $fetch('/api/newsletter', {
+    method: 'POST',
+    body: values,
+  })
+  console.log('Newsletter subscription response:', response)
+  if (!response.success) {
+    error(response.message || 'Subscription failed. Please try again.')
+    return
+  }
   success('Thank you for subscribing to our newsletter!')
+  } catch (e) {
+    error('An error occurred while subscribing to the newsletter. Please try again.')
+  }
 })
 
   

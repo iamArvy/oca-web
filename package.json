@@ -14,6 +14,7 @@
     "test:nuxt": "vitest --project nuxt"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@nuxt/a11y": "1.0.0-alpha.1",
     "@nuxt/eslint": "^1.13.0",
     "@nuxt/fonts": "^0.13.0",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@iconify-json/lucide": "^1.2.90",
     "@tailwindcss/vite": "^4.1.18",
+    "@types/mailchimp__mailchimp_marketing": "^3.0.22",
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^20.4.0",

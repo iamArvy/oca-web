@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 const filtersSchema = z.object({
   category: z.string().optional(),
+  subcategory: z.string().optional(),
   limit: z
     .string()
     .transform((v) => parseInt(v))
@@ -28,7 +29,6 @@ const filtersSchema = z.object({
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)
   const result = filtersSchema.safeParse(query)
-  console.log('Validation result:', result)
   if (!result.success) {
     throw createError({
       statusCode: 400,
@@ -37,9 +37,6 @@ export default defineEventHandler(async (event) => {
   }
   try{
     const data = mockGetPosts(result.data)
-    console.log('Fetched posts with filters:', result.data)
-    console.log('Number of posts returned:', data.length)
-    console.log('Sample posts:', data)
     return data
   }catch(e){
     throw createError({
