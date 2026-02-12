@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { Play } from 'lucide-vue-next';
 import { APP_ROUTES } from '~/constants';
-import type { Post } from '~/types'
+import { PostType, type Post } from '~/types'
 
 interface Props {
   post: Post
@@ -12,9 +13,9 @@ const props = defineProps<Props>()
 <template>
   <NuxtLink :to="APP_ROUTES.post.path(post.slug)" class="group block">
     <article class="relative h-100 md:h-125 rounded-2xl overflow-hidden card-interactive">
-      <template v-if="post.videoThumbnail">
-        <video :src="post.videoThumbnail" class="absolute inset-0 w-full h-full object-cover" muted loop playsInline
-          autoPlay />
+      <template v-if="post.type === PostType.VIDEO">
+        <iframe :src="post.content" class="absolute inset-0 w-full h-full object-cover" muted loop playsInline
+          frameborder="0" allow="autoplay; encrypted-media" autoPlay />
         <div
           class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2 py-1 bg-background/80 backdrop-blur-sm rounded-full text-xs font-medium">
           <Play class="w-3 h-3 fill-current" />
@@ -34,8 +35,7 @@ const props = defineProps<Props>()
         <span class="inline-block px-3 py-1 bg-primary-foreground/20 rounded-full text-xs font-medium mb-3">
           {{ props.post.category.name }}
         </span>
-        <h2
-          class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 leading-tight group-hover:text-primary transition-colors">
+        <h2 class="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-3 leading-tight transition-colors">
           {{ props.post.title }}
         </h2>
         <p class="text-primary-foreground/80 mb-4 line-clamp-2 text-sm md:text-base">

@@ -29,7 +29,7 @@ const entertainmentPosts = computed(() =>
         <div>
           <h2 class="font-display text-2xl md:text-3xl font-bold mb-6 relative">
             Latest News
-            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-gradient-hero rounded-full" />
+            <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
           </h2>
           <PostFeed :posts="posts" />
         </div>

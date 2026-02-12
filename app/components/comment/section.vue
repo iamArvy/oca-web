@@ -32,7 +32,7 @@ const postComments = computed(() =>
         <Textarea placeholder="Join the conversation..." v-model="newComment"
           class="min-h-25 resize-none bg-muted/30" />
         <div class="flex justify-end">
-          <Button class="bg-gradient-hero hover:opacity-90">
+          <Button class="bg-primary hover:opacity-90">
             Post Comment
           </Button>
         </div>

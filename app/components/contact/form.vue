@@ -104,7 +104,7 @@ const INQUIRY_TYPES = [
           placeholder="Tell us about your advertising goals and target audience..." required />
       </div>
 
-      <Button type="submit" class="w-full bg-gradient-hero hover:opacity-90" :disabled="isSubmitting">
+      <Button type="submit" class="w-full bg-primary hover:opacity-90" :disabled="isSubmitting">
         <template v-if="isSubmitting">Sending...</template>
         <template v-else>
           <Send class="w-4 h-4 mr-2" />

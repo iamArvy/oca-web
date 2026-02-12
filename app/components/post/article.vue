@@ -51,14 +51,6 @@ defineProps<{
           })
         }}
       </span>
-      <span class="flex items-center gap-2">
-        <Icon name="lucide:clock" class="w-4 h-4" />
-        {{ post.readTime }}
-      </span>
-      <span class="flex items-center gap-2">
-        <Icon name="lucide:eye" class="w-4 h-4" />
-        {{ post.views.toLocaleString() }} views
-      </span>
     </div>
 
     <!-- Excerpt -->
@@ -67,16 +59,16 @@ defineProps<{
     </p>
 
     <!-- Content -->
-    <div v-html="post.content" class="prose prose-lg max-w-none" />
+    <PostContent :type="post.type" :content="post.content" />
 
     <!-- Read Original -->
     <div v-if="post.externalUrl" class="mt-8 p-6 bg-muted/50 rounded-xl">
       <p class="text-sm text-muted-foreground mb-3">
         This article was sourced from an external publication.
       </p>
-      <Button @click="openExternal(post.externalUrl)" class="gap-2 bg-gradient-hero hover:opacity-90">
+      <Button @click="openExternal(post.externalUrl)" class="gap-2 bg-primary hover:opacity-90">
         <Icon name="lucide:external-link" class="w-4 h-4" />
-        Read Original Post
+        See Original Post
       </Button>
     </div>
 

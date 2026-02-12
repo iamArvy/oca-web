@@ -77,7 +77,7 @@ function formatDate(dateString: string) {
             <Button variant="ghost" size="sm" @click="showReplyForm = false">
               Cancel
             </Button>
-            <Button size="sm" class="bg-gradient-hero hover:opacity-90">
+            <Button size="sm" class="bg-primary hover:opacity-90">
               Reply
             </Button>
           </div>

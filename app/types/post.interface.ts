@@ -6,8 +6,14 @@ export enum PostStatus {
   ARCHIVED = 'archived'
 }
 
+export enum PostType {
+  ARTICLE = 'article',
+  VIDEO = 'video',
+  AUDIO= 'audio',
+  EMBEDDED = 'embedded'
+}
+
 export interface Author {
-  id: string;
   name: string;
   role: string;
   avatar?: string;
@@ -18,19 +24,16 @@ export interface Post {
   slug: string;
   excerpt: string;
   content: string;
+  type: PostType;
   category: Category;
   subcategory: Category;
   author: Author;
   date: string;
-  readTime: string;
   image: string;
-  views: number;
   trending?: boolean;
   hotTopic?: boolean;
-  status: PostStatus;
   tags: string[];
   externalUrl?: string;
-  videoThumbnail?: string;
 }
 
 export type Posts = Post[]

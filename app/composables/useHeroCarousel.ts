@@ -1,12 +1,10 @@
 import { watchOnce } from "@vueuse/core"
-// import Fade from "embla-carousel-fade"
 import type { CarouselApi } from "~/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay"
 
 export const useHeroCarousel = () => {
   const settings = {
     plugins: [
-      // Fade()
       Autoplay({ delay: 5000 })
     ],
     opts: {

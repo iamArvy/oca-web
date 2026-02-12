@@ -67,7 +67,7 @@ function handleSearch(e: Event) {
           Go Back
         </Button>
 
-        <Button class="bg-gradient-hero hover:opacity-90" @click="router.push('/')">
+        <Button class="bg-primary hover:opacity-90" @click="router.push('/')">
           <Home class="w-4 h-4 mr-2" />
           Return Home
         </Button>

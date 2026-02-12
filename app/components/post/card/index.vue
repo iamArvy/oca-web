@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { Play } from 'lucide-vue-next';
 import { APP_ROUTES } from '~/constants';
-import type { Post } from '~/types'
+import { PostType, type Post } from '~/types'
 
 
 interface Props {
@@ -9,6 +10,24 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const isHovering = ref(false)
+const videoRef = ref<HTMLVideoElement | null>(null)
+
+function handleMouseEnter() {
+  isHovering.value = true
+  if (videoRef.value && props.post.type === PostType.VIDEO) {
+    videoRef.value.play().catch(() => { })
+  }
+}
+
+function handleMouseLeave() {
+  isHovering.value = false
+  if (videoRef.value) {
+    videoRef.value.pause()
+    videoRef.value.currentTime = 0
+  }
+}
 </script>
 
 <template>
@@ -16,9 +35,32 @@ const props = defineProps<Props>()
 
   <PostCardCompact v-else-if="props.variant === 'compact'" :post="props.post" />
 
-  <NuxtLink v-else :to="APP_ROUTES.post.path(post.slug)" class="group block">
+  <NuxtLink v-else :to="APP_ROUTES.post.path(post.slug)" class="group block" @mouseenter="handleMouseEnter"
+    @mouseleave="handleMouseLeave">
     <article class="bg-card rounded-2xl overflow-hidden card-interactive h-full">
       <div class="relative overflow-hidden aspect-16/10">
+        <!-- <template v-if="props.post.type === PostType.VIDEO">
+          <img :src="props.post.image" :alt="props.post.title" :class="[
+            'absolute inset-0 w-full h-full object-cover transition-opacity duration-300',
+            isHovering ? 'opacity-0' : 'opacity-100',
+          ]" />
+          <video ref="videoRef" :src="props.post.content" :class="[
+            'absolute inset-0 w-full h-full object-cover transition-opacity duration-300',
+            isHovering ? 'opacity-100' : 'opacity-0',
+          ]" muted loop playsinline />
+          <div :class="[
+            'absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2 py-1 bg-background/80 backdrop-blur-sm rounded-full text-xs font-medium transition-opacity duration-300',
+            isHovering ? 'opacity-0' : 'opacity-100',
+          ]">
+            <Play class="w-3 h-3 fill-current" />
+            Video
+          </div>
+        </template>
+<template v-else>
+          <NuxtImg :src="props.post.image" :alt="props.post.title"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+        </template> -->
+
         <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
         <div v-if="props.post.trending"
