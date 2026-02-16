@@ -19,7 +19,7 @@ const props = defineProps<Props>()
 <template>
   <Sheet>
     <SheetTrigger as-child>
-      <Button variant="ghost" size="icon" class="lg:hidden">
+      <Button variant="ghost" size="icon">
         <Icon name="lucide:menu" class="w-5 h-5" />
       </Button>
     </SheetTrigger>

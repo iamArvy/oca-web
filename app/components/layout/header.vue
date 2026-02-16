@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { categories } from '@/lib/mocks'
-import { APP_ROUTES } from '~/constants';
-import { FolderOpen, ChevronDown, ChevronRight } from "lucide-vue-next";
 
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 
 const { date, time } = useDateTime()
+
+const router = useRouter()
+const { q, search } = useSearchForm()
 </script>
 
 <template>
@@ -57,7 +58,7 @@ const { date, time } = useDateTime()
             <div class="relative">
               <Icon name="lucide:search"
                 class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Search news..."
+              <Input v-model="q" placeholder="Search news..." @keydown.enter="search"
                 class="pl-10 w-48 lg:w-64 bg-muted/50 border-0 focus-visible:ring-primary" />
             </div>
           </div>

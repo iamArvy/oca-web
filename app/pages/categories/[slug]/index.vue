@@ -6,7 +6,7 @@ import { APP_ROUTES } from '~/constants'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
-const { currentCategory, setCurrentCategory } = useCategory()
+const { setCurrentCategory } = useCategory()
 
 const { data: category, error } = await useFetch(`/api/category`, {
   params: {

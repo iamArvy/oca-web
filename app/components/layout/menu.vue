@@ -20,15 +20,14 @@ function onMouseLeave() {
 </script>
 <template>
   <div>
-    <nav>
+    <nav @mouseleave="onMouseLeave">
       <ul class="flex space-x-4 overflow-x-auto">
-        <li v-for="category in categories" :key="category.id">
+        <li v-for="category in categories" :key="category.id" @mouseover="onMouseEnter(category)">
           <LayoutNav :label="category.name" :value="APP_ROUTES.category.path(category.slug)"
-            :active="currentCategory?.slug === category.slug" @mouseenter="() => onMouseEnter(category)"
-            @mouseleave="onMouseLeave" />
+            :active="currentCategory?.slug === category.slug" />
         </li>
       </ul>
-      <ul class="flex space-x-4 overflow-x-auto mt-4"
+      <ul class="flex space-x-4 overflow-x-auto mt-1"
         v-if="currentCategory && currentCategory.subcategories && currentCategory.subcategories.length > 0">
         <li v-for="subcategory in currentCategory.subcategories" :key="subcategory.id">
           <LayoutNav :label="subcategory.name"

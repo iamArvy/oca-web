@@ -8,14 +8,38 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const isHovering = ref(false)
+const videoRef = ref<HTMLVideoElement | null>(null)
+
+function handleMouseEnter() {
+  isHovering.value = true
+  if (videoRef.value && props.post.type === PostType.VIDEO) {
+    videoRef.value.play().catch(() => { })
+  }
+}
+
+function handleMouseLeave() {
+  isHovering.value = false
+  if (videoRef.value) {
+    videoRef.value.pause()
+    videoRef.value.currentTime = 0
+  }
+}
 </script>
 
 <template>
-  <NuxtLink :to="APP_ROUTES.post.path(post.slug)" class="group block">
+  <NuxtLink @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :to="APP_ROUTES.post.path(post.slug)"
+    class="group block">
     <article class="relative h-100 md:h-125 rounded-2xl overflow-hidden card-interactive">
       <template v-if="post.type === PostType.VIDEO">
-        <iframe :src="post.content" class="absolute inset-0 w-full h-full object-cover" muted loop playsInline
-          frameborder="0" allow="autoplay; encrypted-media" autoPlay />
+        <!-- <iframe :src="post.content" class="absolute inset-0 w-full h-full object-cover" muted loop playsInline
+          frameborder="0" allow="autoplay; encrypted-media" autoPlay /> -->
+        <!-- <video src=""></video> -->
+        <video ref="videoRef" :src="props.post.content" :class="[
+          'absolute inset-0 w-full h-full object-cover transition-opacity duration-300',
+          isHovering ? 'opacity-100' : 'opacity-0',
+        ]" muted loop playsinline />
         <div
           class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2 py-1 bg-background/80 backdrop-blur-sm rounded-full text-xs font-medium">
           <Play class="w-3 h-3 fill-current" />

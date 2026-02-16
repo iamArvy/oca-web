@@ -13,7 +13,7 @@ defineProps<Props>();
       {{ name }}
     </h1>
     <p class="text-muted-foreground">
-      {{ postCount }} articles in this category
+      {{ postCount }} articles found
     </p>
   </div>
 </template>
