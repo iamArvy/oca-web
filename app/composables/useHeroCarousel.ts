@@ -5,7 +5,7 @@ import Autoplay from "embla-carousel-autoplay"
 export const useHeroCarousel = () => {
   const settings = {
     plugins: [
-      Autoplay({ delay: 5000 })
+      Autoplay({ delay: 5000, stopOnMouseEnter: true })
     ],
     opts: {
       loop: true,
