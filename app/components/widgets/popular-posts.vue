@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Posts } from '~/types'
+import type { Posts } from '~/interfaces';
+
 
 const { data: posts } = useFetch<Posts>('/api/posts', {
   cache: "no-cache",

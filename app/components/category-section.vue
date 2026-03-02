@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants'
-import type { Posts } from '~/types'
+import type { Posts } from '~/interfaces'
 
 
 interface Post {

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { Posts } from '~/types'
+import type { Posts } from '~/interfaces';
+
 
 interface Props {
   posts: Posts,
