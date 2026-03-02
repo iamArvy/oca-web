@@ -1,19 +1,27 @@
 <script setup lang="ts">
-import { PostType } from '~/types';
+import { PostType } from "~/enums";
 
 interface Props {
-  type: PostType,
-  content: string
+  type: PostType;
+  content: string;
 }
-defineProps<Props>()
-
+defineProps<Props>();
 </script>
 
 <template>
   <div class="content-wrapper">
-    <PostContentEmbedded v-if="type === PostType.EMBEDDED" :link="content" />
-    <PostContentArticle v-else-if="type === PostType.ARTICLE" :html-content="content" />
-    <PostContentVideo v-else-if="type === PostType.VIDEO" :video-url="content" />
-    <PostContentAudio v-else-if="type === PostType.AUDIO" :audio-url="content" />
+    <PostContentEmbedded v-if="type === PostType.EMBED" :link="content" />
+    <PostContentArticle
+      v-else-if="type === PostType.ARTICLE"
+      :html-content="content"
+    />
+    <PostContentVideo
+      v-else-if="type === PostType.VIDEO"
+      :video-url="content"
+    />
+    <PostContentAudio
+      v-else-if="type === PostType.AUDIO"
+      :audio-url="content"
+    />
   </div>
 </template>
