@@ -17,7 +17,7 @@ export async function useFeed(route: string, query?: object) {
 
     try {
       const res = await useNuxtApp().$api<ApiListResponse<Posts>>(
-        "/latest-posts",
+        route,
         {
           query: { ...query, page: currentPage.value },
         },

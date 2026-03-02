@@ -58,7 +58,9 @@ const { loading, posts, loadMore } = await useFeed('/latest-posts')
             Latest News
             <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
           </h2>
-          <PostFeed :posts="posts" @load-more="loadMore" />
+          <ClientOnly>
+            <PostFeed :posts="posts" @load-more="loadMore" />
+          </ClientOnly>
           <div v-if="loading" class="text-center py-6 text-muted-foreground">
             Loading more posts...
           </div>
