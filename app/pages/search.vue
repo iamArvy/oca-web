@@ -6,23 +6,16 @@ import type { Posts } from '~/types'
 const route = useRoute()
 const q = computed(() => route.query.q as string)
 
-const { data: trendingPosts } = await useFetch<Posts>('/api/posts', {
-  cache: "no-cache",
-  query: {
-    trending: true,
-    limit: 5,
-  }
-})
+// const { data: trendingPosts } = await useFetch<Posts>('/api/posts', {
+//   cache: "no-cache",
+//   query: {
+//     trending: true,
+//     limit: 5,
+//   }
+// })
 
-const { data: initialPosts } = await useFetch<Posts>('/api/posts', {
-  cache: "no-cache",
-  query: {
-    q,
-    limit: 18,
-  }
-})
+const { loading, posts, loadMore } = await useFeed('/latest-posts')
 
-const posts = ref<Posts>(initialPosts.value || [])
 </script>
 
 <template>
@@ -32,15 +25,15 @@ const posts = ref<Posts>(initialPosts.value || [])
         <CategoryHeader name="Search Results" :postCount="posts?.length || 0" />
       </template>
       <template #main>
-        <PostFeed v-if="posts.length > 0" :posts="posts" />
-        <div v-else class="text-center py-12 text-muted-foreground">
-          <p>No posts found with this query.</p>
+        <PostFeed :posts="posts" @load-more="loadMore" />
+        <div v-if="loading" class="text-center py-6 text-muted-foreground">
+          Loading more posts...
         </div>
       </template>
 
       <template #sidebar>
         <AdComponent size="sidebar" />
-        <WidgetsPosts v-if="trendingPosts && trendingPosts.length > 0" :posts="trendingPosts" title="Trending" />
+        <!-- <WidgetsPosts v-if="trendingPosts && trendingPosts.length > 0" :posts="trendingPosts" title="Trending" /> -->
         <AdComponent size="sidebar" />
         <WidgetsNewsletter />
       </template>

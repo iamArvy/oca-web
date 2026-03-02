@@ -8,33 +8,37 @@ const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 const { setCurrentCategory } = useCategory()
 
-const { data: category, error } = await useFetch(`/api/category`, {
-  params: {
-    slug: slug.value
-  }
+// const { data: category, error } = await useFetch(`/api/category`, {
+//   params: {
+//     slug: slug.value
+//   }
+// })
+
+// if (!category.value) {
+//   throw createError(error.value || {
+//     status: 404,
+//     statusText: 'Category Not Found',
+//   })
+// }
+const category = categories[0]
+onMounted(() => {
+  setCurrentCategory(category)
 })
 
-if (!category.value) {
-  throw createError(error.value || {
-    status: 404,
-    statusText: 'Category Not Found',
-  })
-}
-onMounted(() => {
-  setCurrentCategory(category.value)
-})
+const { loading, posts, loadMore } = await useFeed('/latest-posts')
+
 </script>
 
 <template>
   <main>
     <AppContent class="py-8 md:py-12">
       <template #header>
-        <CategoryHeader :name="category?.name || slug" :postCount="category?.posts?.length || 0" />
+        <CategoryHeader :name="category?.name || slug" :postCount="posts?.length || 0" />
       </template>
       <template #main>
-        <PostFeed v-if="category?.posts && category.posts.length > 0" :posts="category.posts" />
-        <div v-else class="text-center py-12 text-muted-foreground">
-          <p>No posts found in this category.</p>
+        <PostFeed :posts="posts" @load-more="loadMore" />
+        <div v-if="loading" class="text-center py-6 text-muted-foreground">
+          Loading more posts...
         </div>
       </template>
 
