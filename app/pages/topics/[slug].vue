@@ -1,29 +1,24 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { categories } from '@/lib/mocks'
-import { APP_ROUTES } from '~/constants'
+import type { ApiResponse, Topic } from '~/interfaces'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
-const { setCurrentCategory } = useCategory()
+// const { setCurrentCategory } = useCategory()
 
-// const { data: category, error } = await useFetch(`/api/category`, {
-//   params: {
-//     slug: slug.value
-//   }
+const { data: topic, error } = await useAPI<ApiResponse<Topic>>(`/topics/` + slug.value)
+
+if (!topic.value?.data) {
+  throw createError(error.value || {
+    status: 404,
+    statusText: 'Topic Not Found',
+  })
+}
+// const category = categories[0]
+// onMounted(() => {
+//   setCurrentCategory(category)
 // })
-
-// if (!category.value) {
-//   throw createError(error.value || {
-//     status: 404,
-//     statusText: 'Category Not Found',
-//   })
-// }
-const category = categories[0]
-onMounted(() => {
-  setCurrentCategory(category)
-})
 
 const { loading, posts, loadMore } = await useFeed('/latest-posts')
 
@@ -33,7 +28,7 @@ const { loading, posts, loadMore } = await useFeed('/latest-posts')
   <main>
     <AppContent class="py-8 md:py-12">
       <template #header>
-        <CategoryHeader :name="category?.name || slug" :postCount="posts?.length || 0" />
+        <CategoryHeader :name="topic?.data?.name || slug" :postCount="posts?.length || 0" />
       </template>
       <template #main>
         <PostFeed :posts="posts" @load-more="loadMore" />
@@ -45,7 +40,7 @@ const { loading, posts, loadMore } = await useFeed('/latest-posts')
       <template #sidebar>
         <AdComponent size="sidebar" />
 
-        <div class="bg-card rounded-2xl p-6 card-interactive">
+        <!-- <div class="bg-card rounded-2xl p-6 card-interactive">
           <h3 class="font-display text-lg font-bold mb-4">
             Other Categories
           </h3>
@@ -59,7 +54,7 @@ const { loading, posts, loadMore } = await useFeed('/latest-posts')
               </span>
             </NuxtLink>
           </div>
-        </div>
+        </div> -->
 
         <AdComponent size="sidebar" />
       </template>

@@ -3,13 +3,9 @@ export const APP_ROUTES = {
     path: '/',
     name: "Home"
   },
-  category: {
-    path: (slug: string) => '/categories/' + slug,
-    name: 'categories-slug'
-  },
-  subcategory: {
-    path: (categorySlug: string, subcategorySlug: string) => '/categories/' + categorySlug + '/' + subcategorySlug,
-    name: 'categories-slug-subslug'
+  topic: {
+    path: (slug: string) => '/topics/' + slug,
+    name: 'topics-slug'
   },
   post: {
     path: (slug: string) => '/posts/' + slug,

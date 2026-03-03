@@ -6,11 +6,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
-import type { Categories } from '~/types';
 import { APP_ROUTES } from '~/constants';
+import type { Topics } from '~/interfaces';
 
 interface Props {
-  categories: Categories
+  topics: Topics
 }
 
 const props = defineProps<Props>()
@@ -25,47 +25,46 @@ const props = defineProps<Props>()
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>
-        <SheetTitle>Categories</SheetTitle>
+        <SheetTitle>Topics</SheetTitle>
         <SheetDescription>
-          Browse news by category. Tap on a category to view related articles.
+          Browse news by topics. Tap on a topic to view related articles.
         </SheetDescription>
       </SheetHeader>
       <Accordion type="single" collapsible class="w-full">
-        <AccordionItem v-for="category in categories" :key="category.id" :value="category.id" class="border-none">
+        <AccordionItem v-for="item in topics" :key="item.id" :value="item.id" class="border-none">
           <div class="flex items-center">
-            <template v-if="category.subcategories && category.subcategories.length > 0">
+            <template v-if="item.children && item.children.length > 0">
               <AccordionTrigger
                 class="flex-1 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors [&[data-state=open]>svg]:rotate-180 hover:no-underline">
                 <span class="flex items-center gap-2">
-                  {{ category.name }}
-                  <span class="text-xs text-muted-foreground">
-                    ({{ category.count }})
-                  </span>
+                  {{ item.name }}
+                  <!-- <span class="text-xs text-muted-foreground">
+                    ({{ item.count }})
+                  </span> -->
                 </span>
               </AccordionTrigger>
             </template>
 
             <template v-else>
-              <NuxtLink :to="`/category/${category.slug}`"
+              <NuxtLink :to="APP_ROUTES.topic.path(item.slug)"
                 class="flex-1 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
-                {{ category.name }}
-                <span class="text-xs text-muted-foreground ml-2">
+                {{ item.name }}
+                <!-- <span class="text-xs text-muted-foreground ml-2">
                   ({{ category.count }})
-                </span>
+                </span> -->
               </NuxtLink>
             </template>
           </div>
 
-          <AccordionContent v-if="category.subcategories && category.subcategories.length > 0" class="pb-0">
+          <AccordionContent v-if="item.children && item.children.length > 0" class="pb-0">
             <div class="pl-4 space-y-1 pb-2">
-              <NuxtLink :to="APP_ROUTES.category.path(category.slug)"
+              <NuxtLink :to="APP_ROUTES.topic.path(item.slug)"
                 class="block px-4 py-2 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors">
-                All {{ category.name }}
+                All {{ item.name }}
               </NuxtLink>
-              <NuxtLink v-for="sub in category.subcategories" :key="sub.id"
-                :to="APP_ROUTES.subcategory.path(category.slug, sub.slug)"
+              <NuxtLink v-for="child in item.children" :key="child.id" :to="APP_ROUTES.topic.path(child.slug)"
                 class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
-                {{ sub.name }}
+                {{ child.name }}
               </NuxtLink>
             </div>
           </AccordionContent>

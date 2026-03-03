@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { categories } from '@/lib/mocks'
 
+const { topics } = await useTopics()
 const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 
@@ -70,10 +70,10 @@ const { q, search } = useSearchForm()
 
           <AppTheme />
 
-          <LayoutMobileMenu :categories="categories" />
+          <LayoutMobileMenu :topics="topics" />
         </div>
       </div>
-      <LayoutMenu :categories="categories" />
+      <LayoutMenu :topics="topics" />
 
       <!-- Mobile Navigation -->
       <!-- <LayoutMobileMenu :categories="categories" v-if="isMenuOpen" @close="isMenuOpen = false" /> -->

@@ -1,37 +1,36 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
-import type { Categories, Category } from '~/types';
+import type { Topic, Topics } from '~/interfaces';
 
 // const { currentCategory } = useCategory()
 interface Props {
-  categories: Categories,
+  topics: Topics,
 }
 
 defineProps<Props>()
-const currentCategory = ref<Category | null>(null)
+const currentTopic = ref<Topic | null>(null)
 
-function onMouseEnter(category: Category) {
-  currentCategory.value = category
+function onMouseEnter(topic: Topic) {
+  currentTopic.value = topic
 }
 
 function onMouseLeave() {
-  currentCategory.value = null
+  currentTopic.value = null
 }
 </script>
 <template>
   <div>
     <nav @mouseleave="onMouseLeave">
       <ul class="flex space-x-4 overflow-x-auto">
-        <li v-for="category in categories" :key="category.id" @mouseover="onMouseEnter(category)">
-          <LayoutNav :label="category.name" :value="APP_ROUTES.category.path(category.slug)"
-            :active="currentCategory?.slug === category.slug" />
+        <li v-for="item in topics" :key="item.id" @mouseover="onMouseEnter(item)">
+          <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
+            :active="currentTopic?.slug === item.slug" />
         </li>
       </ul>
       <ul class="flex space-x-4 overflow-x-auto mt-1"
-        v-if="currentCategory && currentCategory.subcategories && currentCategory.subcategories.length > 0">
-        <li v-for="subcategory in currentCategory.subcategories" :key="subcategory.id">
-          <LayoutNav :label="subcategory.name"
-            :value="APP_ROUTES.subcategory.path(currentCategory.slug, subcategory.slug)" />
+        v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">
+        <li v-for="child in currentTopic.children" :key="child.id">
+          <LayoutNav :label="child.name" :value="APP_ROUTES.topic.path(child.slug)" />
         </li>
       </ul>
     </nav>
