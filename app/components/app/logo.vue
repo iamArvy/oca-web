@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const { currentTheme } = useTheme()
+</script>
 <template>
-  <img src="/logo.webp" alt="">
+  <img :src="currentTheme === 'light' ? '/logo.webp' : '/logo-white.png'" alt="">
 </template>

@@ -53,10 +53,8 @@ const { onSubmit, isSubmitting } = useNewsletterForm()
 
 <template>
   <footer class="bg-black text-primary-foreground">
-    <!-- News Ticker -->
     <NewsTicker :posts="posts?.data ?? []" />
 
-    <!-- Main Footer -->
     <div class="container-lg py-12 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="col-span-3 grid md:grid-cols-2 gap-8 ">
@@ -97,7 +95,6 @@ const { onSubmit, isSubmitting } = useNewsletterForm()
       </div>
     </div>
 
-    <!-- Bottom Bar -->
     <div class="border-t border-primary-foreground/10">
       <div
         class="container-lg py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60 mx-auto">
