@@ -20,7 +20,9 @@ if (!topic.value?.data) {
 //   setCurrentCategory(category)
 // })
 
-const { loading, posts, loadMore } = await useFeed('/latest-posts')
+const { loading, posts, loadMore } = await useFeed('/posts', {
+  topic: slug
+})
 
 </script>
 

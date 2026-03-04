@@ -1,30 +1,25 @@
 import type { ApiListResponse, Posts } from "~/interfaces";
 
-export async function useFeed(route: string, query?: object) {
-  const { data: initialPosts } =
-  await useAPI<ApiListResponse<Posts>>(route);
+export async function useFeed(route: string, query?: Record<string, any>) {
+  const { data: initial } = await useAPI<ApiListResponse<Posts>>(route, { query });
 
   const currentPage = ref(1);
-  const hasNextPage = ref(initialPosts.value?.meta.has_next ?? false);
-  const posts = ref(initialPosts.value?.data || []);
   const loading = ref(false);
+  const hasNextPage = ref(initial.value?.meta?.has_next ?? false);
+  const posts = ref(initial.value?.data ?? []);
 
   const loadMore = async () => {
     if (loading.value || !hasNextPage.value) return;
-
     loading.value = true;
     currentPage.value++;
 
     try {
-      const res = await useNuxtApp().$api<ApiListResponse<Posts>>(
-        route,
-        {
-          query: { ...query, page: currentPage.value },
-        },
-      );
+      const { data: res } = await useAPI<ApiListResponse<Posts>>(route, {
+        query: { ...query, page: currentPage.value },
+      });
 
-      if (res.data?.length) posts.value.push(...res.data);
-      hasNextPage.value = res.meta?.has_next ?? false;
+      if (res.value?.data?.length) posts.value.push(...res.value.data);
+      hasNextPage.value = res.value?.meta?.has_next ?? false;
     } finally {
       loading.value = false;
     }
@@ -33,6 +28,8 @@ export async function useFeed(route: string, query?: object) {
   return {
     loading,
     posts,
-    loadMore
-  }
+    hasNextPage,
+    currentPage,
+    loadMore,
+  };
 }

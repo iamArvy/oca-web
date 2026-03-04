@@ -1,20 +1,10 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import type { Posts } from '~/types'
 
 const route = useRoute()
 const q = computed(() => route.query.q as string)
-
-// const { data: trendingPosts } = await useFetch<Posts>('/api/posts', {
-//   cache: "no-cache",
-//   query: {
-//     trending: true,
-//     limit: 5,
-//   }
-// })
-
-const { loading, posts, loadMore } = await useFeed('/latest-posts')
+const { loading, posts, loadMore } = await useFeed('/posts', { q })
 
 </script>
 
