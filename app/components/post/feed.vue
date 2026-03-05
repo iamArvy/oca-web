@@ -13,6 +13,7 @@ interface Props {
   posts: Posts;
   columns?: 3 | 4;
   showViewToggle?: boolean;
+  loading: boolean
 }
 
 interface Emits {
@@ -50,43 +51,25 @@ useIntersectionObserver(loadTrigger, (entries) => {
 <template>
   <div>
     <!-- View Toggle -->
-    <div
-      v-if="props.showViewToggle"
-      class="flex items-center justify-end gap-1 mb-4"
-    >
-      <Button
-        :variant="viewMode === ViewMode.GRID ? 'default' : 'ghost'"
-        size="icon"
-        class="h-8 w-8"
-        @click="viewMode = ViewMode.GRID"
-      >
+    <div v-if="props.showViewToggle" class="flex items-center justify-end gap-1 mb-4">
+      <Button :variant="viewMode === ViewMode.GRID ? 'default' : 'ghost'" size="icon" class="h-8 w-8"
+        @click="viewMode = ViewMode.GRID">
         <LayoutGrid class="w-4 h-4" />
       </Button>
 
-      <Button
-        :variant="viewMode === ViewMode.LIST ? 'default' : 'ghost'"
-        size="icon"
-        class="h-8 w-8"
-        @click="viewMode = ViewMode.LIST"
-      >
+      <Button :variant="viewMode === ViewMode.LIST ? 'default' : 'ghost'" size="icon" class="h-8 w-8"
+        @click="viewMode = ViewMode.LIST">
         <List class="w-4 h-4" />
       </Button>
     </div>
 
     <!-- GRID VIEW -->
-    <div
-      v-if="viewMode === 'grid'"
-      :class="`grid ${gridCols} gap-6 stagger-children`"
-    >
+    <div v-if="viewMode === 'grid'" :class="`grid ${gridCols} gap-6 stagger-children`">
       <template v-for="(item, index) in items" :key="index">
-        <div
-          v-if="item.type === 'ad'"
-          :class="
-            props.columns === 3
-              ? 'md:col-span-2 lg:col-span-3'
-              : 'md:col-span-2 lg:col-span-4'
-          "
-        >
+        <div v-if="item.type === 'ad'" :class="props.columns === 3
+          ? 'md:col-span-2 lg:col-span-3'
+          : 'md:col-span-2 lg:col-span-4'
+          ">
           <AdComponent size="inline" />
         </div>
 
@@ -101,6 +84,10 @@ useIntersectionObserver(loadTrigger, (entries) => {
         <PostCard v-else :post="item.post" variant="compact" />
       </template>
     </div>
-    <div ref="loadTrigger" class="h-10"></div>
+    <div ref="loadTrigger" class="h-10">
+      <div v-if="loading" class="text-center py-6 text-muted-foreground">
+        Loading more posts...
+      </div>
+    </div>
   </div>
 </template>

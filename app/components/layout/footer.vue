@@ -46,20 +46,19 @@ const nav = [
     url: '/contact'
   },
 ]
-const { data: posts } = useAPI<ApiListResponse<Posts>>("/featured-posts");
 const { onSubmit, isSubmitting } = useNewsletterForm()
 
+const { data: editorPicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'editor-picks', limit: 5 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'hot-clicks', limit: 5 } })
 </script>
 
 <template>
   <footer class="bg-black text-primary-foreground">
-    <NewsTicker :posts="posts?.data ?? []" />
-
     <div class="container-lg py-12 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="col-span-3 grid md:grid-cols-2 gap-8 ">
-          <WidgetsFooter label="Editor's Picks" :posts="posts?.data?.slice(0, 5) ?? []" />
-          <WidgetsFooter label="Hot Clicks" :posts="posts?.data?.slice(0, 5) ?? []" />
+          <WidgetsFooter v-if="editorPicks" label="Editor's Picks" :posts="editorPicks?.data?.slice(0, 5) ?? []" />
+          <WidgetsFooter v-if="hotClicks" label="Hot Clicks" :posts="hotClicks?.data?.slice(0, 5) ?? []" />
         </div>
 
         <div class="space-y-4">

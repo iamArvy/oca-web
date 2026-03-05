@@ -20,16 +20,15 @@ const { loading, posts, loadMore } = await useFeed('/posts', { days: 1 })
             <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
           </h2>
           <ClientOnly>
-            <PostFeed :posts="posts" @load-more="loadMore" />
+            <PostFeed :posts="posts" @load-more="loadMore" :loading="loading" />
           </ClientOnly>
-          <div v-if="loading" class="text-center py-6 text-muted-foreground">
-            Loading more posts...
-          </div>
         </div>
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />
-        <!-- <WidgetsPopularPosts /> -->
+        <WidgetsEditorPick />
+        <AdComponent size="sidebar" />
+        <WidgetsHotClicks />
         <AdComponent size="sidebar" />
         <WidgetsNewsletter />
       </template>

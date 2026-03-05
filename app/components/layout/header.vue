@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { ApiListResponse, Posts } from '~/interfaces'
 
 const { topics } = await useTopics()
 const isMenuOpen = ref(false)
@@ -9,18 +10,19 @@ const { date, time } = useDateTime()
 
 const router = useRouter()
 const { q, search } = useSearchForm()
+const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'breaking-news' } })
 </script>
 
 <template>
   <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
     <!-- Top Bar -->
     <div class="bg-primary text-primary-foreground py-2">
-      <div class="container-lg flex justify-between items-center text-sm mx-auto">
-        <span class="font-medium">Your source for African news & stories</span>
-        <div class="hidden md:flex items-center gap-4">
-          <span>{{ date }}</span>
+      <div class="container-lg flex justify-between items-center text-sm mx-auto gap-4">
+        <NewsTicker v-if="breakingNews" :posts="breakingNews?.data ?? []" />
+        <div class="hidden md:flex items-center gap-2 flex-1">
+          <span class="w-25">{{ date }}</span>
           <span>|</span>
-          <span>{{ time }}</span>
+          <span class="w-20">{{ time }}</span>
         </div>
       </div>
     </div>

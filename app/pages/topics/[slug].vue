@@ -33,10 +33,7 @@ const { loading, posts, loadMore } = await useFeed('/posts', {
         <CategoryHeader :name="topic?.data?.name || slug" :postCount="posts?.length || 0" />
       </template>
       <template #main>
-        <PostFeed :posts="posts" @load-more="loadMore" />
-        <div v-if="loading" class="text-center py-6 text-muted-foreground">
-          Loading more posts...
-        </div>
+        <PostFeed :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
 
       <template #sidebar>
