@@ -23,8 +23,8 @@ const { data: posts } = useAPI<ApiListResponse<Posts>>("/posts", { query: { coll
       </CarouselContent>
       <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
         <button v-for="(_, index) in posts.data" :key="index" class="w-2 h-2 rounded-full transition-all" :class="index === selectedIndex
-            ? 'w-8 bg-primary'
-            : 'bg-primary-foreground/50 hover:bg-primary-foreground/70'
+          ? 'w-8 bg-primary'
+          : 'bg-white/50 hover:bg-white/70'
           " />
       </div>
     </Carousel>
