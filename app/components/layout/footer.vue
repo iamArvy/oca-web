@@ -35,11 +35,11 @@ const nav = [
   },
   {
     label: 'About',
-    url: '/contact'
+    url: '/about'
   },
   {
     label: 'Privacy Policy',
-    url: '/contact'
+    url: '/privacy'
   },
   {
     label: 'Contact',
