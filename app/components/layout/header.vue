@@ -3,10 +3,9 @@ import { ref } from 'vue'
 import type { ApiListResponse, Posts } from '~/interfaces'
 
 const { topics } = await useTopics()
-const isMenuOpen = ref(false)
 const isSearchOpen = ref(false)
 
-const { date, time } = useDateTime()
+// const { date, time } = useDateTime()
 
 const router = useRouter()
 const { q, search } = useSearchForm()
@@ -19,11 +18,11 @@ const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query:
     <div class="bg-primary text-primary-foreground py-2">
       <div class="container-lg flex justify-between items-center text-sm mx-auto gap-4">
         <NewsTicker v-if="breakingNews" :posts="breakingNews?.data ?? []" />
-        <div class="hidden md:flex items-center gap-2 flex-1">
+        <!-- <div class="hidden md:flex items-center gap-2 flex-1">
           <span class="w-25">{{ date }}</span>
           <span>|</span>
           <span class="w-20">{{ time }}</span>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -34,24 +33,6 @@ const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query:
         <NuxtLink to="/" class="flex items-center gap-2">
           <AppLogo class="w-20 sm:w-30 md:w-35 lg:w-40" />
         </NuxtLink>
-
-        <!-- Desktop Navigation -->
-        <!-- <nav class="hidden lg:flex items-center gap-1 flex-1 justify-end">
-          <NuxtLink :to="APP_ROUTES.home.path" aria-label="Home"
-            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            active-class="text-foreground bg-muted">
-            Home
-          </NuxtLink>
-          <LayoutMegaMenu2 :categories="categories">
-            <FolderOpen class="w-4 h-4" />
-            Categories
-          </LayoutMegaMenu2>
-          <NuxtLink :to="APP_ROUTES.contact.path" aria-label="Advertise with Us"
-            class="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
-            active-class="text-foreground bg-muted">
-            Advertise with Us
-          </NuxtLink>
-        </nav> -->
 
         <!-- Actions -->
         <div class="flex items-center gap-2">
@@ -76,9 +57,6 @@ const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query:
         </div>
       </div>
       <LayoutMenu :topics="topics" />
-
-      <!-- Mobile Navigation -->
-      <!-- <LayoutMobileMenu :categories="categories" v-if="isMenuOpen" @close="isMenuOpen = false" /> -->
     </div>
 
   </header>
