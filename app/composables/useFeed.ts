@@ -7,6 +7,7 @@ export async function useFeed(route: string, query?: Record<string, any>) {
   const loading = ref(false);
   const hasNextPage = ref(initial.value?.meta?.has_next ?? false);
   const posts = ref(initial.value?.data ?? []);
+  const count = ref(initial.value?.meta.total)
 
   const loadMore = async () => {
     if (loading.value || !hasNextPage.value) return;
@@ -28,6 +29,7 @@ export async function useFeed(route: string, query?: Record<string, any>) {
   return {
     loading,
     posts,
+    count,
     hasNextPage,
     currentPage,
     loadMore,
