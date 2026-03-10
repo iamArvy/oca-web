@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <article class="prose prose-lg max-w-none">
+  <article class="prose prose-lg max-w-3xl text-foreground prose-a:text-foreground prose-strong:text-foreground ">
     <div v-html="htmlContent" />
   </article>
 </template>

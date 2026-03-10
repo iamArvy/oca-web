@@ -10,7 +10,7 @@ interface Props {
 defineProps<Props>()
 </script>
 <template>
-  <div>
+  <div class="text-white">
     <h3 class="text-xl mb-3">{{ label }}</h3>
     <ul class="space-y-4">
       <li v-for="item in posts" :key="item.id">

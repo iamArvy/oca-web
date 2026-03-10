@@ -53,7 +53,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { 
 </script>
 
 <template>
-  <footer class="bg-black text-primary-foreground">
+  <footer class="bg-black text-white">
     <div class="container-lg py-12 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="col-span-3 grid md:grid-cols-2 gap-8 ">
@@ -63,7 +63,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { 
 
         <div class="space-y-4">
           <h4 class="font-display text-lg font-bold">Newsletter</h4>
-          <p class="text-primary-foreground/70 text-sm">
+          <p class="text-white/70 text-sm">
             Get the latest African news delivered to your inbox.
           </p>
           <form @submit.prevent="onSubmit" class="flex gap-2" action="">
@@ -71,10 +71,9 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { 
               <FormItem>
                 <FormControl>
                   <div class="relative flex-1">
-                    <Icon name="lucide:mail"
-                      class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Icon name="lucide:mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white" />
                     <Input placeholder="Enter your email" v-bind="componentField"
-                      class="pl-10 bg-primary-foreground/10 border-0 text-primary-foreground placeholder:text-primary-foreground/50" />
+                      class="pl-10 bg-primary-foreground/10 border-0 text-white placeholder:text-primary-foreground/50" />
                   </div>
                 </FormControl>
                 <FormMessage />
@@ -86,7 +85,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { 
           </form>
           <div class="flex gap-3">
             <NuxtLink v-for="item in socials" :key="item.label" :href="item.url"
-              class="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary hover:text-primary-foreground flex items-center justify-center transition-colors">
+              class="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
               <Icon :name="item.icon" class="w-4 h-4" />
             </NuxtLink>
           </div>
@@ -94,9 +93,9 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { 
       </div>
     </div>
 
-    <div class="border-t border-primary-foreground/10">
+    <div class="border-t border-white/10">
       <div
-        class="container-lg py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/60 mx-auto">
+        class="container-lg py-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60 mx-auto">
         <p>© {{ new Date().getFullYear().toString() }} OneClick Africa. All rights reserved.</p>
         <div class="flex gap-6">
           <NuxtLink v-for="item in nav" :to="item.url" class="hover:text-primary transition-colors">

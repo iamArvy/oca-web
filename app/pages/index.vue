@@ -30,7 +30,7 @@ const { loading, posts, loadMore } = await useFeed('/posts', { days: 1 })
         <AdComponent size="sidebar" />
         <WidgetsHotClicks />
         <AdComponent size="sidebar" />
-        <WidgetsNewsletter />
+        <!-- <WidgetsNewsletter /> -->
       </template>
       <div class="bg-muted/30">
         <div class="container-lg">

@@ -62,32 +62,14 @@ useIntersectionObserver(loadTrigger, (entries) => {
         <List class="w-4 h-4" />
       </Button>
     </div>
-
-    <!-- GRID VIEW -->
-    <div v-if="viewMode === 'grid'" :class="`grid ${gridCols} gap-6 stagger-children`">
-      <template v-for="(item, index) in items" :key="index">
-        <div v-if="item.type === 'ad'" :class="props.columns === 3
-          ? 'md:col-span-2 lg:col-span-3'
-          : 'md:col-span-2 lg:col-span-4'
-          ">
-          <AdComponent size="inline" />
+    <ScrollArea class="h-500 px-5">
+      <PostFeedGrid v-if="viewMode === 'grid'" :items="items" />
+      <PostFeedList v-else :items="items" />
+      <div ref="loadTrigger" class="h-10">
+        <div v-if="loading" class="text-center flex items-center justify-center py-6 text-muted-foreground">
+          <Spinner />
         </div>
-
-        <PostCard v-else :post="item.post" />
-      </template>
-    </div>
-
-    <!-- LIST VIEW -->
-    <div v-else class="space-y-4">
-      <template v-for="(item, index) in items" :key="index">
-        <AdComponent v-if="item.type === 'ad'" size="inline" />
-        <PostCard v-else :post="item.post" variant="compact" />
-      </template>
-    </div>
-    <div ref="loadTrigger" class="h-10">
-      <div v-if="loading" class="text-center py-6 text-muted-foreground">
-        Loading more posts...
       </div>
-    </div>
+    </ScrollArea>
   </div>
 </template>
