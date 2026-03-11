@@ -33,14 +33,11 @@ const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path,
       </template>
 
       <template #sidebar>
-        <div>
-          dfsds
-        </div>
-        <!-- <AdComponent size="sidebar" />
+        <AdComponent size="sidebar" />
         <WidgetsEditorPick />
         <AdComponent size="sidebar" />
         <WidgetsHotClicks />
-        <AdComponent size="sidebar" /> -->
+        <AdComponent size="sidebar" />
       </template>
     </AppContent>
   </main>
