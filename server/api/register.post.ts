@@ -1,0 +1,31 @@
+import { z } from "zod";
+import type { ApiAuthResponse } from "~/interfaces";
+import { apiRequest } from "../utils/api-request";
+
+const bodySchema = z.object({
+  name: z.string().min(3, 'Name must be at least 3 characters').max(50),
+  email: z.string().email('Email must be a valid email'),
+  password: z.string().min(8, 'Password must be at least 8 digits long').max(50),
+});
+
+export default defineEventHandler(async (event) => {
+  const body = await readValidatedBody(event, bodySchema.parse);
+
+  try {
+    const { user, token, message } =
+      await apiRequest<ApiAuthResponse>("auth/register", {
+        method: "POST",
+        body,
+      });
+
+    await setUserSession(event, {
+      user,
+      token: token.token,
+    });
+    return { message };
+  } catch (error: any) {
+    console.error(error.message)
+    if(error?.statusCode === 400) throw createError('Missing or Invalid fields')
+    throw createError('Internal Server Error');
+  }
+});

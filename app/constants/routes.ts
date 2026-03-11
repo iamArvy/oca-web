@@ -23,4 +23,24 @@ export const APP_ROUTES = {
     path: '/contact',
     name: 'contact'
   },
+  about: {
+    path: '/about',
+    name: 'about'
+  },
+  privacy: {
+    path: '/privacy',
+    name: 'privacy'
+  },
+  login: {
+    path: '/login',
+    name: 'Login'
+  },
+  register: {
+    path: '/register',
+    name: 'Register'
+  },
+  forgotPassword: {
+    path: '/forgot-password',
+    name: 'Forgot Password'
+  }
 }

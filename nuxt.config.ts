@@ -20,6 +20,7 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
     "shadcn-nuxt",
     "@nuxtjs/seo",
+    "nuxt-auth-utils"
   ],
   shadcn: {
     /**

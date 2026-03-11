@@ -2,19 +2,13 @@
 import { computed } from "vue";
 import { useRoute } from "vue-router";
 import placeholder from "~/assets/images/oca-placeholder.png";
+import { API_ROUTES } from "~/constants";
 import type { Post, ApiResponse } from "~/interfaces";
 
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 
-const { data: res } = await useAPI<ApiResponse<Post>>("/posts/" + slug.value);
-
-// const { data } = await useFetch<{ post: Post; relatedPosts: Posts }>(
-//   "/api/post",
-//   {
-//     params: { slug: slug.value },
-//   },
-// );
+const { data: res } = await useAPI<ApiResponse<Post>>(API_ROUTES.post.path(slug.value));
 
 if (!res.value || !res.value.data) {
   throw createError({
@@ -29,15 +23,8 @@ const { data: post } = res.value;
   <main>
     <!-- Hero Image -->
     <div class="relative h-75 md:h-112.5 overflow-hidden">
-      <NuxtImg
-        :src="post.image"
-        :alt="post.title"
-        :placeholder="placeholder"
-        class="w-full h-full object-cover"
-      />
-      <div
-        class="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent"
-      />
+      <NuxtImg :src="post.image" :alt="post.title" :placeholder="placeholder" class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
     </div>
     <AppContent class="-mt-32 relative z-10">
       <template #main>

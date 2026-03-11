@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { API_ROUTES, APP_ROUTES } from '~/constants';
 import type { ApiListResponse, Posts } from '~/interfaces';
 
 const socials = [
@@ -31,25 +32,25 @@ const socials = [
 const nav = [
   {
     label: 'Home',
-    url: '/'
+    url: APP_ROUTES.home.path
   },
   {
     label: 'About',
-    url: '/about'
+    url: APP_ROUTES.about.path
   },
   {
     label: 'Privacy Policy',
-    url: '/privacy'
+    url: APP_ROUTES.privacy.path
   },
   {
     label: 'Contact',
-    url: '/contact'
+    url: APP_ROUTES.contact.path
   },
 ]
 const { onSubmit, isSubmitting } = useNewsletterForm()
 
-const { data: editorPicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'editor-picks', limit: 5 } })
-const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'hot-clicks', limit: 5 } })
+const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 5 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'hot-clicks', limit: 5 } })
 </script>
 
 <template>

@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { API_ROUTES } from '~/constants'
 import type { ApiResponse, Topic } from '~/interfaces'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const { data: topic, error } = await useAPI<ApiResponse<Topic>>(`/topics/` + slug.value)
+const { data: topic, error } = await useAPI<ApiResponse<Topic>>(API_ROUTES.topic.path(slug.value))
 
 if (!topic.value?.data) {
   throw createError(error.value || {
@@ -15,7 +16,7 @@ if (!topic.value?.data) {
   })
 }
 
-const { loading, posts, loadMore, count } = await useFeed('/posts', {
+const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path, {
   topic: slug
 })
 
@@ -32,11 +33,14 @@ const { loading, posts, loadMore, count } = await useFeed('/posts', {
       </template>
 
       <template #sidebar>
-        <AdComponent size="sidebar" />
+        <div>
+          dfsds
+        </div>
+        <!-- <AdComponent size="sidebar" />
         <WidgetsEditorPick />
         <AdComponent size="sidebar" />
         <WidgetsHotClicks />
-        <AdComponent size="sidebar" />
+        <AdComponent size="sidebar" /> -->
       </template>
     </AppContent>
   </main>

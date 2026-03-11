@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { APP_ROUTES } from '~/constants';
+import { API_ROUTES, APP_ROUTES } from '~/constants';
 import type { ApiListResponse, Posts } from '~/interfaces';
 import { Flame } from 'lucide-vue-next';
 
-const { data: hotClicks } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'hot-clicks', limit: 5 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'hot-clicks', limit: 5 } })
 </script>
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive border-l-4 border-l-primary">

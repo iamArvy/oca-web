@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { API_ROUTES } from '~/constants'
 import type { ApiResponse, Topic } from '~/interfaces'
 
 const route = useRoute()
 const slug = computed(() => route.params.subSlug as string)
 
-const { data: topic, error } = await useAPI<ApiResponse<Topic>>(`/topics/` + slug.value)
+const { data: topic, error } = await useAPI<ApiResponse<Topic>>(API_ROUTES.topic.path(slug.value))
 
 if (!topic.value?.data) {
   throw createError(error.value || {
@@ -14,7 +15,7 @@ if (!topic.value?.data) {
     statusText: 'Topic Not Found',
   })
 }
-const { loading, posts, loadMore, count } = await useFeed('/posts', {
+const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path, {
   subtopic: slug
 })
 

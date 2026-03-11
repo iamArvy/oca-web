@@ -1,3 +1,5 @@
+import type { User } from "./user.interface";
+
 export interface ApiResponse<D> {
   status_code: number;
   message: string | null;
@@ -21,4 +23,16 @@ export interface BaseItem {
   id: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface Token {
+  token: string;
+  expiresIn: number;
+}
+
+export interface ApiAuthResponse {
+  status_code: number;
+  message: string;
+  user: User;
+  token: Token
 }
