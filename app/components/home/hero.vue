@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, Posts } from "~/interfaces";
 
 // const trendingPosts = computed(() => props.posts.filter((p) => p.trending));
 
 const { settings, emblaMainApi, selectedIndex } = useHeroCarousel();
 
-const { data: posts } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'featured-posts' } });
+const { data: posts } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'featured-posts' } });
 </script>
 
 <template>

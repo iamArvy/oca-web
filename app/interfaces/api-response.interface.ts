@@ -30,9 +30,7 @@ export interface Token {
   expiresIn: number;
 }
 
-export interface ApiAuthResponse {
-  status_code: number;
-  message: string;
+export interface AuthResponse {
   user: User;
   token: Token
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { API_ROUTES } from '~/constants'
 import type { ApiListResponse, Posts } from '~/interfaces'
 
 const { topics } = await useTopics()
@@ -9,7 +10,7 @@ const isSearchOpen = ref(false)
 
 const router = useRouter()
 const { q, search } = useSearchForm()
-const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query: { collection: 'breaking-news' } })
+const { data: breakingNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'breaking-news' } })
 </script>
 
 <template>
@@ -52,6 +53,7 @@ const { data: breakingNews } = useAPI<ApiListResponse<Posts>>("/posts", { query:
           </Button>
 
           <AppTheme />
+          <AppAccount />
 
           <LayoutMobileMenu :topics="topics" />
         </div>

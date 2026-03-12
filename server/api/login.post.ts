@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { ApiAuthResponse } from "~/interfaces";
+import type { ApiResponse, AuthResponse } from "~/interfaces";
 import { apiRequest } from "../utils/api-request";
 
 const bodySchema = z.object({
@@ -11,11 +11,15 @@ export default defineEventHandler(async (event) => {
   const body = await readValidatedBody(event, bodySchema.parse);
 
   try {
-    const { user, token, message } =
-      await apiRequest<ApiAuthResponse>("auth/login", {
+    const { data, message } =
+      await apiRequest<ApiResponse<AuthResponse>>("auth/login", {
         method: "POST",
         body,
       });
+
+      
+      if(!data) throw createError('Something went wrong')
+      const {user, token} = data;
 
     await setUserSession(event, {
       user,
@@ -24,6 +28,7 @@ export default defineEventHandler(async (event) => {
 
     return { message };
   } catch (error: any) {
+    console.log(error)
     throw createError({
       statusCode: error?.statusCode || 500,
       statusMessage: error?.statusMessage || "Authentication failed",
