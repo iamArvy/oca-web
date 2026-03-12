@@ -1,6 +1,6 @@
 export const API_ROUTES = {
   topic: {
-    path: (slug: string) => '/topics/' + slug,
+    path: (slug: string) => '/public/topics/' + slug,
     name: 'Topic'
   },
   posts: {

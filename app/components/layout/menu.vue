@@ -30,7 +30,7 @@ function onMouseLeave() {
       <ul class="flex space-x-4 overflow-x-auto mt-1"
         v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">
         <li v-for="child in currentTopic.children" :key="child.id">
-          <LayoutNav :label="child.name" :value="APP_ROUTES.topic.path(child.slug)" />
+          <LayoutNav :label="child.name" :value="APP_ROUTES.subtopic.path(currentTopic.slug, child.slug)" />
         </li>
       </ul>
     </nav>

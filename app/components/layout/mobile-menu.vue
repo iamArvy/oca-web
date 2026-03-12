@@ -62,7 +62,8 @@ const props = defineProps<Props>()
                 class="block px-4 py-2 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors">
                 All {{ item.name }}
               </NuxtLink>
-              <NuxtLink v-for="child in item.children" :key="child.id" :to="APP_ROUTES.topic.path(child.slug)"
+              <NuxtLink v-for="child in item.children" :key="child.id"
+                :to="APP_ROUTES.subtopic.path(item.slug, child.slug)"
                 class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
                 {{ child.name }}
               </NuxtLink>

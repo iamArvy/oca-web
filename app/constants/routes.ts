@@ -7,6 +7,10 @@ export const APP_ROUTES = {
     path: (slug: string) => '/topics/' + slug,
     name: 'topics-slug'
   },
+  subtopic: {
+    path: (slug: string, subSlug: string) => `/topics/${slug}/${subSlug}`,
+    name: 'subtopic-slug'
+  },
   post: {
     path: (slug: string) => '/posts/' + slug,
     name: 'posts-slug'
