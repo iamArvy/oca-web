@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { User } from 'lucide-vue-next'
+</script>
+
 <template>
   <NuxtLink to="/login">
     <Button variant="ghost" size="icon" class="hover:bg-muted">
