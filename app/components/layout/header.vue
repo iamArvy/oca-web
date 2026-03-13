@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { User } from 'lucide-vue-next'
 import { ref } from 'vue'
 import { API_ROUTES } from '~/constants'
 import type { ApiListResponse, Posts } from '~/interfaces'
@@ -11,6 +12,7 @@ const isSearchOpen = ref(false)
 const router = useRouter()
 const { q, search } = useSearchForm()
 const { data: breakingNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'breaking-news' } })
+const { loggedIn } = useUserSession()
 </script>
 
 <template>
@@ -53,7 +55,12 @@ const { data: breakingNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.p
           </Button>
 
           <AppTheme />
-          <AppAccount />
+          <AppAccount v-if="loggedIn" />
+          <NuxtLink v-else to="/login">
+            <Button variant="ghost" size="icon" class="hover:bg-muted">
+              <User class="w-5 h-5" />
+            </Button>
+          </NuxtLink>
 
           <LayoutMobileMenu :topics="topics" />
         </div>

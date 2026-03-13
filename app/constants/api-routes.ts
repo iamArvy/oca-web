@@ -3,6 +3,10 @@ export const API_ROUTES = {
     path: (slug: string) => '/public/topics/' + slug,
     name: 'Topic'
   },
+  topics: {
+    path: '/public/topics/',
+    name: 'Topics'
+  },
   posts: {
     path: '/public/posts',
     name: "Posts"
@@ -10,5 +14,9 @@ export const API_ROUTES = {
   post: {
     path: (slug: string) => '/public/posts/' + slug,
     name: 'Post'
+  },
+  comments: {
+    path: '/comments',
+    name: 'Comment'
   }
 }

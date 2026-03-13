@@ -1,3 +1,4 @@
+import { API_ROUTES } from '~/constants';
 import { computed } from 'vue'
 import type { ApiListResponse, Topics } from '~/interfaces'
 
@@ -5,7 +6,7 @@ export async function useTopics() {
   const topics = useState<Topics>('topics', () => [])
 
   
-  const { data: res } = await useAPI<ApiListResponse<Topics>>('topics')
+  const { data: res } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topics.path)
   topics.value = res.value?.data ?? []
   // async function fetchTopics() {
   //   if(topics.value) return;

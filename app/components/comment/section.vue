@@ -1,6 +1,6 @@
 <script setup lang="ts">
+import { useIntersectionObserver } from "@vueuse/core";
 import { ref, computed } from "vue";
-import { comments as allComments } from "@/lib/mocks";
 
 interface Props {
   postId: string;
@@ -9,9 +9,18 @@ interface Props {
 const props = defineProps<Props>();
 const newComment = ref("");
 
-const postComments = computed(() =>
-  allComments.filter((c) => c.postId === props.postId)
-);
+const { comments, count, submit, isSubmitting, getComments, values, hasNextPage, loading, loadMore } = usePostComments(props.postId)
+const { loggedIn, user } = useUserSession()
+
+onMounted(getComments)
+
+const loadTrigger = ref<HTMLElement | null>(null);
+useIntersectionObserver(loadTrigger, (entries) => {
+  const entry = entries[0];
+  if (entry && entry.isIntersecting) {
+    loadMore()
+  }
+});
 </script>
 
 <template>
@@ -19,32 +28,56 @@ const postComments = computed(() =>
     <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <h3 class="font-display text-2xl font-bold">
-        Comments ({{ postComments.length }})
+        Comments ({{ count }})
       </h3>
     </div>
 
-    <!-- Add Comment -->
-    <div class="flex gap-3 mb-8 pb-8 border-b border-border">
+    <form @submit.prevent="submit" v-if="loggedIn && user" class="flex gap-3 mb-8 pb-8 border-b border-border">
       <Avatar class="w-10 h-10 shrink-0">
-        <AvatarFallback class="bg-primary/20 text-primary">U</AvatarFallback>
+        <AvatarImage :src="user.avatar ?? ''" :alt="user.name" />
+        <AvatarFallback class="bg-primary/20 text-primary">{{ getInitials(user.name) }}</AvatarFallback>
       </Avatar>
       <div class="flex-1 space-y-3">
-        <Textarea placeholder="Join the conversation..." v-model="newComment"
-          class="min-h-25 resize-none bg-muted/30" />
+        <FormField v-slot="{ componentField }" name="content">
+          <FormItem>
+            <FormControl>
+              <Textarea placeholder="Join the conversation..." v-bind="componentField"
+                class="min-h-25 resize-none bg-muted/30" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
         <div class="flex justify-end">
-          <Button class="bg-primary hover:opacity-90">
+          <Button :disabled="isSubmitting || !values.content || values.content.length < 1"
+            class="bg-primary hover:opacity-90">
             Post Comment
           </Button>
         </div>
       </div>
-    </div>
+    </form>
 
-    <div v-if="postComments.length" class="space-y-6">
-      <CommentItem v-for="comment in postComments" :key="comment.id" :comment="comment" />
-    </div>
+    <ScrollArea class="h-100 px-5">
+      <div v-if="!loading && comments.length > 0" class="space-y-6">
+        <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">
+          End of comment section
+        </p>
+      </div>
+      <div v-else class="text-center py-12 text-muted-foreground">
+        <p class="mb-4">Be the first to comment!</p>
+      </div>
+      <div ref="loadTrigger" class="h-10">
+        <div v-if="loading" class="text-center flex items-center justify-center py-6 text-muted-foreground">
+          <Spinner />
+        </div>
+      </div>
+    </ScrollArea>
+    <!-- <div v-if="comments.length > 0" class="space-y-6">
+      <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
+      <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">
+        End of comment section
+      </p>
+    </div> -->
 
-    <div v-else class="text-center py-12 text-muted-foreground">
-      <p class="mb-4">Be the first to comment!</p>
-    </div>
   </div>
 </template>

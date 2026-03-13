@@ -21,8 +21,8 @@ export interface ApiListResponse<D> extends ApiResponse<D> {
 
 export interface BaseItem {
   id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Token {

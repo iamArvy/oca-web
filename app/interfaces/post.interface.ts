@@ -3,22 +3,6 @@ import type { BaseItem } from "./api-response.interface";
 import type { User } from "./user.interface";
 import type { Topic } from "./topic.interface";
 
-// export interface Post extends BaseItem {
-//   title: string;
-//   excerpt: string;
-//   content: string;
-//   category: string;
-//   author: string;
-//   date: string;
-//   image: string;
-//   videoThumbnail?: string;
-//   views: number;
-//   trending?: boolean;
-//   hotTopic?: boolean;
-//   status?: "published" | "draft" | "pending";
-//   tags?: string[];
-// }
-
 export interface ExternalSource {
   source: string;
   url: string;

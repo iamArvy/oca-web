@@ -29,7 +29,7 @@ const { data: post } = res.value;
     <AppContent class="-mt-32 relative z-10">
       <template #main>
         <PostArticle :post="post" />
-        <!-- <CommentSection :postId="post.id" /> -->
+        <CommentSection :postId="post.id" />
       </template>
 
       <template #sidebar>

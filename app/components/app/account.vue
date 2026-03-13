@@ -1,11 +1,30 @@
 <script setup lang="ts">
-import { User } from 'lucide-vue-next'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
+
+const { user, clear } = useUserSession()
 </script>
 
 <template>
-  <NuxtLink to="/login">
-    <Button variant="ghost" size="icon" class="hover:bg-muted">
-      <User class="w-5 h-5" />
-    </Button>
-  </NuxtLink>
+  <DropdownMenu v-if="user">
+    <DropdownMenuTrigger>
+      <Avatar>
+        <AvatarImage :src="user.avatar ?? ''" :alt="user.name" />
+        <AvatarFallback>{{ getInitials(user.name) }}</AvatarFallback>
+      </Avatar>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent>
+      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuSeparator />
+      <DropdownMenuItem @click="clear">Logout</DropdownMenuItem>
+    </DropdownMenuContent>
+  </DropdownMenu>
 </template>

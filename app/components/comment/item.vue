@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Heart, Reply, MoreHorizontal } from "lucide-vue-next";
-import type { Comment } from "~/types";
+import type { Comment } from "~/interfaces";
+import { formatDistanceToNow } from "date-fns";
+
 interface Props {
   comment: Comment;
 }
@@ -13,45 +15,38 @@ const showReplyForm = ref(false);
 
 function formatDate(dateString: string) {
   const date = new Date(dateString);
-  const now = new Date();
-  const diff = now.getTime() - date.getTime();
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const days = Math.floor(hours / 24);
-  if (hours < 1) return "Just now";
-  if (hours < 24) return `${hours}h ago`;
-  if (days < 7) return `${days}d ago`;
-  return date.toLocaleDateString();
+  return formatDistanceToNow(date, { addSuffix: true });
 }
+
+
 </script>
 
 <template>
-  <div class="flex gap-3" :class="comment.parentId ? 'ml-12' : ''">
+  <div class="flex gap-3">
     <!-- Avatar -->
     <Avatar class="w-10 h-10 shrink-0">
-      <template v-if="comment.avatar">
-        <AvatarImage :src="comment.avatar" :alt="comment.author" />
-      </template>
+      <AvatarImage :src="comment.author.avatar ?? ''" :alt="comment.author.name" />
       <AvatarFallback class="bg-primary text-primary-foreground text-sm">
-        {{ comment.author.charAt(0) }}
+        {{ getInitials(comment.author.name) }}
       </AvatarFallback>
     </Avatar>
 
     <!-- Content -->
     <div class="flex-1 space-y-2">
-      <div class="bg-muted/50 rounded-xl p-4">
-        <div class="flex items-center justify-between mb-2">
+      <div class="bg-muted/50 rounded-xl p-4 space-y-1">
+        <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="font-semibold text-sm">{{ comment.author }}</span>
-            <span class="text-xs text-muted-foreground">{{ formatDate(comment.date) }}</span>
+            <span class="font-semibold text-sm">{{ comment.author.name }}</span>
+            <span class="text-xs text-muted-foreground">{{ formatDate(comment.createdAt) }}</span>
           </div>
-          <Button variant="ghost" size="icon" class="h-8 w-8 text-muted-foreground">
+          <!-- <Button variant="ghost" size="icon" class="h-8 w-8 text-muted-foreground">
             <MoreHorizontal class="w-4 h-4" />
-          </Button>
+          </Button> -->
         </div>
         <p class="text-sm text-foreground leading-relaxed">{{ comment.content }}</p>
       </div>
 
-      <div class="flex items-center gap-4 px-2">
+      <!-- <div class="flex items-center gap-4 px-2">
         <button @click="liked = !liked" :class="[
           'flex items-center gap-1.5 text-xs transition-colors',
           liked ? 'text-accent' : 'text-muted-foreground hover:text-foreground',
@@ -64,10 +59,10 @@ function formatDate(dateString: string) {
           <Reply class="w-4 h-4" />
           Reply
         </button>
-      </div>
+      </div> -->
 
       <!-- Reply form -->
-      <div v-if="showReplyForm" class="flex gap-3 mt-3">
+      <!-- <div v-if="showReplyForm" class="flex gap-3 mt-3">
         <Avatar class="w-8 h-8 shrink-0">
           <AvatarFallback class="bg-primary/20 text-primary text-xs">U</AvatarFallback>
         </Avatar>
@@ -82,12 +77,12 @@ function formatDate(dateString: string) {
             </Button>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <!-- Replies -->
-      <div v-if="comment.replies?.length" class="space-y-4 mt-4">
+      <!-- <div v-if="comment.replies?.length" class="space-y-4 mt-4">
         <CommentItem v-for="reply in comment.replies" :key="reply.id" :comment="reply" :isReply="true" />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
