@@ -46,5 +46,9 @@ export const APP_ROUTES = {
   forgotPassword: {
     path: '/forgot-password',
     name: 'Forgot Password'
+  },
+  collection: {
+    path: (slug: string) => `/collections/${slug}`,
+    name: 'collection'
   }
 }

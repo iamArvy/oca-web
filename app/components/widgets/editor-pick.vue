@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import { Award } from 'lucide-vue-next';
-import { API_ROUTES } from '~/constants';
+import { API_ROUTES, APP_ROUTES } from '~/constants';
 import type { ApiListResponse, Posts } from '~/interfaces';
-const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 5 } })
+
+const collection = 'editor-picks'
+const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection, limit: 5 } })
 </script>
 
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive">
     <h3 class="font-display text-lg font-bold mb-4 flex items-center gap-2">
       <Award class="w-5 h-5 text-primary" />
-      Editor's Picks
+      <NuxtLink :to="APP_ROUTES.collection.path(collection)">
+        Editor's Picks
+      </NuxtLink>
     </h3>
     <div class="space-y-1">
       <PostCard v-for="post in editorPicks?.data" :key="post.id" :post="post" variant="compact" />

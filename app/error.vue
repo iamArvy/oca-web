@@ -78,7 +78,7 @@ function handleSearch(e: Event) {
         <p class="text-sm text-muted-foreground mb-4">Here are some helpful links:</p>
         <div class="flex flex-wrap justify-center gap-4 text-sm">
           <NuxtLink to="/" class="text-primary hover:underline">Home</NuxtLink>
-          <NuxtLink to="/hot-topics" class="text-primary hover:underline">Hot Topics</NuxtLink>
+          <NuxtLink to="/collections/hot-topics" class="text-primary hover:underline">Hot Clicks</NuxtLink>
           <NuxtLink to="/contact" class="text-primary hover:underline">Contact Us</NuxtLink>
         </div>
       </div>
