@@ -3,3 +3,4 @@ export * from "./post.interface";
 export * from "./topic.interface";
 export * from "./user.interface";
 export * from './comment.interface'
+export * from './ad.interface'

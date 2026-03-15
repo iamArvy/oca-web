@@ -18,5 +18,9 @@ export const API_ROUTES = {
   comments: {
     path: '/comments',
     name: 'Comment'
+  },
+  ads: {
+    path: '/public/ads',
+    name: 'Ads'
   }
 }

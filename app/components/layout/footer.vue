@@ -49,8 +49,8 @@ const nav = [
 ]
 const { onSubmit, isSubmitting } = useNewsletterForm()
 
-const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 5 } })
-const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'hot-clicks', limit: 5 } })
+const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 4 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'hot-clicks', limit: 4 } })
 </script>
 
 <template>
