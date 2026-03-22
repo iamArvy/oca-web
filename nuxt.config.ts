@@ -45,8 +45,8 @@ export default defineNuxtConfig({
     image: "https://oneclickafrica.com/og-image.jpg",
   },
   gtag: {
-    id: 'G-5XQTLBPDKH'
-  }
+    id: process.env.GOOGLE_TAG_ID ?? '',
+  },
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3000",
