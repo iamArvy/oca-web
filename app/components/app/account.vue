@@ -1,14 +1,8 @@
 <script setup lang="ts">
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
+import { APP_ROUTES } from '~/constants';
 
 const { user, clear } = useUserSession()
+const router = useRouter()
 </script>
 
 <template>
@@ -22,7 +16,7 @@ const { user, clear } = useUserSession()
     <DropdownMenuContent>
       <DropdownMenuLabel>My Account</DropdownMenuLabel>
       <DropdownMenuSeparator />
-      <DropdownMenuItem>Profile</DropdownMenuItem>
+      <DropdownMenuItem @click="router.push(APP_ROUTES.profile.path)">Profile</DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="clear">Logout</DropdownMenuItem>
     </DropdownMenuContent>
