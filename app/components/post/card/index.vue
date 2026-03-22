@@ -75,11 +75,11 @@ function handleMouseLeave() {
         <h3 class="font-display text-lg font-bold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
           {{ props.post.title }}
         </h3>
-        <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+        <p class="text-foreground text-sm mb-4 line-clamp-2">
           {{ props.post.excerpt }}
         </p>
 
-        <div class="flex items-center justify-between text-xs text-muted-foreground">
+        <div class="flex items-center justify-between text-xs text-foreground">
           <div class="flex items-center gap-3">
             <span class="flex items-center gap-1">
               <Icon name="lucide:user" class="w-3 h-3" />

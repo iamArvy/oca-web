@@ -7,25 +7,25 @@ const socials = [
     label: '',
     value: '',
     icon: 'lucide:facebook',
-    url: ''
+    url: 'https://web.facebook.com/people/OneclickAfrica-Limited/61582526614120'
   },
   {
     label: '',
     value: '',
     icon: 'lucide:twitter',
-    url: ''
+    url: 'https://x.com/1clickAfrica'
   },
   {
     label: '',
     value: '',
     icon: 'lucide:instagram',
-    url: ''
+    url: 'https://www.instagram.com/oneclickafrica'
   },
   {
     label: '',
     value: '',
     icon: 'lucide:linkedin',
-    url: ''
+    url: 'https://www.linkedin.com/company/oneclickafricalimited/'
   }
 ]
 

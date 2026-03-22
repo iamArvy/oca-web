@@ -10,19 +10,20 @@ const CONTACT_INFORMATION = [
   {
     label: "Email",
     icon: Mail,
-    value: "advertise@oneclickafrica.com",
-    url: "advertise@oneclickafrica.com"
+    value: "support@oneclickafrica.com",
+    url: "support@oneclickafrica.com"
   },
   {
     label: "Phone",
     icon: Phone,
-    value: "+234 123 456 789",
-    url: "tel:+234123456789"
+    value: "+2348183243769",
+    url: "tel:+234 8183243769"
   },
   {
     label: "Office",
     icon: MapPin,
-    value: "Lagos",
+    value: "24 The Providence Str. Lekki Phase 1, Lagos 106104, Lagos",
+    url: "https://share.google/7Otl6J2pjLqxgltOG"
   },
   {
     label: "Response Time",
