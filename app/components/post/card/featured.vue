@@ -52,11 +52,6 @@ function handleMouseLeave() {
       <div class="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent" />
 
       <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white space-y-2 md:space-y-3 mb-5">
-        <div v-if="props.post.isTrending"
-          class="inline-flex items-center gap-1.5 px-3 py-1 bg-primary rounded-full text-xs font-bold">
-          <Icon name="lucide:trending-up" class="w-3 h-3" />
-          TRENDING
-        </div>
         <span class="inline-block px-3 py-1 bg-primary-foreground/20 rounded-full text-xs font-medium">
           {{ props.post.topic.name }}
         </span>
@@ -69,7 +64,7 @@ function handleMouseLeave() {
         <div class="flex items-center gap-4 text-sm text-white/70">
           <span class="flex items-center gap-1.5">
             <Icon name="lucide:user" class="w-4 h-4" />
-            {{ post.author?.name ?? post.external?.source }}
+            {{ post.author.name }}
           </span>
         </div>
       </div>

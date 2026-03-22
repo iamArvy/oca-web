@@ -24,7 +24,7 @@ const props = defineProps<Props>();
         <div class="flex items-center gap-2 mt-2 text-xs">
           <Icon name="lucide:user" class="w-3 h-3" />
           {{
-            props.post.author?.name ?? post.external?.source ?? "Guest"
+            props.post.author.name
           }}
         </div>
       </div>

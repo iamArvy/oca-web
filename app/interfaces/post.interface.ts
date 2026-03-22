@@ -1,12 +1,10 @@
-import type { PostStatus, PostType, SourceType } from "~/enums";
+import type {  PostType } from "~/enums";
 import type { BaseItem } from "./api-response.interface";
-import type { User } from "./user.interface";
 import type { Topic } from "./topic.interface";
 
-export interface ExternalSource {
-  source: string;
+export interface IAuthor {
+  name: string;
   url: string;
-  publishedAt?: string;
 }
 
 export interface Post extends BaseItem {
@@ -15,16 +13,13 @@ export interface Post extends BaseItem {
   content: string;
   topic: Topic;
   slug: string;
-  source: SourceType;
   type: PostType;
   tags: string[];
   image?: string;
-  author?: User | null;
-  external?: ExternalSource | null;
-  status: PostStatus;
+  author: IAuthor;
   views: number;
-  isTrending?: boolean;
   readTime: number;
+  externalSourceUrl?: string | null
 }
 
 export type Posts = Post[];

@@ -31,7 +31,7 @@ defineProps<{
       class="flex flex-wrap items-center gap-4 md:gap-6 pb-6 mb-6 border-b border-border text-sm text-muted-foreground">
       <span class="flex items-center gap-2">
         <Icon name="lucide:user" class="w-4 h-4" />
-        {{ post.author?.name ?? post.external?.source }}
+        {{ post.author.name }}
       </span>
       <span class="flex items-center gap-2">
         <Icon name="lucide:calendar" class="w-4 h-4" />
@@ -51,11 +51,11 @@ defineProps<{
 
     <PostContent :type="post.type" :content="post.content" />
 
-    <div v-if="post.external" class="mt-8 p-6 bg-muted/50 rounded-xl">
+    <div v-if="post.externalSourceUrl" class="mt-8 p-6 bg-muted/50 rounded-xl">
       <p class="text-sm text-muted-foreground mb-3">
         This article was sourced from an external publication.
       </p>
-      <Button @click="openExternal(post.external.url)" class="gap-2 bg-primary hover:opacity-90">
+      <Button @click="openExternal(post.externalSourceUrl)" class="gap-2 bg-primary hover:opacity-90">
         <Icon name="lucide:external-link" class="w-4 h-4" />
         See Original Post
       </Button>

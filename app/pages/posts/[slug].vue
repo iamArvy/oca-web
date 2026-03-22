@@ -53,8 +53,7 @@ useSeoMeta({
 
       <template #sidebar>
         <AdComponent size="sidebar" />
-        <PostAuthor v-if="post.author" v-bind="post.author" />
-        <PostSource v-if="post.external" v-bind="post.external" />
+        <PostAuthor v-bind="post.author" />
         <AdComponent size="sidebar" />
       </template>
 

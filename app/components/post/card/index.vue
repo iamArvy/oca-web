@@ -63,11 +63,6 @@ function handleMouseLeave() {
 
         <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
           class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-        <div v-if="props.post.isTrending"
-          class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1 bg-primary text-primary-foreground rounded-full text-xs font-bold">
-          <Icon name="lucide:trending-up" class="w-3 h-3" />
-          TRENDING
-        </div>
       </div>
 
       <div class="p-5">
@@ -83,7 +78,7 @@ function handleMouseLeave() {
           <div class="flex items-center gap-3">
             <span class="flex items-center gap-1">
               <Icon name="lucide:user" class="w-3 h-3" />
-              {{ post.author?.name ?? post.external?.source ?? "Guest" }}
+              {{ post.author.name }}
             </span>
           </div>
         </div>
