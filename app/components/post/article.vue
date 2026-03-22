@@ -15,18 +15,10 @@ defineProps<{
       Back to Home
     </NuxtLink>
 
-    <!-- Category -->
     <div class="flex items-center gap-2 mb-4">
       <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="category-pill">
         {{ post.topic.name }}
       </NuxtLink>
-      <!-- <template v-if="post.subcategory">
-        <span class="text-muted-foreground">/</span>
-        <NuxtLink :to="APP_ROUTES.subcategory.path(post.category.slug, post.subcategory.slug)"
-          class="text-sm text-muted-foreground hover:text-primary transition-colors">
-          {{ post.subcategory.name }}
-        </NuxtLink>
-      </template> -->
     </div>
 
     <!-- Title -->

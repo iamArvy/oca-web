@@ -4,7 +4,7 @@ import { FolderOpen, ChevronDown, ChevronRight } from "lucide-vue-next";
 // import { categories } from "@/lib/mocks"; // same data source
 import { cn } from "@/lib/utils"; // optional, only if you use a class merging util
 import { APP_ROUTES } from "~/constants";
-import type { Category } from "~/types";
+import type { Topics } from "~/interfaces";
 
 // interface Subcategory {
 //   id: string;
@@ -21,7 +21,7 @@ import type { Category } from "~/types";
 // }
 
 interface MegaMenuProps {
-  categories?: Category[];
+  topics?: Topics;
 }
 
 const props = defineProps<MegaMenuProps>();
@@ -65,19 +65,19 @@ onBeforeUnmount(() => {
       class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-200 bg-card border border-border rounded-2xl shadow-xl p-6 animate-in fade-in-0 zoom-in-95 duration-200 z-50"
       @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
       <div class="grid grid-cols-4 gap-6">
-        <div v-for="category in categories" :key="category.id" class="space-y-3">
-          <NuxtLink :to="APP_ROUTES.category.path(category.slug)"
+        <div v-for="category in topics" :key="category.id" class="space-y-3">
+          <NuxtLink :to="APP_ROUTES.topic.path(category.slug)"
             class="font-display font-bold text-foreground hover:text-primary transition-colors flex items-center gap-2"
             @click="isOpen = false">
             {{ category.name }}
-            <span class="text-xs text-muted-foreground font-normal">
+            <!-- <span class="text-xs text-muted-foreground font-normal">
               ({{ category.count }})
-            </span>
+            </span> -->
           </NuxtLink>
 
-          <ul v-if="category.subcategories" class="space-y-1.5">
-            <li v-for="sub in category.subcategories" :key="sub.id">
-              <NuxtLink :to="APP_ROUTES.subcategory.path(category.slug, sub.slug)"
+          <ul v-if="category.children" class="space-y-1.5">
+            <li v-for="sub in category.children" :key="sub.id">
+              <NuxtLink :to="APP_ROUTES.topic.path(sub.slug)"
                 class="flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
                 @click="isOpen = false">
                 <ChevronRight class="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all" />
