@@ -17,6 +17,25 @@ if (!res.value || !res.value.data) {
   });
 }
 const { data: post } = res.value;
+
+const title = computed(() => post?.title || 'Post')
+const description = computed(() => post?.excerpt || '')
+const image = computed(() => post?.image || 'https://oneclickafrica.com/oca-placeholder.png')
+const keywords = computed(() => post?.tags?.join(', ') || '')
+
+// ✅ SEO
+useSeoMeta({
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  ogImage: image,
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: image,
+  keywords,
+})
 </script>
 
 <template>
