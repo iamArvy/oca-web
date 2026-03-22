@@ -20,7 +20,8 @@ export default defineNuxtConfig({
     "@nuxt/test-utils",
     "shadcn-nuxt",
     "@nuxtjs/seo",
-    "nuxt-auth-utils"
+    "nuxt-auth-utils",
+    "nuxt-gtag"
   ],
   shadcn: {
     /**
@@ -43,6 +44,9 @@ export default defineNuxtConfig({
     url: "https://oneclickafrica.com",
     image: "https://oneclickafrica.com/og-image.jpg",
   },
+  gtag: {
+    id: 'G-5XQTLBPDKH'
+  }
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3000",
