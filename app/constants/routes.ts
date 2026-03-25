@@ -47,8 +47,12 @@ export const APP_ROUTES = {
     path: (slug: string) => `/collections/${slug}`,
     name: 'collection'
   },
-    profile: {
-      path: '/profile',
-      name: 'profile'
-    }
+  profile: {
+    path: '/profile',
+    name: 'profile'
+  },
+  source: {
+    path: (slug: string) => `/sources/${slug}`,
+    name: 'source'
+  }
 }

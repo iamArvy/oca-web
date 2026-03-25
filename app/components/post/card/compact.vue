@@ -22,10 +22,18 @@ const props = defineProps<Props>();
           {{ props.post.title }}
         </h3>
         <div class="flex items-center gap-2 mt-2 text-xs">
-          <Icon name="lucide:user" class="w-3 h-3" />
-          {{
-            props.post.author.name
-          }}
+          <template v-if="post.author">
+            <Icon name="lucide:user" class="w-3 h-3" />
+            {{
+              post.author.name
+            }}
+          </template>
+          <template v-else-if="post.feed">
+            <Icon name="lucide:rss" class="w-3 h-3" />
+            {{
+              post.feed.name
+            }}
+          </template>
         </div>
       </div>
     </article>

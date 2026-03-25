@@ -19,7 +19,11 @@ defineProps<Props>()
           {{ item.title }}
         </NuxtLink>
         <small>
-          Posted By: {{ item.author?.name ?? item.external?.source }} |
+          <span v-if="item.author">Posted By: {{ item.author.name }}</span>
+          <NuxtLink v-else-if="item.feed" :to="APP_ROUTES.source.path(item.feed.slug)">
+            Source: {{ item.feed.name }}
+          </NuxtLink>
+          |
           {{ new Date(item.createdAt).toLocaleDateString("en-US", {
             year: "numeric",
             month: "long",

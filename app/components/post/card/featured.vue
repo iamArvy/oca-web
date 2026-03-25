@@ -63,8 +63,18 @@ function handleMouseLeave() {
         </p>
         <div class="flex items-center gap-4 text-sm text-white/70">
           <span class="flex items-center gap-1.5">
-            <Icon name="lucide:user" class="w-4 h-4" />
-            {{ post.author.name }}
+            <template v-if="post.author">
+              <Icon name="lucide:user" class="w-4 h-4" />
+              {{
+                post.author.name
+              }}
+            </template>
+            <template v-else-if="post.feed">
+              <Icon name="lucide:rss" class="w-4 h-4" />
+              {{
+                post.feed.name
+              }}
+            </template>
           </span>
         </div>
       </div>

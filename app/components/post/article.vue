@@ -30,8 +30,18 @@ defineProps<{
     <div
       class="flex flex-wrap items-center gap-4 md:gap-6 pb-6 mb-6 border-b border-border text-sm text-muted-foreground">
       <span class="flex items-center gap-2">
-        <Icon name="lucide:user" class="w-4 h-4" />
-        {{ post.author.name }}
+        <template v-if="post.author">
+          <Icon name="lucide:user" class="w-4 h-4" />
+          {{
+            post.author.name
+          }}
+        </template>
+        <template v-else-if="post.feed">
+          <Icon name="lucide:rss" class="w-4 h-4" />
+          {{
+            post.feed.name
+          }}
+        </template>
       </span>
       <span class="flex items-center gap-2">
         <Icon name="lucide:calendar" class="w-4 h-4" />

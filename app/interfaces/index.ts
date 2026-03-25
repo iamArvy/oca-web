@@ -4,4 +4,5 @@ export * from "./topic.interface";
 export * from "./user.interface";
 export * from './comment.interface'
 export * from './ad.interface';
-export * from './collection.interface'
+export * from './collection.interface';
+export * from './feed.interface';

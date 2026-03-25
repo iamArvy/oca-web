@@ -27,4 +27,8 @@ export const API_ROUTES = {
     path: (slug: string) => '/public/collections/' + slug,
     name: 'Collection'
   },
+  feed: {
+    path: (slug: string) => '/public/feeds/' + slug,
+    name: 'Feed'
+  }
 }
