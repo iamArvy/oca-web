@@ -1,14 +1,4 @@
 <script setup lang="ts">
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  ArrowLeft,
-  Building2,
-  Clock,
-} from "lucide-vue-next";
-
 const stats = [
   {
     value: "2.5M+",
@@ -16,7 +6,7 @@ const stats = [
   },
   {
     value: "54",
-    label: "African Countries Reached"
+    label: "Global Countries Reached"
   },
   {
     value: "85%",

@@ -10,8 +10,8 @@ const CONTACT_INFORMATION = [
   {
     label: "Email",
     icon: Mail,
-    value: "support@oneclickafrica.com",
-    url: "support@oneclickafrica.com"
+    value: "info@oneclickafrica.com",
+    url: "info@oneclickafrica.com"
   },
   {
     label: "Phone",

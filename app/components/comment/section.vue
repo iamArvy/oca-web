@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from "@vueuse/core";
-import { ref, computed } from "vue";
+import { ref } from "vue";
+import { APP_ROUTES } from "~/constants";
 
 interface Props {
   postId: string;
 }
 
 const props = defineProps<Props>();
-const newComment = ref("");
 
 const { comments, count, submit, isSubmitting, getComments, values, hasNextPage, loading, loadMore } = usePostComments(props.postId)
 const { loggedIn, user } = useUserSession()
@@ -55,6 +55,21 @@ useIntersectionObserver(loadTrigger, (entries) => {
         </div>
       </div>
     </form>
+    <div v-else class="mb-8 pb-8 border-b border-border">
+      <div class="text-center p-6 rounded-lg bg-muted/30">
+        <h3 class="text-lg font-semibold mb-2">
+          Want to join the discussion? 💬
+        </h3>
+        <p class="text-sm text-muted-foreground mb-4">
+          Sign in to post comments and engage with the community.
+        </p>
+
+        <Button @click="$router.push(APP_ROUTES.login.path + `?redirect=${$route.path}`)"
+          class="bg-primary hover:opacity-90">
+          Login to Comment
+        </Button>
+      </div>
+    </div>
 
     <ScrollArea class="h-100 px-5">
       <div v-if="!loading && comments.length > 0" class="space-y-6">

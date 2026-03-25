@@ -12,14 +12,15 @@ definePageMeta({
 });
 
 const router = useRouter()
-
+const route = useRoute()
+const redirect = route.query.redirect as string
 const showPassword = ref(false)
 
 const { loggedIn } = useUserSession()
 
 watchEffect(() => {
   if (loggedIn.value) {
-    router.push("/")
+    router.push(redirect ?? APP_ROUTES.home.path)
   }
 })
 
