@@ -14,7 +14,8 @@ const props = defineProps<Props>()
 
 <template>
   <NuxtLink :to="props.value"
-    class="text-sm hover:font-medium text-foreground hover:text-primary transition-colors flex items-center w-full"
-    :class="active ? 'text-primary font-medium' : ''" active-class="text-primary font-medium"> {{ props.label }}
+    class="text-sm whitespace-nowrap hover:font-medium text-foreground hover:text-primary transition-colors flex items-center w-full flex-1"
+    :class="active ? 'text-primary font-medium' : ''" active-class="text-primary font-medium">
+    {{ props.label }}
   </NuxtLink>
 </template>

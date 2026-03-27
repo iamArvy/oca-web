@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 interface Props {
-  items: FeedItem[]
+  items: FeedItem[],
 }
 
 const props = defineProps<Props>()

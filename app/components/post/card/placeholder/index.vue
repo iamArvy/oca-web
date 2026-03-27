@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Post } from "~/interfaces";
 
-import featured from "./featured.vue";
 import compact from "./compact.vue";
 import base from "./base.vue";
 
 interface Props {
-  post: Post;
-  variant?: "default" | "featured" | "compact";
-  skeleton?: boolean;
+  variant?: "default" | "compact";
 };
 
 const props = defineProps<Props>();
 
 const component = computed(() => {
   switch (props.variant) {
-    case "featured":
-      return featured;
     case "compact":
       return compact;
     default:
@@ -27,5 +21,5 @@ const component = computed(() => {
 </script>
 
 <template>
-  <component :is="component" :post="post" :skeleton="skeleton" />
+  <component :is="component" />
 </template>

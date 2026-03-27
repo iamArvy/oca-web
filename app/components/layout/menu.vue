@@ -21,15 +21,15 @@ function onMouseLeave() {
 <template>
   <div>
     <nav @mouseleave="onMouseLeave">
-      <ul class="flex space-x-4 overflow-x-auto">
-        <li v-for="item in topics" :key="item.id" @mouseover="onMouseEnter(item)">
+      <ul class="flex space-x-4 overflow-x-auto scrollbar-hide">
+        <li v-for="item in topics" :key="item.id" @mouseover="onMouseEnter(item)" class="shrink-0">
           <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
             :active="currentTopic?.slug === item.slug" :hasChildren="item.children && item.children.length > 0" />
         </li>
       </ul>
-      <ul class="flex space-x-4 overflow-x-auto mt-1 transition-all duration-300"
+      <ul class="flex space-x-4 overflow-x-auto mt-1 transition-all duration-300 scrollbar-hide "
         v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">
-        <li v-for="child in currentTopic.children" :key="child.id">
+        <li v-for="child in currentTopic.children" :key="child.id" class="shrink-0">
           <LayoutNav :label="child.name" :value="APP_ROUTES.topic.path(child.slug)" />
         </li>
       </ul>

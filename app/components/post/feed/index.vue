@@ -1,19 +1,15 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { LayoutGrid, List } from "lucide-vue-next";
 import type { Posts } from "~/interfaces";
 import { useIntersectionObserver } from "@vueuse/core";
+import list from "./list.vue";
+import grid from "./grid.vue";
 
-enum ViewMode {
-  GRID = "grid",
-  LIST = "list",
-}
 
 interface Props {
   posts: Posts;
-  columns?: 3 | 4;
-  showViewToggle?: boolean;
-  loading: boolean
+  loading: boolean;
+  title: string;
 }
 
 interface Emits {
@@ -21,21 +17,7 @@ interface Emits {
 }
 
 const emits = defineEmits<Emits>();
-const props = withDefaults(defineProps<Props>(), {
-  columns: 3,
-  showViewToggle: true,
-});
-
-const viewMode = useState<ViewMode>(() => ViewMode.GRID);
-
-/**
- * Define grid columns dynamically.
- */
-const gridCols = computed(() =>
-  props.columns === 3
-    ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-    : "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
-);
+const props = defineProps<Props>();
 
 const items = computed(() => useFeedItems(props.posts, 6));
 
@@ -46,29 +28,38 @@ useIntersectionObserver(loadTrigger, (entries) => {
     emits("load-more");
   }
 });
+
+const { mode, setViewMode } = useViewMode();
+
+const components: Record<ViewMode, Component> = {
+  [ViewMode.GRID]: grid,
+  [ViewMode.LIST]: list,
+};
+
+const component = computed(() => {
+  return components[mode.value] || grid;
+});
 </script>
 
 <template>
   <div>
-    <!-- View Toggle -->
-    <div v-if="props.showViewToggle" class="flex items-center justify-end gap-1 mb-4">
-      <Button :variant="viewMode === ViewMode.GRID ? 'default' : 'ghost'" size="icon" class="h-8 w-8"
-        @click="viewMode = ViewMode.GRID">
-        <LayoutGrid class="w-4 h-4" />
-      </Button>
-
-      <Button :variant="viewMode === ViewMode.LIST ? 'default' : 'ghost'" size="icon" class="h-8 w-8"
-        @click="viewMode = ViewMode.LIST">
-        <List class="w-4 h-4" />
-      </Button>
+    <div class="flex items-center">
+      <div class="flex-1 mb-6 relative">
+        <h2 class="font-display text-2xl md:text-3xl font-bold ">{{ title }}</h2>
+        <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
+      </div>
+      <div class="flex items-center justify-end gap-1 mb-4">
+        <Button v-for="item in ViewModeItems" :key="item.mode" :variant="item.mode === mode ? 'default' : 'ghost'"
+          size="icon" class="h-8 w-8" @click="setViewMode(item.mode)">
+          <component :is="item.icon" class="w-4 h-4" />
+        </Button>
+      </div>
     </div>
-    <ScrollArea class="h-500 px-5">
-      <PostFeedGrid v-if="viewMode === 'grid'" :items="items" />
-      <PostFeedList v-else :items="items" />
-      <div ref="loadTrigger" class="h-10">
-        <div v-if="loading" class="text-center flex items-center justify-center py-6 text-muted-foreground">
-          <Spinner />
-        </div>
+
+    <ScrollArea class="h-500 pr-5">
+      <component :is="component" :items="items" />
+      <div ref="loadTrigger">
+        <PostFeedPlaceholder v-if="loading" :mode="mode" />
       </div>
     </ScrollArea>
   </div>

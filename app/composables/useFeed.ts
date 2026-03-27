@@ -1,30 +1,59 @@
 import type { ApiListResponse, Posts } from "~/interfaces";
 
-export async function useFeed(route: string, query?: Record<string, any>) {
-  const { data: initial } = await useAPI<ApiListResponse<Posts>>(route, { query });
-
+export function useFeed(
+  route: string,
+  query?: MaybeRef<Record<string, any>>
+) {
   const currentPage = ref(1);
   const loading = ref(false);
-  const hasNextPage = ref(initial.value?.meta?.has_next ?? false);
-  const posts = ref(initial.value?.data ?? []);
-  const count = ref(initial.value?.meta.total)
+  const hasNextPage = ref(false);
+  const posts = ref<Posts>([]);
+  const count = ref(0);
 
-  const loadMore = async () => {
-    if (loading.value || !hasNextPage.value) return;
+  const fetch = async (reset = false) => {
+    if (loading.value) return;
+
     loading.value = true;
-    currentPage.value++;
 
     try {
-      const { data: res } = await useAPI<ApiListResponse<Posts>>(route, {
-        query: { ...query, page: currentPage.value },
+      const { data } = await useAPI<ApiListResponse<Posts>>(route, {
+        query: {
+          ...unref(query),
+          page: currentPage.value,
+        },
       });
 
-      if (res.value?.data?.length) posts.value.push(...res.value.data);
-      hasNextPage.value = res.value?.meta?.has_next ?? false;
+      if (reset) {
+        posts.value = data.value?.data ?? [];
+      } else {
+        posts.value.push(...(data.value?.data ?? []));
+      }
+
+      hasNextPage.value = data.value?.meta?.has_next ?? false;
+      count.value = data.value?.meta?.total ?? 0;
     } finally {
       loading.value = false;
     }
   };
+
+  const loadMore = async () => {
+    if (!hasNextPage.value) return;
+    currentPage.value++;
+    await fetch();
+  };
+
+  // Initial fetch
+  fetch(true);
+
+  // Reactive query watcher
+  watch(
+    () => unref(query),
+    () => {
+      currentPage.value = 1;
+      fetch(true);
+    },
+    { deep: true }
+  );
 
   return {
     loading,

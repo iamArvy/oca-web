@@ -25,11 +25,8 @@ const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path,
 <template>
   <main>
     <AppContent class="py-8 md:py-12">
-      <template #header>
-        <CategoryHeader :name="feed?.data?.name || slug" :postCount="count || 0" />
-      </template>
       <template #main>
-        <PostFeed :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed :title="feed?.data?.name || slug" :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
 
       <template #sidebar>

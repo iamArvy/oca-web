@@ -11,11 +11,8 @@ const { loading, posts, loadMore } = await useFeed('/posts', { q })
 <template>
   <main>
     <AppContent class="py-8 md:py-12">
-      <template #header>
-        <CategoryHeader name="Search Results" :postCount="posts?.length || 0" />
-      </template>
       <template #main>
-        <PostFeed :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed title="Search Results" :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
 
       <template #sidebar>

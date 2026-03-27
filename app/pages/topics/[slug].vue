@@ -16,20 +16,18 @@ if (!topic.value?.data) {
   })
 }
 
-const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path, {
+const { loading, posts, loadMore } = useFeed(API_ROUTES.posts.path, {
   topic: slug
 })
 
+const pageTitle = computed(() => topic.value?.data?.name || slug.value)
 </script>
 
 <template>
   <main>
     <AppContent class="py-8 md:py-12">
-      <template #header>
-        <CategoryHeader :name="topic?.data?.name || slug" :postCount="count || 0" />
-      </template>
       <template #main>
-        <PostFeed :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed :title="pageTitle" :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
 
       <template #sidebar>
