@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import type { Categories } from '~/types';
+import { ChevronDown } from 'lucide-vue-next';
+
 
 interface Props {
   label: string,
   value: string,
-  active?: boolean
+  active?: boolean,
+  hasChildren?: boolean
 }
 
 const props = defineProps<Props>()
@@ -12,7 +14,7 @@ const props = defineProps<Props>()
 
 <template>
   <NuxtLink :to="props.value"
-    class="px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors flex items-center"
-    :class="active ? 'bg-muted' : ''" active-class="bg-muted"> {{ props.label }}
+    class="text-sm hover:font-medium text-foreground hover:text-primary transition-colors flex items-center w-full"
+    :class="active ? 'text-primary font-medium' : ''" active-class="text-primary font-medium"> {{ props.label }}
   </NuxtLink>
 </template>
