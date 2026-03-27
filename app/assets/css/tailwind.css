@@ -257,7 +257,7 @@
   .ticker-wrapper { @apply overflow-hidden whitespace-nowrap; }
   .ticker-content {
     display: inline-block;
-    animation: ticker 30s linear infinite;
+    animation: ticker 90s linear infinite;
   }
 
   .ad-placeholder {
