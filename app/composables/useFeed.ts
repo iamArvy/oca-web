@@ -1,25 +1,22 @@
+import { ref, unref, watch } from "vue";
 import type { ApiListResponse, Posts } from "~/interfaces";
 
-export function useFeed(
-  route: string,
-  query?: MaybeRef<Record<string, any>>
-) {
+export function useFeed(route: string, query?: MaybeRef<Record<string, any>>) {
   const currentPage = ref(1);
   const loading = ref(false);
   const hasNextPage = ref(false);
   const posts = ref<Posts>([]);
   const count = ref(0);
 
-  const fetch = async (reset = false) => {
+  const fetch = async (page = currentPage.value, reset = false) => {
     if (loading.value) return;
-
     loading.value = true;
 
     try {
       const { data } = await useAPI<ApiListResponse<Posts>>(route, {
         query: {
           ...unref(query),
-          page: currentPage.value,
+          page,
         },
       });
 
@@ -39,18 +36,18 @@ export function useFeed(
   const loadMore = async () => {
     if (!hasNextPage.value) return;
     currentPage.value++;
-    await fetch();
+    await fetch(currentPage.value);
   };
 
   // Initial fetch
-  fetch(true);
+  fetch(1, true);
 
   // Reactive query watcher
   watch(
     () => unref(query),
     () => {
       currentPage.value = 1;
-      fetch(true);
+      fetch(1, true);
     },
     { deep: true }
   );
