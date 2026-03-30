@@ -32,17 +32,26 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
     }
   };
 
+  // watch(
+  //   () => unref(query),
+  //   () => {
+  //     posts.value = [];
+  //     currentPage.value = 1;
+  //     hasNextPage.value = false;
+  //     fetch();
+  //   },
+  //   { deep: true }
+  // );
   watch(
-    () => unref(query),
+    () => JSON.stringify(unref(query)),
     () => {
       posts.value = [];
       currentPage.value = 1;
       hasNextPage.value = false;
       fetch();
     },
-    { deep: true }
+    { immediate: false }
   );
-
   onMounted(fetch);
 
   const loadMore = () => {

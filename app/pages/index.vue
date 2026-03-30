@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const { loading, posts, loadMore } = useFeed({ days: 1 })
+const query = computed(() => ({
+  days: 1
+}))
+
+const { loading, posts, loadMore } = useFeed(query);
+
 </script>
 
 <template>
