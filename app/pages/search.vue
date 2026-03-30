@@ -3,8 +3,11 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const q = computed(() => route.query.q as string)
-const { loading, posts, loadMore } = useFeed({ q: q.value })
+const query = computed(() => ({
+  q: route.query.q as string
+}))
+
+const { loading, posts, loadMore } = useFeed(query)
 
 </script>
 
