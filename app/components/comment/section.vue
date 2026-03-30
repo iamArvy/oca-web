@@ -58,7 +58,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
     <div v-else class="mb-8 pb-8 border-b border-border">
       <div class="text-center p-6 rounded-lg bg-muted/30">
         <h3 class="text-lg font-semibold mb-2">
-          Want to join the discussion? 💬
+          Want to join the discussion?
         </h3>
         <p class="text-sm text-muted-foreground mb-4">
           Sign in to post comments and engage with the community.
@@ -71,7 +71,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
       </div>
     </div>
 
-    <ScrollArea class="h-100 px-5">
+    <div class="max-h-100 px-5 overflow-y-auto">
       <div v-if="!loading && comments.length > 0" class="space-y-6">
         <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
         <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">
@@ -86,7 +86,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
           <Spinner />
         </div>
       </div>
-    </ScrollArea>
+    </div>
     <!-- <div v-if="comments.length > 0" class="space-y-6">
       <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
       <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">

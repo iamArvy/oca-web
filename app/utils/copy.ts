@@ -2,10 +2,10 @@ export async function copyToClipboard(text: string) {
   const { success, error } = useToast()
   try {
     await navigator.clipboard.writeText(text)
-    success('Copied to clipboard ✅')
+    success('Copied to clipboard')
     return true
   } catch (err) {
-    error('Failed to copy ❌')
+    error('Failed to copy')
     return false
   }
 }
