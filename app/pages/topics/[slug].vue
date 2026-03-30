@@ -16,8 +16,8 @@ if (!topic.value?.data) {
   })
 }
 
-const { loading, posts, loadMore } = useFeed(API_ROUTES.posts.path, {
-  topic: slug
+const { loading, posts, loadMore } = useFeed({
+  topic: slug.value
 })
 
 const pageTitle = computed(() => topic.value?.data?.name || slug.value)

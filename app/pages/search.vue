@@ -4,7 +4,7 @@ import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const q = computed(() => route.query.q as string)
-const { loading, posts, loadMore } = await useFeed('/posts', { q })
+const { loading, posts, loadMore } = useFeed({ q: q.value })
 
 </script>
 
@@ -17,9 +17,10 @@ const { loading, posts, loadMore } = await useFeed('/posts', { q })
 
       <template #sidebar>
         <AdComponent size="sidebar" />
-        <!-- <WidgetsPosts v-if="trendingPosts && trendingPosts.length > 0" :posts="trendingPosts" title="Trending" /> -->
+        <WidgetsEditorPick />
         <AdComponent size="sidebar" />
-        <WidgetsNewsletter />
+        <WidgetsHotClicks />
+        <AdComponent size="sidebar" />
       </template>
     </AppContent>
   </main>

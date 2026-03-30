@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { loading, posts, loadMore } = await useFeed('/public/posts', { days: 1 })
+const { loading, posts, loadMore } = useFeed({ days: 1 })
 </script>
 
 <template>

@@ -16,8 +16,8 @@ if (!feed.value?.data) {
   })
 }
 
-const { loading, posts, loadMore, count } = await useFeed(API_ROUTES.posts.path, {
-  feed: slug
+const { loading, posts, loadMore, count } = useFeed({
+  feed: slug.value
 })
 
 </script>
