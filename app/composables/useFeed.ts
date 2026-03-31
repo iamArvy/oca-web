@@ -49,6 +49,10 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
   onMounted(fetch);
 
   const loadMore = () => {
+    console.log(currentPage.value);
+    console.log(hasNextPage.value);
+    console.log(count.value);
+
     if (!hasNextPage.value || loading.value) return;
     currentPage.value++;
     fetch();
