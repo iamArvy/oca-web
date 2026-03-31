@@ -28,10 +28,6 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
       hasNextPage.value = meta.has_next ?? false;
       if (data.length > 0) posts.value.push(...data);
       count.value = meta.total;
-
-      console.log(currentPage.value);
-      console.log(hasNextPage.value);
-      console.log(count.value);
     } finally {
       loading.value = false;
     }
@@ -50,10 +46,6 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
   onMounted(fetch);
 
   const loadMore = () => {
-    console.log(currentPage.value);
-    console.log(hasNextPage.value);
-    console.log(count.value);
-
     if (!hasNextPage.value || loading.value) return;
     currentPage.value++;
     fetch();

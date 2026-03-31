@@ -25,7 +25,6 @@ const loadTrigger = ref<HTMLElement | null>(null);
 useIntersectionObserver(loadTrigger, (entries) => {
   const entry = entries[0];
   if (entry && entry.isIntersecting) {
-    console.log("Intersection detected!");
     emits("load-more");
   }
 });
