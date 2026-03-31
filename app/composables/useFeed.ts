@@ -3,12 +3,13 @@ import { API_ROUTES } from "~/constants";
 export function useFeed(query?: MaybeRef<Record<string, any>>) {
   const { $api } = useNuxtApp();
   const currentPage = ref<number>(1);
-  const loading = ref<boolean>(true);
+  const loading = ref(false);
   const hasNextPage = ref<boolean>(false);
   const posts = ref<Posts>([]);
   const count = ref<number>(0);
 
   const fetch = async () => {
+    if (loading.value) return;
     loading.value = true;
 
     try {

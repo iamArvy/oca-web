@@ -19,9 +19,7 @@ const { loading, posts, loadMore } = useFeed(query);
 
     <AppContent>
       <template #main>
-        <ClientOnly>
-          <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
-        </ClientOnly>
+        <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />

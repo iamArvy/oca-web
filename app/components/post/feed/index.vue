@@ -60,7 +60,7 @@ const component = computed(() => {
     <ScrollArea class="h-500 pr-5">
       <component :is="component" :items="items" />
       <PostFeedPlaceholder v-if="loading" :mode="mode" class="mt-4" />
-      <div ref="loadTrigger" />
+      <div ref="loadTrigger" class="h-10" />
     </ScrollArea>
   </div>
 </template>
