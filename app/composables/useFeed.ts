@@ -27,21 +27,15 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
       hasNextPage.value = meta.has_next ?? false;
       if (data.length > 0) posts.value.push(...data);
       count.value = meta.total;
+
+      console.log(currentPage.value);
+      console.log(hasNextPage.value);
+      console.log(count.value);
     } finally {
       loading.value = false;
     }
   };
 
-  // watch(
-  //   () => unref(query),
-  //   () => {
-  //     posts.value = [];
-  //     currentPage.value = 1;
-  //     hasNextPage.value = false;
-  //     fetch();
-  //   },
-  //   { deep: true }
-  // );
   watch(
     () => JSON.stringify(unref(query)),
     () => {
