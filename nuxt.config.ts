@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     "shadcn-nuxt",
     "@nuxtjs/seo",
     "nuxt-auth-utils",
-    "nuxt-gtag"
+    "nuxt-gtag",
   ],
   shadcn: {
     /**
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
     image: "https://oneclickafrica.com/og-image.png",
   },
   gtag: {
-    id: process.env.GOOGLE_TAG_ID ?? '',
+    id: process.env.GOOGLE_TAG_ID ?? "",
   },
   runtimeConfig: {
     public: {
@@ -63,9 +63,9 @@ export default defineNuxtConfig({
         {
           async: true,
           src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5263422114514132",
-          crossorigin: "anonymous"
-        }
-      ]
-    }
-  }
+          crossorigin: "anonymous",
+        },
+      ],
+    },
+  },
 });

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import 'vue-sonner/style.css'; // vue-sonner v2 requires this import
+import "vue-sonner/style.css";
 
 useHead({
   script: [
@@ -9,16 +9,11 @@ useHead({
     },
   ],
 });
-
 </script>
 
 <template>
-  <!-- <Transition name="slide" mode="out-in">
-      <NuxtLayout>
-        <NuxtPage />
-      </NuxtLayout>
-    </Transition> -->
   <NuxtLayout>
+    <GoogleTagManager />
     <NuxtPage />
   </NuxtLayout>
   <Toaster />

@@ -1,10 +1,9 @@
 <script setup lang="ts">
 const query = computed(() => ({
-  days: 1
-}))
+  days: 7,
+}));
 
 const { loading, posts, loadMore } = useFeed(query);
-
 </script>
 
 <template>
@@ -19,7 +18,12 @@ const { loading, posts, loadMore } = useFeed(query);
 
     <AppContent>
       <template #main>
-        <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed
+          title="Latest News"
+          :posts="posts"
+          @load-more="loadMore"
+          :loading="loading"
+        />
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />
