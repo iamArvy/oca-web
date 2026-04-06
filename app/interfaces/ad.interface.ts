@@ -1,14 +1,21 @@
-export enum AdType {
-  BANNER = 'banner',
-  FEED = 'feed',
-  SIDEBAR = 'sidebar',
+export enum AdPlacement {
+  BANNER = "banner",
+  FEED = "feed",
+  SIDEBAR = "sidebar",
+}
+
+export enum AdContentType {
+  IMAGE = "image",
+  VIDEO = "video",
+  HTML = "html",
 }
 
 export interface Ad {
   title: string;
-  image: string;
+  content: string;
   target?: string;
-  type: AdType
+  placement: AdPlacement;
+  contentType: AdContentType;
 }
 
-export type Ads = Ad[]
+export type Ads = Ad[];
