@@ -11,7 +11,7 @@ const isSearchOpen = ref(false)
 
 const router = useRouter()
 const { q, search } = useSearchForm()
-const { data: breakingNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'breaking-news' } })
+const { data: latestNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { limit: 20 } })
 const { loggedIn } = useUserSession()
 </script>
 
@@ -20,7 +20,7 @@ const { loggedIn } = useUserSession()
     <!-- Top Bar -->
     <div class="bg-primary text-primary-foreground py-2">
       <div class="container-lg flex justify-between items-center text-sm mx-auto gap-4">
-        <NewsTicker v-if="breakingNews" :posts="breakingNews?.data ?? []" />
+        <NewsTicker v-if="latestNews" :posts="latestNews?.data ?? []" />
         <!-- <div class="hidden md:flex items-center gap-2 flex-1">
           <span class="w-25">{{ date }}</span>
           <span>|</span>
@@ -62,7 +62,7 @@ const { loggedIn } = useUserSession()
             </Button>
           </NuxtLink>
 
-          <LayoutMobileMenu :topics="topics" />
+          <!-- <LayoutMobileMenu :topics="topics" /> -->
         </div>
       </div>
       <LayoutMenu :topics="topics" />

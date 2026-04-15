@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Megaphone } from 'lucide-vue-next'
+import { ChevronRight, Megaphone } from 'lucide-vue-next'
 import { APP_ROUTES } from '~/constants';
 import type { Topics } from '~/interfaces';
 
@@ -16,13 +16,16 @@ const route = useRoute()
 watch(() => route.fullPath, () => {
   isOpen.value = false
 })
+
+const { isMobile } = useMobile();
 </script>
 
 <template>
   <Sheet :open="isOpen" @update:open="val => isOpen = val">
     <SheetTrigger as-child>
-      <Button variant="ghost" size="icon">
-        <Icon name="lucide:menu" class="w-5 h-5" />
+      <Button variant="outline" size="sm" class="text-xs">
+        <template v-if="!isMobile">View Topics</template>
+        <ChevronRight class="size-3" />
       </Button>
     </SheetTrigger>
     <SheetContent>
