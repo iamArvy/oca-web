@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
+import { ChevronRight } from 'lucide-vue-next'
 import type { Topic, Topics } from '~/interfaces';
 
 interface Props {
@@ -27,7 +28,12 @@ const limitedTopics = computed(() => props.topics.slice(0, 7));
           <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
             :active="currentTopic?.slug === item.slug" :hasChildren="item.children && item.children.length > 0" />
         </li>
-        <LayoutMobileMenu :topics="topics" />
+        <LayoutMobileMenu :topics="topics">
+          <Button variant="outline" size="sm" class="text-xs">
+            View Topics
+            <ChevronRight class="size-3" />
+          </Button>
+        </LayoutMobileMenu>
       </ul>
       <ul class="flex space-x-4 overflow-x-auto mt-1 transition-all duration-300 scrollbar-hide "
         v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">

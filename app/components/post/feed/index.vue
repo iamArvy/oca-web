@@ -4,7 +4,7 @@ import type { Posts } from "~/interfaces";
 import { useIntersectionObserver } from "@vueuse/core";
 import list from "./list.vue";
 import grid from "./grid.vue";
-
+import basic from "./basic.vue";
 
 interface Props {
   posts: Posts;
@@ -34,6 +34,7 @@ const { mode, setViewMode } = useViewMode();
 const components: Record<ViewMode, Component> = {
   [ViewMode.GRID]: grid,
   [ViewMode.LIST]: list,
+  [ViewMode.BASIC]: basic,
 };
 
 const component = computed(() => {

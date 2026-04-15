@@ -17,16 +17,12 @@ watch(() => route.fullPath, () => {
   isOpen.value = false
 })
 
-const { isMobile } = useMobile();
 </script>
 
 <template>
   <Sheet :open="isOpen" @update:open="val => isOpen = val">
     <SheetTrigger as-child>
-      <Button variant="outline" size="sm" class="text-xs">
-        <template v-if="!isMobile">View Topics</template>
-        <ChevronRight class="size-3" />
-      </Button>
+      <slot />
     </SheetTrigger>
     <SheetContent>
       <SheetHeader>

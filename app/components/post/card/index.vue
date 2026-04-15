@@ -5,10 +5,11 @@ import type { Post } from "~/interfaces";
 import featured from "./featured.vue";
 import compact from "./compact.vue";
 import base from "./base.vue";
+import list from "./list.vue";
 
 interface Props {
   post: Post;
-  variant?: "default" | "featured" | "compact";
+  variant?: "default" | "featured" | "compact" | "list";
   skeleton?: boolean;
 };
 
@@ -20,6 +21,8 @@ const component = computed(() => {
       return featured;
     case "compact":
       return compact;
+    case "list":
+      return list;
     default:
       return base;
   }
