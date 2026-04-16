@@ -17,4 +17,5 @@ useHead({
     <NuxtPage />
   </NuxtLayout>
   <Toaster />
+  <LinkedinAnalytics />
 </template>

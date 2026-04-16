@@ -2,5 +2,5 @@
 const { currentTheme } = useTheme()
 </script>
 <template>
-  <img :src="currentTheme === 'light' ? '/logo.webp' : '/logo-white.png'" alt="">
+  <img :src="currentTheme === 'dark' ? '/logo-white.png' : '/logo.webp'" alt="">
 </template>
