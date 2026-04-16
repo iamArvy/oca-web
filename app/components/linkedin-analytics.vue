@@ -1,6 +1,8 @@
 <script setup>
+const config = useRuntimeConfig()
+const pid = config.public.linkedinPartnerId;
 onMounted(() => {
-  const _linkedin_partner_id = "9015306";
+  const _linkedin_partner_id = pid;
 
   window._linkedin_data_partner_ids =
     window._linkedin_data_partner_ids || [];
@@ -30,6 +32,6 @@ onMounted(() => {
 <template>
   <noscript>
     <img height="1" width="1" style="display: none" alt=""
-      src="https://px.ads.linkedin.com/collect/?pid=9015306&fmt=gif" />
+      :src="`https://px.ads.linkedin.com/collect/?pid=${pid}&fmt=gif`" />
   </noscript>
 </template>

@@ -50,22 +50,14 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3000",
+      adsenseClient: process.env.ADSENSE_CLIENT,
+      googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
+      linkedinPartnerId: process.env.LINKEDIN_PARTNER_ID,
     },
     mailchimp: {
       apiKey: "", // will be overridden by environment variables
       serverPrefix: "",
       listId: "",
-    },
-  },
-  app: {
-    head: {
-      script: [
-        {
-          async: true,
-          src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5263422114514132",
-          crossorigin: "anonymous",
-        },
-      ],
     },
   },
 });
