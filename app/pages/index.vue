@@ -18,20 +18,15 @@ const { loading, posts, loadMore } = useFeed(query);
 
     <AppContent>
       <template #main>
-        <PostFeed
-          title="Latest News"
-          :posts="posts"
-          @load-more="loadMore"
-          :loading="loading"
-        />
+        <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />
-        <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
         <WidgetsHotClicks />
         <AdComponent size="sidebar" />
-        <!-- <WidgetsNewsletter /> -->
+        <WidgetsEditorPick />
+        <AdComponent size="sidebar" />
+        <WidgetsNewsletter />
       </template>
       <div class="bg-muted/30">
         <div class="container-lg">
