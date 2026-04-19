@@ -27,3 +27,7 @@ export interface Post extends BaseItem {
 }
 
 export type Posts = Post[];
+
+export enum SortPostOptions {
+  VIEWS = 'views',
+}
