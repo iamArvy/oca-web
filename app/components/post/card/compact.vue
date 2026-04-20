@@ -23,13 +23,15 @@ const props = defineProps<Props>();
         </h3>
         <div class="flex items-center gap-2 mt-2 text-xs">
           <template v-if="post.author">
-            <Icon name="lucide:user" class="w-3 h-3" />
+            <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" class="w-3 h-3 rounded-full" />
+            <Icon v-else name="lucide:user" class="w-3 h-3" />
             {{
               post.author.name
             }}
           </template>
           <template v-else-if="post.feed">
-            <Icon name="lucide:rss" class="w-3 h-3" />
+            <NuxtImg v-if="post.feed.image" :src="post.feed.image" class="w-3 h-3 rounded-full" />
+            <Icon v-else name="lucide:rss" class="w-3 h-3" />
             {{
               post.feed.name
             }}

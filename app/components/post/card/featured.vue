@@ -11,22 +11,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const isHovering = ref(false);
-// const videoRef = ref<HTMLVideoElement | null>(null);
 const iframeRef = ref<HTMLIFrameElement | null>(null);
-// function handleMouseEnter() {
-//   isHovering.value = true;
-//   if (videoRef.value && props.post.type === PostType.VIDEO) {
-//     videoRef.value.play().catch(() => { });
-//   }
-// }
-
-// function handleMouseLeave() {
-//   isHovering.value = false;
-//   if (videoRef.value) {
-//     videoRef.value.pause();
-//     videoRef.value.currentTime = 0;
-//   }
-// }
 function handleMouseEnter() {
   isHovering.value = true;
 
@@ -80,13 +65,15 @@ function handleMouseLeave() {
       </NuxtLink>
       <div class="flex items-center gap-4 text-sm text-white/70">
         <span v-if="post.author" class="flex items-center gap-1.5">
-          <Icon name="lucide:user" class="w-4 h-4" />
+          <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" class="w-4 h-4 rounded-full" />
+          <Icon v-else name="lucide:user" class="w-4 h-4" />
           {{
             post.author.name
           }}
         </span>
         <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed" class="flex items-center gap-1.5">
-          <Icon name="lucide:rss" class="w-4 h-4" />
+          <NuxtImg v-if="post.feed.image" :src="post.feed.image" class="w-4 h-4 rounded-full" />
+          <Icon v-else name="lucide:rss" class="w-4 h-4" />
           {{
             post.feed.name
           }}
