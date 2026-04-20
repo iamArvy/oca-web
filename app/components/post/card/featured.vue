@@ -71,7 +71,8 @@ function handleMouseLeave() {
             post.author.name
           }}
         </span>
-        <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed" class="flex items-center gap-1.5">
+        <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
+          class="flex items-center gap-1.5 hover:underline">
           <NuxtImg v-if="post.feed.image" :src="post.feed.image" class="w-4 h-4 rounded-full" />
           <Icon v-else name="lucide:rss" class="w-4 h-4" />
           {{
