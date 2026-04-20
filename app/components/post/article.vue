@@ -46,11 +46,7 @@ defineProps<{
       <span class="flex items-center gap-2">
         <Icon name="lucide:calendar" class="w-4 h-4" />
         {{
-          new Date(post.createdAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })
+          formatDate(post.createdAt)
         }}
       </span>
       <span class="flex items-center gap-2">

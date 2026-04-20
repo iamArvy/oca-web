@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import { Heart, Reply, MoreHorizontal } from "lucide-vue-next";
 import type { Comment } from "~/interfaces";
-import { formatDistanceToNow } from "date-fns";
 
 interface Props {
   comment: Comment;
@@ -12,11 +11,6 @@ const props = defineProps<Props>();
 
 const liked = ref(false);
 const showReplyForm = ref(false);
-
-function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return formatDistanceToNow(date, { addSuffix: true });
-}
 
 
 </script>
