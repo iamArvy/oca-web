@@ -20,8 +20,8 @@ const { loading, posts, loadMore } = useFeed(query);
 
     <AppContent>
       <template #main>
-        <!-- <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" /> -->
-        <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 9, postLimit: 3 }" />
+        <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <!-- <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 9, postLimit: 3 }" /> -->
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />
