@@ -36,7 +36,7 @@ const { isMobile } = useMobile()
           </LayoutMobileMenu>
         </div>
       </div>
-      <LayoutMenu v-if="!isMobile" :topics="topics" />
+      <LayoutMenu :topics="topics" />
     </div>
   </header>
 </template>

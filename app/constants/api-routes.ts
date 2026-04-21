@@ -30,5 +30,9 @@ export const API_ROUTES = {
   feed: {
     path: (slug: string) => '/public/feeds/' + slug,
     name: 'Feed'
+  },
+  topicPosts: {
+    path: '/public/topic-posts',
+    name: 'Topic Posts'
   }
 }

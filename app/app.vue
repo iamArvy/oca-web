@@ -19,7 +19,6 @@ useHead({
 
 <template>
   <NuxtLayout>
-    <!-- <GoogleAdsense /> -->
     <GoogleTagManager />
     <NuxtPage />
   </NuxtLayout>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { API_ROUTES } from '~/constants';
+
 const query = computed(() => ({
-  days: 7,
+  days: 1,
 }));
 
 const { loading, posts, loadMore } = useFeed(query);
@@ -18,7 +20,8 @@ const { loading, posts, loadMore } = useFeed(query);
 
     <AppContent>
       <template #main>
-        <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <!-- <PostFeed title="Latest News" :posts="posts" @load-more="loadMore" :loading="loading" /> -->
+        <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 9, postLimit: 3 }" />
       </template>
       <template #sidebar>
         <AdComponent size="sidebar" />
@@ -28,29 +31,6 @@ const { loading, posts, loadMore } = useFeed(query);
         <AdComponent size="sidebar" />
         <WidgetsNewsletter />
       </template>
-      <div class="bg-muted/30">
-        <div class="container-lg">
-          <!-- <CategorySection
-            title="Technology"
-            :posts="technologyPosts"
-            slug="technology"
-          /> -->
-        </div>
-      </div>
-
-      <div class="container-lg">
-        <!-- <CategorySection title="Sports" :posts="sportsPosts" slug="sports" /> -->
-      </div>
-
-      <div class="bg-muted/30">
-        <div class="container-lg">
-          <!-- <CategorySection
-            title="Entertainment"
-            :posts="entertainmentPosts"
-            slug="entertainment"
-          /> -->
-        </div>
-      </div>
     </AppContent>
   </main>
 </template>

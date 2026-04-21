@@ -1,31 +1,15 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants'
-import type { Posts } from '~/interfaces'
+import type { TopicPosts } from '~/interfaces'
 
-
-interface Post {
-  id: number
-  title: string
-  excerpt: string
-  image: string
-  category: string
-  slug: string
-}
-
-interface Props {
-  title: string
-  posts: Posts
-  slug: string
-}
-
-const props = defineProps<Props>()
+const props = defineProps<TopicPosts>()
 </script>
 
 <template>
   <section class="py-8">
     <div class="flex items-center justify-between mb-6">
       <h2 class="font-display text-2xl md:text-3xl font-bold relative">
-        {{ props.title }}
+        {{ name }}
         <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
       </h2>
 

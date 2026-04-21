@@ -1,4 +1,5 @@
 import type { BaseItem } from "./api-response.interface";
+import type { Posts } from "./post.interface";
 
 export interface Topic extends BaseItem {
   name: string;
@@ -8,3 +9,9 @@ export interface Topic extends BaseItem {
 }
 
 export type Topics = Topic[];
+
+export interface TopicPosts extends Topic {
+  posts: Posts
+}
+
+export type TopicPostsArray = TopicPosts[];
