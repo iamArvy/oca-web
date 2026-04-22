@@ -1,13 +1,8 @@
 <script setup lang="ts">
-import { APP_ROUTES } from '~/constants';
+import { API_ROUTES, APP_ROUTES } from '~/constants';
 import { ChevronRight } from 'lucide-vue-next'
-import type { Topic, Topics } from '~/interfaces';
+import type { ApiListResponse, Topic, Topics } from '~/interfaces';
 
-interface Props {
-  topics: Topics,
-}
-
-const props = defineProps<Props>()
 const currentTopic = ref<Topic | null>(null)
 
 function onMouseEnter(topic: Topic) {
@@ -18,13 +13,19 @@ function onMouseLeave() {
   currentTopic.value = null
 }
 
-const limitedTopics = computed(() => props.topics.slice(0, 7));
+const { data: topics } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topics.path, {
+  query: {
+    limit: 7,
+    isFeatured: 'true',
+  }
+})
+
 </script>
 <template>
   <div>
     <nav @mouseleave="onMouseLeave">
-      <ul class="flex space-x-4 overflow-x-auto scrollbar-hide items-center">
-        <li v-for="item in limitedTopics" :key="item.id" @mouseover="onMouseEnter(item)" class="shrink-0">
+      <ul v-if="topics" class="flex space-x-4 overflow-x-auto scrollbar-hide items-center">
+        <li v-for="item in topics.data" :key="item.id" @mouseover="onMouseEnter(item)" class="shrink-0">
           <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
             :active="currentTopic?.slug === item.slug" :hasChildren="item.children && item.children.length > 0" />
         </li>

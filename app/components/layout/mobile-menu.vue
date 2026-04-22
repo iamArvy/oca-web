@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { ChevronRight, Megaphone } from 'lucide-vue-next'
-import { APP_ROUTES } from '~/constants';
-import type { Topics } from '~/interfaces';
-
-interface Props {
-  topics: Topics
-}
-
-const props = defineProps<Props>()
+import { API_ROUTES, APP_ROUTES } from '~/constants';
+import type { ApiListResponse, Topics } from '~/interfaces';
 
 const isOpen = ref(false)
 const route = useRoute()
@@ -16,6 +10,8 @@ const route = useRoute()
 watch(() => route.fullPath, () => {
   isOpen.value = false
 })
+
+const { data: topics } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topicTree.path)
 
 </script>
 
@@ -32,8 +28,8 @@ watch(() => route.fullPath, () => {
         </SheetDescription>
       </SheetHeader>
       <div class="flex-1 overflow-y-auto scrollbar-hide">
-        <Accordion type="multiple" class="w-full">
-          <LayoutMenuItem v-for="item in topics" :key="item.id" :item="item" />
+        <Accordion v-if="topics" type="multiple" class="w-full">
+          <LayoutMenuItem v-for="item in topics.data" :key="item.id" :item="item" />
         </Accordion>
       </div>
       <SheetFooter>

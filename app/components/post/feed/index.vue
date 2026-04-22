@@ -19,7 +19,7 @@ interface Emits {
 const emits = defineEmits<Emits>();
 const props = defineProps<Props>();
 
-const items = computed(() => useFeedItems(props.posts, 6));
+const items = computed(() => useFeedItems(props.posts, 12));
 
 const loadTrigger = ref<HTMLElement | null>(null);
 useIntersectionObserver(loadTrigger, (entries) => {

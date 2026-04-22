@@ -34,5 +34,9 @@ export const API_ROUTES = {
   topicPosts: {
     path: '/public/topic-posts',
     name: 'Topic Posts'
+  },
+  topicTree: {
+    path: '/public/topics-tree',
+    name: 'Topic Tree'
   }
 }
