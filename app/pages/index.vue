@@ -3,6 +3,7 @@ import { API_ROUTES } from '~/constants';
 
 const query = computed(() => ({
   days: 1,
+  limit: 36,
 }));
 
 const { loading, posts, loadMore } = useFeed(query);
@@ -21,7 +22,7 @@ const { loading, posts, loadMore } = useFeed(query);
     <AppContent>
       <template #main>
         <PostFeed title="Latest News" :posts="posts" :loading="loading" />
-        <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 9, postLimit: 3 }" />
+        <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 3, postLimit: 3 }" />
       </template>
       <template #sidebar>
         <WidgetsHotClicks />
