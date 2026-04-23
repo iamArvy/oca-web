@@ -16,9 +16,9 @@ if (!collection.value?.data) {
   })
 }
 
-const { loading, posts, loadMore, count } = useFeed({
+const query = {
   collection: slug.value
-})
+}
 
 </script>
 
@@ -26,14 +26,13 @@ const { loading, posts, loadMore, count } = useFeed({
   <main>
     <AppContent class="py-8 md:py-12">
       <template #main>
-        <PostFeed :title="collection?.data?.name || slug" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed :title="collection?.data?.name || slug" :query="query" />
       </template>
 
       <template #sidebar>
+        <WidgetsHotClicks />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
-        <WidgetsHotClicks />
         <AdComponent size="sidebar" />
       </template>
     </AppContent>
