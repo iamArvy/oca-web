@@ -30,7 +30,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
         <AdComponent size="inline" />
       </div>
     </template>
-    <!-- <TopicFeedPlaceholder v-if="loading" :mode="mode" class="mt-4" /> -->
+    <TopicFeedPlaceholder v-if="loading" class="mt-4" />
     <div ref="loadTrigger" class="h-10" />
   </div>
 </template>
