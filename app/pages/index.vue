@@ -27,7 +27,6 @@ const query = computed(() => ({
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
         <AdComponent size="sidebar" />
-        <WidgetsNewsletter />
       </template>
       <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 3, postLimit: 3 }" />
     </AppContent>

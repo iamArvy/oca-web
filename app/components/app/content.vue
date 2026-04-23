@@ -11,6 +11,7 @@
 
       <aside class="space-y-6 mt-3 lg:mt-0 ">
         <slot name="sidebar" />
+        <WidgetsNewsletter />
       </aside>
     </div>
 

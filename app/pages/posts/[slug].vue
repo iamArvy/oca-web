@@ -52,21 +52,12 @@ useSeoMeta({
       </template>
 
       <template #sidebar>
-        <AdComponent size="sidebar" />
         <PostAuthor v-if="post.author" v-bind="post.author" />
         <PostSource v-else-if="post.feed" v-bind="post.feed" />
         <AdComponent size="sidebar" />
+        <!-- Related Post widget -->
       </template>
-
-      <!-- <section v-if="relatedPosts.length" class="py-12">
-        <h2 class="font-display text-2xl md:text-3xl font-bold mb-6 relative">
-          Related Posts
-          <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children">
-          <PostCard v-for="relatedPost in relatedPosts" :key="relatedPost.id" :post="relatedPost" />
-        </div>
-      </section> -->
+      <TopicFeed :route="API_ROUTES.relatedTopics.path(post.topic.slug)" :query="{ limit: 3, postLimit: 3 }" />
     </AppContent>
   </main>
 </template>
