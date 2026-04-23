@@ -21,7 +21,6 @@ const query = computed(() => ({
     <AppContent>
       <template #main>
         <PostFeed title="Latest News" :query="query" />
-        <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 3, postLimit: 3 }" />
       </template>
       <template #sidebar>
         <WidgetsHotClicks />
@@ -30,6 +29,7 @@ const query = computed(() => ({
         <AdComponent size="sidebar" />
         <WidgetsNewsletter />
       </template>
+      <TopicFeed :route="API_ROUTES.topicPosts.path" :query="{ limit: 3, postLimit: 3 }" />
     </AppContent>
   </main>
 </template>

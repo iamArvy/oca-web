@@ -3,7 +3,8 @@ import { computed } from "vue";
 import list from "./list.vue";
 import grid from "./grid.vue";
 import basic from "./basic.vue";
-import { Plus } from "lucide-vue-next";
+// import { Plus } from "lucide-vue-next";
+import { useIntersectionObserver } from "@vueuse/core";
 
 interface Props {
   query: Record<string, any>;
@@ -12,7 +13,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { loading, posts, loadMore, hasNextPage } = useFeed(props.query);
+const { loading, posts, loadMore } = useFeed(props.query);
 
 const items = computed(() => useFeedItems(posts.value, 12));
 
@@ -26,6 +27,14 @@ const components: Record<ViewMode, Component> = {
 
 const component = computed(() => {
   return components[mode.value] || grid;
+});
+
+const loadTrigger = ref<HTMLElement | null>(null);
+useIntersectionObserver(loadTrigger, (entries) => {
+  const entry = entries[0];
+  if (entry && entry.isIntersecting) {
+    loadMore()
+  }
 });
 </script>
 
@@ -46,11 +55,12 @@ const component = computed(() => {
 
     <component :is="component" :items="items" />
     <PostFeedPlaceholder v-if="loading" :mode="mode" class="mt-4" />
-    <div v-if="!loading && hasNextPage" class="flex items-center justify-center mt-4">
+    <div ref="loadTrigger" class="h-10" />
+    <!-- <div v-if="!loading && hasNextPage" class="flex items-center justify-center mt-4">
       <Button variant="outline" @click="loadMore">
         <Plus />
         Load More
       </Button>
-    </div>
+    </div> -->
   </div>
 </template>

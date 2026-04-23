@@ -17,5 +17,6 @@
     <div class="lg:hidden">
       <slot name="main" />
     </div>
+    <slot />
   </div>
 </template>
