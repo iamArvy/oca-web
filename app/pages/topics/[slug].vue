@@ -27,7 +27,8 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
   <main>
     <AppContent class="py-8 md:py-12">
       <template #main>
-        <PostFeed :title="pageTitle" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed :title="pageTitle" :posts="posts" :loading="loading" />
+        <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" :query="{ limit: 3, postLimit: 3 }" />
       </template>
 
       <template #sidebar>
