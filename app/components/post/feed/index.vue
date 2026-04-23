@@ -1,33 +1,20 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import type { Posts } from "~/interfaces";
-import { useIntersectionObserver } from "@vueuse/core";
+import { computed } from "vue";
 import list from "./list.vue";
 import grid from "./grid.vue";
 import basic from "./basic.vue";
+import { Plus } from "lucide-vue-next";
 
 interface Props {
-  posts: Posts;
-  loading: boolean;
+  query: Record<string, any>;
   title: string;
 }
 
-interface Emits {
-  (e: "load-more"): void;
-}
-
-const emits = defineEmits<Emits>();
 const props = defineProps<Props>();
 
-const items = computed(() => useFeedItems(props.posts, 12));
+const { loading, posts, loadMore, hasNextPage } = useFeed(props.query);
 
-const loadTrigger = ref<HTMLElement | null>(null);
-useIntersectionObserver(loadTrigger, (entries) => {
-  const entry = entries[0];
-  if (entry && entry.isIntersecting) {
-    emits("load-more");
-  }
-});
+const items = computed(() => useFeedItems(posts.value, 12));
 
 const { mode, setViewMode } = useViewMode();
 
@@ -57,10 +44,13 @@ const component = computed(() => {
       </div>
     </div>
 
-    <!-- <ScrollArea class="h-500 pr-5"> -->
     <component :is="component" :items="items" />
     <PostFeedPlaceholder v-if="loading" :mode="mode" class="mt-4" />
-    <div ref="loadTrigger" class="h-10" />
-    <!-- </ScrollArea> -->
+    <div v-if="!loading && hasNextPage" class="flex items-center justify-center mt-4">
+      <Button variant="outline" @click="loadMore">
+        <Plus />
+        Load More
+      </Button>
+    </div>
   </div>
 </template>

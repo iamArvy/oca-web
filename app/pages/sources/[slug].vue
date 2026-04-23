@@ -16,9 +16,9 @@ if (!feed.value?.data) {
   })
 }
 
-const { loading, posts, loadMore, count } = useFeed({
+const query = {
   feed: slug.value
-})
+};
 
 </script>
 
@@ -26,7 +26,7 @@ const { loading, posts, loadMore, count } = useFeed({
   <main>
     <AppContent class="py-8 md:py-12">
       <template #main>
-        <PostFeed :title="feed?.data?.name || slug" :posts="posts" @load-more="loadMore" :loading="loading" />
+        <PostFeed :title="feed?.data?.name || slug" :query="query" />
       </template>
 
       <template #sidebar>

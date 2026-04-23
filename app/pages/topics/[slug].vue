@@ -16,9 +16,9 @@ if (!topic.value?.data) {
   })
 }
 
-const { loading, posts, loadMore } = useFeed({
+const query = {
   topic: slug.value
-})
+}
 
 const pageTitle = computed(() => topic.value?.data?.name || slug.value)
 </script>
@@ -27,7 +27,7 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
   <main>
     <AppContent class="py-8 md:py-12">
       <template #main>
-        <PostFeed :title="pageTitle" :posts="posts" :loading="loading" />
+        <PostFeed :title="pageTitle" :query="query" />
         <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" :query="{ limit: 3, postLimit: 3 }" />
       </template>
 
