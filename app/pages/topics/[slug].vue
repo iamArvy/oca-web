@@ -31,10 +31,9 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
       </template>
 
       <template #sidebar>
+        <WidgetsHotClicks :topic="slug" />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
-        <WidgetsHotClicks />
         <AdComponent size="sidebar" />
       </template>
     </AppContent>

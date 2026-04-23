@@ -3,8 +3,14 @@ import { API_ROUTES, APP_ROUTES } from '~/constants';
 import { SortPostOptions, type ApiListResponse, type Posts } from '~/interfaces';
 import { Flame } from 'lucide-vue-next';
 
+interface Props {
+  topic?: string;
+}
+
+const props = defineProps<Props>();
+
 const collection = 'hot-clicks'
-const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4, topic: props.topic } })
 </script>
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive border-l-4 border-l-primary">
