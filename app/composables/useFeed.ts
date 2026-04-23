@@ -19,6 +19,7 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
           query: {
             ...unref(query),
             page: currentPage.value,
+            limit: 30,
           }
         }
       );

@@ -3,7 +3,6 @@ import { API_ROUTES } from '~/constants';
 
 const query = computed(() => ({
   days: 1,
-  limit: 30,
 }));
 
 </script>
