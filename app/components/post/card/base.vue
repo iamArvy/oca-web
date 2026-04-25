@@ -57,7 +57,7 @@ function handleMouseLeave() {
         {{ props.post.topic.name }}
       </NuxtLink>
       <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
-        class="font-display font-bold mb-2 line-clamp-2 hover:text-primary transition-colors">
+        class="text-sm lg:text-base font-display font-bold mb-2 line-clamp-2 hover:text-primary transition-colors">
         {{ props.post.title }}
       </NuxtLink>
       <!-- <p class="text-foreground text-sm mb-4 line-clamp-2">

@@ -36,7 +36,7 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
         <WidgetsEditorPick />
         <AdComponent size="sidebar" />
       </template>
-      <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" :query="{ limit: 3, postLimit: 3 }" />
+      <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" />
     </AppContent>
   </main>
 </template>

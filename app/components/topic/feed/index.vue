@@ -4,7 +4,7 @@ import { useIntersectionObserver } from "@vueuse/core";
 
 interface Props {
   route: string;
-  query: Record<string, any>;
+  query?: Record<string, any>;
 }
 
 const props = defineProps<Props>();

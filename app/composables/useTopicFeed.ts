@@ -17,6 +17,8 @@ export function useTopicFeed(route: string, query?: MaybeRef<Record<string, any>
         {
           query: {
             ...unref(query),
+            limit: 3,
+            postLimit: 4,
             page: currentPage.value,
           }
         }

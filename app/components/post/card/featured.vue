@@ -60,7 +60,7 @@ function handleMouseLeave() {
         </NuxtLink>
       </div>
       <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
-        class="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight hover:text-primary">
+        class="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold leading-tight hover:text-primary line-clamp-2">
         {{ props.post.title }}
       </NuxtLink>
       <div class="flex items-center gap-4 text-sm text-white/70">

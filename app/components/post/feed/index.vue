@@ -13,7 +13,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { loading, posts, loadMore } = useFeed(props.query);
+const { loading, posts, loadMore, hasNextPage } = useFeed(props.query);
 
 const items = computed(() => useFeedItems(posts.value, 12));
 
@@ -36,6 +36,8 @@ useIntersectionObserver(loadTrigger, (entries) => {
     loadMore()
   }
 });
+
+const { isMobile } = useMobile()
 </script>
 
 <template>
@@ -55,12 +57,14 @@ useIntersectionObserver(loadTrigger, (entries) => {
 
     <component :is="component" :items="items" />
     <PostFeedPlaceholder v-if="loading" :mode="mode" class="mt-4" />
-    <div ref="loadTrigger" class="h-10" />
-    <!-- <div v-if="!loading && hasNextPage" class="flex items-center justify-center mt-4">
-      <Button variant="outline" @click="loadMore">
-        <Plus />
-        Load More
-      </Button>
-    </div> -->
+    <div v-if="!isMobile" ref="loadTrigger" class="h-10" />
+    <template v-else>
+      <div v-if="!loading && hasNextPage" class="flex items-center justify-center mt-4">
+        <Button variant="outline" @click="loadMore">
+          <Plus />
+          Load More
+        </Button>
+      </div>
+    </template>
   </div>
 </template>

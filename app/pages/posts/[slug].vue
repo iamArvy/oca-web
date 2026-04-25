@@ -57,7 +57,7 @@ useSeoMeta({
         <AdComponent size="sidebar" />
         <!-- Related Post widget -->
       </template>
-      <TopicFeed :route="API_ROUTES.relatedTopics.path(post.topic.slug)" :query="{ limit: 3, postLimit: 3 }" />
+      <TopicFeed :route="API_ROUTES.relatedTopics.path(post.topic.slug)" />
     </AppContent>
   </main>
 </template>
