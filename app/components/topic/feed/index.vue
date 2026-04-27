@@ -27,7 +27,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
       <TopicFeedItem v-if="item.type === 'topic' && item.topic" v-bind="item.topic" />
 
       <div v-else class="md:col-span-2 lg:col-span-3">
-        <AdComponent size="inline" />
+        <AdComponent size="banner" />
       </div>
     </template>
     <TopicFeedPlaceholder v-if="loading" class="mt-4" />
