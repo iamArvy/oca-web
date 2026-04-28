@@ -14,8 +14,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           options.headers = new Headers(options.headers);
           options.headers.set('cookie', cookie);
         }
-
-        console.log(cookie);
       }
     },
     async onResponseError({ response }) {

@@ -2,7 +2,6 @@
 import { useRouter } from 'vue-router'
 import { useToast } from '@/composables/useToast'
 
-// icons (lucide-vue-next)
 import { Camera, Mail, User, Calendar, LogOut, Bell, Shield } from 'lucide-vue-next'
 
 const router = useRouter()
@@ -20,20 +19,11 @@ const handleProfileUpdate = () => {
 const handleLogout = () => {
   logout()
   router.push('/')
-  success('Logged Out', 'You have been logged out successfully.')
 }
 
 definePageMeta({
   middleware: ['auth'],
 })
-// const getInitials = (name: string) => {
-//   return name
-//     ?.split(' ')
-//     .map(n => n[0])
-//     .join('')
-//     .toUpperCase()
-//     .slice(0, 2)
-// }
 </script>
 
 <template>

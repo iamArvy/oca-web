@@ -25,8 +25,6 @@ export const useAuth = () => {
 
   const logout = async () => {
     const { $api } = useNuxtApp();
-
-    
     try {
       await $api('/auth/logout', {
         method: 'POST',
@@ -67,6 +65,7 @@ export const useLoginForm = () => {
         body: values,
       });
       success('Login Successful');
+      await useAuth().fetchUser();
       navigateTo(redirectPath);
     } catch (e: unknown) {
       error(handleError(e, "Something went wrong"));
@@ -104,6 +103,7 @@ export const useRegisterForm = () => {
         body: values,
       });
       success('Registration Successful');
+      await useAuth().fetchUser();
       navigateTo(redirectPath);
     } catch (e: unknown) {
       error(handleError(e, "Something went wrong"));
