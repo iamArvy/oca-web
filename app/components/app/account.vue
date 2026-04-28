@@ -2,11 +2,11 @@
 import { User } from 'lucide-vue-next'
 import { APP_ROUTES } from '~/constants';
 
-const { user, loggedIn, clear } = useUserSession()
+const { user, logout } = useAuth()
 </script>
 
 <template>
-  <DropdownMenu v-if="loggedIn && user">
+  <DropdownMenu v-if="user">
     <DropdownMenuTrigger>
       <Avatar>
         <AvatarImage :src="user.avatar ?? ''" :alt="user.name" />
@@ -18,7 +18,7 @@ const { user, loggedIn, clear } = useUserSession()
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="$router.push(APP_ROUTES.profile.path)">Profile</DropdownMenuItem>
       <DropdownMenuSeparator />
-      <DropdownMenuItem @click="clear">Logout</DropdownMenuItem>
+      <DropdownMenuItem @click="logout">Logout</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
   <NuxtLink v-else to="/login">

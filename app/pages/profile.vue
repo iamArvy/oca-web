@@ -6,7 +6,7 @@ import { useToast } from '@/composables/useToast'
 import { Camera, Mail, User, Calendar, LogOut, Bell, Shield } from 'lucide-vue-next'
 
 const router = useRouter()
-const { user, loggedIn, clear } = useUserSession()
+const { user, logout } = useAuth()
 const { success, info } = useToast()
 
 // dark mode
@@ -18,7 +18,7 @@ const handleProfileUpdate = () => {
 }
 
 const handleLogout = () => {
-  clear()
+  logout()
   router.push('/')
   success('Logged Out', 'You have been logged out successfully.')
 }

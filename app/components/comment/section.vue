@@ -10,7 +10,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const { comments, count, submit, isSubmitting, getComments, values, hasNextPage, loading, loadMore } = usePostComments(props.postId)
-const { loggedIn, user } = useUserSession()
+const { user } = useAuth()
 
 onMounted(getComments)
 
@@ -32,7 +32,7 @@ useIntersectionObserver(loadTrigger, (entries) => {
       </h3>
     </div>
 
-    <form @submit.prevent="submit" v-if="loggedIn && user" class="flex gap-3 mb-8 pb-8 border-b border-border">
+    <form @submit.prevent="submit" v-if="user" class="flex gap-3 mb-8 pb-8 border-b border-border">
       <Avatar class="w-10 h-10 shrink-0">
         <AvatarImage :src="user.avatar ?? ''" :alt="user.name" />
         <AvatarFallback class="bg-primary/20 text-primary">{{ getInitials(user.name) }}</AvatarFallback>
