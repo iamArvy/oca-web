@@ -1,7 +1,7 @@
 import { APP_ROUTES } from "~/constants";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const { logout } = useAuth();
+  const { user } = useAuth();
   const config = useRuntimeConfig();
   const api = $fetch.create({
     baseURL: config.public.apiBase,
@@ -19,9 +19,19 @@ export default defineNuxtPlugin((nuxtApp) => {
       }
     },
     async onResponseError({ response }) {
+      const data = response._data;
       if (response.status === 401) {
-        logout()
+        user.value = null
       }
+      throw {
+        statusCode: data.statusCode ?? response.status,
+        message: data.message
+          ? Array.isArray(data.message)
+            ? data.message.join(", ")
+            : data.message
+          : response.statusText,
+        errors: data?.errors || null,
+      };
     },
   });
 
