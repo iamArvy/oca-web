@@ -27,6 +27,10 @@ const props = defineProps<Props>();
       <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed" class="hover:underline">
         {{ post.feed.name }}
       </NuxtLink>
+      <Dot />
+      <p>
+        {{ formatDateCompact(post.createdAt) }} ago
+      </p>
     </div>
   </article>
 </template>

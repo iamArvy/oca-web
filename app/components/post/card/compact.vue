@@ -14,9 +14,17 @@ const props = defineProps<Props>();
     <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
       class="w-20 h-20 object-cover rounded-lg shrink-0" />
     <div class="flex-1 min-w-0">
-      <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="text-xs font-medium text-primary hover:underline">
-        {{ post.topic.name }}
-      </NuxtLink>
+      <div class="flex items-center text-foreground text-xs space-x-1">
+        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="text-primary hover:underline">
+          {{ props.post.topic.name }}
+        </NuxtLink>
+        <span>
+          |
+        </span>
+        <p>
+          {{ formatDateCompact(post.createdAt) }} ago
+        </p>
+      </div>
       <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
         class="font-semibold text-sm mt-1 line-clamp-2 hover:text-primary transition-colors">
         {{ post.title }}

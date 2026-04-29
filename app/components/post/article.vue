@@ -46,7 +46,7 @@ defineProps<{
       <span class="flex items-center gap-2">
         <Icon name="lucide:calendar" class="w-4 h-4" />
         {{
-          formatDate(post.createdAt)
+          formatDate(post.createdAt, { addSuffix: false })
         }}
       </span>
       <span class="flex items-center gap-2">
