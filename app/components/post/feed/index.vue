@@ -3,7 +3,7 @@ import { computed } from "vue";
 import list from "./list.vue";
 import grid from "./grid.vue";
 import basic from "./basic.vue";
-// import { Plus } from "lucide-vue-next";
+import { Plus } from "lucide-vue-next";
 import { useIntersectionObserver } from "@vueuse/core";
 
 interface Props {

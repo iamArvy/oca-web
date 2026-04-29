@@ -1,11 +1,55 @@
 import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import * as z from "zod";
+import type { ApiResponse, User } from "~/interfaces";
+
+export const useAuth = () => {
+  const { success, error } = useToast();
+  const user = useState<User | null>('auth_user', () => null);
+  const loading = useState('auth_loading', () => false);
+  const { $api } = useNuxtApp();
+
+  const fetchUser = async () => {
+    try {
+      loading.value = true;
+
+      const { data } = await $api<ApiResponse<User>>('/me');
+
+      user.value = data ?? null;
+    } catch (e) {
+      user.value = null;
+    } finally {
+      loading.value = false;
+    }
+  };
+
+  const logout = async () => {
+    const { $api } = useNuxtApp();
+    try {
+      await $api('/auth/logout', {
+        method: 'POST',
+      });
+      success('Logout Successful');
+      await refreshNuxtData();
+    } catch (e: unknown) {
+      error(handleError(e, "Something went wrong"));
+    }
+
+    user.value = null;
+  };
+
+  return {
+    user,
+    loading,
+    fetchUser,
+    logout,
+  };
+};
 
 export const useLoginForm = () => {
   const { success, error } = useToast();
-  const { fetch: refreshSession } = useUserSession();
   const { query } = useRoute();
+  const { $api } = useNuxtApp();
   const redirectPath = (query.redirect as string) || "/";
   const formSchema = toTypedSchema(
     z.object({
@@ -16,17 +60,15 @@ export const useLoginForm = () => {
   const { handleSubmit, isSubmitting } = useForm({ validationSchema: formSchema });
   const submit = handleSubmit(async (values) => {
     try {
-      const { data:res, error } = await useFetch<{ message: string }>("/api/login", {
+      await $api("/auth/login", {
         method: "POST",
         body: values,
       });
-      if (error.value) throw error.value;
-      success(res.value?.message || 'Login Successful');
-      await refreshSession();
+      success('Login Successful');
+      await useAuth().fetchUser();
       navigateTo(redirectPath);
-    } catch (err: any) {
-      console.log(err);
-      error(err?.message || 'Something went wrong');
+    } catch (e: unknown) {
+      error(handleError(e, "Something went wrong"));
     }
   });
 
@@ -38,8 +80,8 @@ export const useLoginForm = () => {
 
 export const useRegisterForm = () => {
   const { success, error } = useToast();
-  const { fetch: refreshSession } = useUserSession();
   const { query } = useRoute();
+  const { $api } = useNuxtApp();
   const redirectPath = (query.redirect as string) || "/";
   const formSchema = toTypedSchema(
     z.object({
@@ -56,18 +98,15 @@ export const useRegisterForm = () => {
   const { handleSubmit, isSubmitting } = useForm({ validationSchema: formSchema });
   const submit = handleSubmit(async (values) => {
     try {
-      const { data:res, error } = await useFetch<{ message: string }>("/api/register", {
+      await $api<{ message: string }>("/auth/register", {
         method: "POST",
         body: values,
       });
-      console.log(error.value)
-      if (error.value) throw error.value;
-      success(res.value?.message || 'Registration Successful');
-      await refreshSession();
+      success('Registration Successful');
+      await useAuth().fetchUser();
       navigateTo(redirectPath);
-    } catch (err: any) {
-      console.log(err);
-      error(err?.message || 'Something went wrong');
+    } catch (e: unknown) {
+      error(handleError(e, "Something went wrong"));
     }
   });
 

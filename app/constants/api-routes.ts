@@ -43,4 +43,8 @@ export const API_ROUTES = {
     path: (slug: string) => `/public/related-topics/${slug}`,
     name: 'Related Topics'
   },
+  liveSources: {
+    path: "live-sources",
+    name: "Live Sources",
+  },
 }

@@ -15,10 +15,10 @@ const router = useRouter()
 
 const showPassword = ref(false)
 
-const { loggedIn } = useUserSession()
+const { user } = useAuth()
 
 watchEffect(() => {
-  if (loggedIn.value) {
+  if (user.value) {
     router.push("/")
   }
 })

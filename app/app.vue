@@ -15,6 +15,9 @@ useHead({
     },
   ],
 });
+
+// const { fetchUser } = useAuth()
+// onMounted(() => fetchUser())
 </script>
 
 <template>

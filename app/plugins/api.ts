@@ -1,19 +1,35 @@
 import { APP_ROUTES } from "~/constants";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const { session, clear } = useUserSession();
+  const { user } = useAuth();
   const config = useRuntimeConfig();
   const api = $fetch.create({
     baseURL: config.public.apiBase,
-    onRequest({ request, options, error }) {
-      if (session.value?.token) {
-        options.headers.set("Authorization", `Bearer ${session.value?.token}`);
+    credentials: 'include',
+    onRequest({ options }) {
+      if (import.meta.server) {
+        const { cookie } = useRequestHeaders(['cookie']);
+
+        if (cookie) {
+          options.headers = new Headers(options.headers);
+          options.headers.set('cookie', cookie);
+        }
       }
     },
     async onResponseError({ response }) {
+      const data = response._data;
       if (response.status === 401) {
-        clear()
+        user.value = null
       }
+      throw {
+        statusCode: data.statusCode ?? response.status,
+        message: data.message
+          ? Array.isArray(data.message)
+            ? data.message.join(", ")
+            : data.message
+          : response.statusText,
+        errors: data?.errors || null,
+      };
     },
   });
 
