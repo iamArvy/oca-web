@@ -18,7 +18,7 @@ const items = computed(() => {
 </script>
 
 <template>
-  <section v-if="items.length > 0" class="relative">
+  <section class="relative">
     <Carousel v-bind="settings" @init-api="(val) => (emblaMainApi = val)" class="relative group">
       <div
         class="absolute z-5 w-full top-1/2 -translate-y-1/2 hidden md:group-hover:flex items-center justify-between px-2 transition-all ease-in-out duration-500">
