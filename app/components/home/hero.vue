@@ -8,7 +8,7 @@ const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.li
 
 const items = computed(() => {
   const merged = [
-    ...(liveStreams.value?.data || [])
+    ...(liveStreams.value?.data || [{ id: "default-id", name: "Channels TV", source: "https://www.youtube.com/embed/d4zDorDl5UE" }])
   ];
 
   return Array.from(

@@ -44,7 +44,7 @@ export const API_ROUTES = {
     name: 'Related Topics'
   },
   liveSources: {
-    path: "live-sources",
+    path: "/live-sources",
     name: "Live Sources",
   },
 }
