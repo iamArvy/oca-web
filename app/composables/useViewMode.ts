@@ -26,13 +26,22 @@ export const ViewModeItems: {
 ];
 
 export default function useViewMode() {
-  const mode = useState<ViewMode>(()=> ViewMode.GRID);
+  const mode = useState<ViewMode>(() => ViewMode.GRID);
+
+  onMounted(() => {
+    const saved = localStorage.getItem('view-mode');
+    if (saved) {
+      mode.value = saved as ViewMode;
+    }
+  });
 
   function setViewMode(value: ViewMode) {
-    mode.value = value
+    mode.value = value;
+    localStorage.setItem('view-mode', value);
   }
+
   return {
     mode,
-    setViewMode
-  }
+    setViewMode,
+  };
 }
