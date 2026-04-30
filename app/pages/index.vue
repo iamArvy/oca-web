@@ -6,7 +6,7 @@ const query = computed(() => ({
   days: 1,
 }));
 
-const { data: sources } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 5 } });
+const { data: sources } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 20 } });
 
 </script>
 
