@@ -1,3 +1,5 @@
+import type { BaseItem } from "./api-response.interface";
+
 export enum AdPlacement {
   BANNER = "banner",
   FEED = "feed",
@@ -10,7 +12,7 @@ export enum AdContentType {
   HTML = "html",
 }
 
-export interface Ad {
+export interface Ad extends BaseItem {
   title: string;
   content: string;
   target?: string;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES } from "~/constants";
-import { AdContentType, type Ads, type ApiListResponse } from "~/interfaces";
+import { AdContentType, type Ads, type Ad, type ApiListResponse } from "~/interfaces";
 
 interface AdPlacementProps {
   size: "banner" | "sidebar" | "inline";
@@ -38,27 +38,35 @@ onMounted(() => {
     currentIndex.value = (currentIndex.value + 1) % filteredAds.value.length;
   }, 6000);
 });
+
+const clickAd = async (ad: Ad) => {
+  await useAPI(API_ROUTES.ads_click.path(ad.id), {
+    method: "POST",
+    body: {
+      adId: ad.id,
+    },
+  });
+
+  window.open(ad.target, "_blank", "noopener noreferrer");
+}
 </script>
 
 <template>
-  <div v-if="currentAd">
-    <NuxtLink :to="currentAd.target" target="_blank" rel="noopener noreferrer"
-      class="block rounded-lg overflow-hidden relative group" :class="sizeClasses[size]">
-      <img v-if="currentAd.contentType === AdContentType.IMAGE" :src="currentAd.content" :alt="currentAd.title"
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
-      <div v-else-if="currentAd.contentType === AdContentType.HTML"
-        class="w-full h-full p-4 flex items-center justify-center" v-html="currentAd.content" />
-      <video v-else-if="currentAd.contentType === AdContentType.VIDEO" :src="currentAd.content"
-        class="w-full h-full object-cover" autoplay muted loop playsinline />
+  <div v-if="currentAd" @click="clickAd(currentAd)" class="block rounded-lg overflow-hidden relative group"
+    :class="sizeClasses[size]">
+    <img v-if="currentAd.contentType === AdContentType.IMAGE" :src="currentAd.content" :alt="currentAd.title"
+      class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+    <div v-else-if="currentAd.contentType === AdContentType.HTML"
+      class="w-full h-full p-4 flex items-center justify-center" v-html="currentAd.content" />
+    <video v-else-if="currentAd.contentType === AdContentType.VIDEO" :src="currentAd.content"
+      class="w-full h-full object-cover" autoplay muted loop playsinline />
 
-      <div
-        class="absolute inset-0 bg-linear-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-foreground/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-      <span
-        class="absolute top-1 right-1 text-[9px] px-1.5 py-0.5 rounded bg-foreground/60 text-background font-medium">
-        AD
-      </span>
-    </NuxtLink>
+    <span class="absolute top-1 right-1 text-[9px] px-1.5 py-0.5 rounded bg-foreground/60 text-background font-medium">
+      AD
+    </span>
   </div>
 
   <!-- Placeholder -->
