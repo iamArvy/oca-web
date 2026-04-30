@@ -1,15 +1,15 @@
 <script setup lang="ts">
 const stats = [
   {
-    value: "2.5M+",
+    value: "1M+",
     label: "Monthly Readers"
   },
   {
-    value: "54",
+    value: "25+",
     label: "Global Countries Reached"
   },
   {
-    value: "85%",
+    value: "96%",
     label: "Mobile Engagement Rate"
   }
 ]
@@ -17,7 +17,6 @@ const stats = [
 
 <template>
   <main class="container-lg py-12">
-    <!-- Hero -->
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-display font-bold mb-4">
         Advertise with <span class="text-primary">OneClickAfrica</span>
@@ -28,7 +27,6 @@ const stats = [
       </p>
     </div>
 
-    <!-- Stats -->
     <div class="grid lg:grid-cols-3 gap-8 mb-12">
       <Card v-for="({ label, value }, index) in stats" :key="index" class="text-center">
         <CardHeader>
