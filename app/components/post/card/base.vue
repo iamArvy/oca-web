@@ -53,14 +53,14 @@ function handleMouseLeave() {
     </div>
 
     <div class="p-3">
-      <div class="flex items-center text-foreground text-sm mb-3 space-x-1">
-        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="text-primary hover:underline">
+      <div class="flex items-center text-primary  text-sm mb-3 space-x-1">
+        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline">
           {{ props.post.topic.name }}
         </NuxtLink>
         <span>
           |
         </span>
-        <p class="text-xs">
+        <p>
           {{ formatDateCompact(post.createdAt) }} ago
         </p>
       </div>
