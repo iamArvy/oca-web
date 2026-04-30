@@ -22,8 +22,8 @@ const CONTACT_INFORMATION = [
   {
     label: "Office",
     icon: MapPin,
-    value: "24 The Providence Str. Lekki Phase 1, Lagos 106104, Lagos",
-    url: "https://share.google/7Otl6J2pjLqxgltOG"
+    value: "Plot 8 The Providence Str. Lekki Phase 1, Lagos 105102, Lagos",
+    url: "https://maps.app.goo.gl/WQTVvG4cXoAKojW48"
   },
   {
     label: "Response Time",
