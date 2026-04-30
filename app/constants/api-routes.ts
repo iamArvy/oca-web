@@ -23,6 +23,10 @@ export const API_ROUTES = {
     path: '/public/ads',
     name: 'Ads'
   },
+  ads_click: {
+    path: (id: string) => `/public/ads/${id}/clicks`,
+    name: 'Ads Click'
+  },
   collection: {
     path: (slug: string) => '/public/collections/' + slug,
     name: 'Collection'

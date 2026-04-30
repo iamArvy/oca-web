@@ -14,8 +14,8 @@ const props = defineProps<Props>();
     <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
       class="w-20 h-20 object-cover rounded-lg shrink-0" />
     <div class="flex-1 min-w-0">
-      <div class="flex items-center text-foreground text-xs space-x-1">
-        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="text-primary hover:underline">
+      <div class="flex items-center text-primary text-xs space-x-1">
+        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline">
           {{ props.post.topic.name }}
         </NuxtLink>
         <span>
