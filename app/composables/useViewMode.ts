@@ -1,4 +1,5 @@
-import { LayoutGrid, List, AlignLeft, Text } from "lucide-vue-next";
+import { useLocalStorage } from "@vueuse/core";
+import { LayoutGrid, List, Text } from "lucide-vue-next";
 import type { Component } from "vue";
 
 export enum ViewMode {
@@ -12,12 +13,12 @@ export const ViewModeItems: {
   icon: Component;
 }[] = [
   {
-    mode: ViewMode.GRID,
-    icon: LayoutGrid,
-  },
-  {
     mode: ViewMode.LIST,
     icon: List,
+  },
+  {
+    mode: ViewMode.GRID,
+    icon: LayoutGrid,
   },
   {
     mode: ViewMode.BASIC,
@@ -26,18 +27,10 @@ export const ViewModeItems: {
 ];
 
 export default function useViewMode() {
-  const mode = useState<ViewMode>(() => ViewMode.GRID);
-
-  onMounted(() => {
-    const saved = localStorage.getItem('view-mode');
-    if (saved) {
-      mode.value = saved as ViewMode;
-    }
-  });
+  const mode = useLocalStorage<ViewMode>('view-mode', ViewMode.LIST)
 
   function setViewMode(value: ViewMode) {
     mode.value = value;
-    localStorage.setItem('view-mode', value);
   }
 
   return {
