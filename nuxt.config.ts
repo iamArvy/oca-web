@@ -2,6 +2,10 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  ssr: true,
+  nitro: {
+    preset: 'static'
+  },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/tailwind.css", "~/assets/css/main.css"],
@@ -52,11 +56,6 @@ export default defineNuxtConfig({
       adsenseClient: process.env.ADSENSE_CLIENT,
       googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
       linkedinPartnerId: process.env.LINKEDIN_PARTNER_ID,
-    },
-    mailchimp: {
-      apiKey: "", // will be overridden by environment variables
-      serverPrefix: "",
-      listId: "",
     },
   },
 });

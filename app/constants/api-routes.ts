@@ -51,4 +51,16 @@ export const API_ROUTES = {
     path: "/live-sources",
     name: "Live Sources",
   },
+  subscribe: {
+    path: "/public/subscribe",
+    name: "Subscribe"
+  },
+  forgotPassword: {
+    path: "/auth/forgot-password",
+    name: "Forgot Password"
+  },
+  resetPassword: {
+    path: "/auth/reset-password",
+    name: "Reset Password"
+  },
 }

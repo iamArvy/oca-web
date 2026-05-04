@@ -7,44 +7,6 @@ const props = defineProps<{
   sources?: LiveSources
 }>()
 
-// const defaultSources: LiveSources = [
-//   {
-//     id: 'bbc',
-//     name: 'BBC News',
-//     logo: '🅱️',
-//     description: 'Breaking: Global summit on climate action enters day two',
-//     source: "https://www.youtube.com/embed/rfDx1HMvXbQ?si=2G6SZplIIxa4ZjtN"
-//   },
-//   {
-//     id: 'aljazeera',
-//     name: 'Al Jazeera',
-//     logo: '🅰️',
-//     description: 'Live coverage from the African Union headquarters',
-//     source: 'https://www.youtube.com/embed/d4zDorDl5UE?si=tpsO0FuOU8iFfNfd',
-//   },
-//   {
-//     id: 'cnn',
-//     name: 'CNN',
-//     logo: '🅲',
-//     description: 'Markets react: Tech stocks surge after Fed announcement',
-//     source: 'https://www.youtube.com/embed/TJ5V8KRSu9Y?si=eVczwjZ1avzQFnhA',
-//   },
-//   {
-//     id: 'sky',
-//     name: 'Sky Sports',
-//     logo: '⚽',
-//     description: 'Champions League: Pre-match analysis live from Madrid',
-//     source: 'https://www.youtube.com/embed/...?si=...',
-//   },
-//   {
-//     id: 'channels',
-//     name: 'Channels TV',
-//     logo: '📺',
-//     description: 'Lagos traffic update and morning news roundup',
-//     source: 'Local',
-//   }
-// ]
-
 const sources = computed(() => props.sources ?? [])
 
 const activeId = ref(sources.value[0]?.id)
