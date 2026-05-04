@@ -21,7 +21,7 @@ const { isMobile } = useMobile()
 
     <div class="container-lg py-4 mx-auto space-y-3">
       <div class="flex items-center justify-between gap-4">
-        <NuxtLink to="/" class="flex items-center gap-2">
+        <NuxtLink to="/" class="flex items-center gap-2" aria-label="OneClick Africa">
           <AppLogo class="w-20 sm:w-30 md:w-35 lg:w-40" />
         </NuxtLink>
 

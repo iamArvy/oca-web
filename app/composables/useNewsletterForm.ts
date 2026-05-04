@@ -1,6 +1,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import * as z from 'zod'
+import { API_ROUTES } from '~/constants/api-routes'
 
 export const useNewsletterForm = () => {
   const { success, error } = useToast()
@@ -12,20 +13,17 @@ const { handleSubmit, isSubmitting } = useForm({
   validationSchema: formSchema,
 })
 
+const { $api } = useNuxtApp();
+
 const onSubmit = handleSubmit(async (values) => {
   try {
-  const response = await $fetch('/api/newsletter', {
-    method: 'POST',
-    body: values,
-  })
-  console.log('Newsletter subscription response:', response)
-  if (!response.success) {
-    error(response.message || 'Subscription failed. Please try again.')
-    return
-  }
-  success('Thank you for subscribing to our newsletter!')
-  } catch (e) {
-    error('An error occurred while subscribing to the newsletter. Please try again.')
+    await $api(API_ROUTES.subscribe.path, {
+      method: 'POST',
+      body: values,
+    })
+    success('Thank you for subscribing to our newsletter!')
+  } catch (e: unknown) {
+    error(handleError(e, "Subscription failed. Please try again."));
   }
 })
 

@@ -21,7 +21,7 @@ const { user, logout } = useAuth()
       <DropdownMenuItem @click="logout">Logout</DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
-  <NuxtLink v-else to="/login">
+  <NuxtLink v-else to="/login" aria-label="Login">
     <Button variant="ghost" size="icon" class="hover:bg-muted">
       <User class="w-5 h-5" />
     </Button>

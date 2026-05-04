@@ -11,7 +11,7 @@ const CONTACT_INFORMATION = [
     label: "Email",
     icon: Mail,
     value: "info@oneclickafrica.com",
-    url: "info@oneclickafrica.com"
+    url: "mailto:info@oneclickafrica.com"
   },
   {
     label: "Phone",
