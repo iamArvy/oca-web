@@ -2,10 +2,10 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  ssr: true,
-  nitro: {
-    preset: 'static'
-  },
+  // ssr: true,
+  // nitro: {
+  //   preset: 'static'
+  // },
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   css: ["~/assets/css/tailwind.css", "~/assets/css/main.css"],
