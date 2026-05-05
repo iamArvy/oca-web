@@ -30,8 +30,8 @@ function scrollBy(dir: 1 | -1) {
 <template>
   <section v-if="active" class="space-y-3">
     <div class="h-100 md:h-125 rounded-2xl overflow-hidden">
-      <iframe ref="iframeRef" :src="`${active.source}&controls=0`" class="w-full h-full" frameborder="0"
-        allow="encrypted-media" allowfullscreen />
+      <iframe ref="iframeRef" :src="`${active.source}`" class="w-full h-full" frameborder="0" allow="encrypted-media"
+        allowfullscreen />
     </div>
 
     <div class="relative">

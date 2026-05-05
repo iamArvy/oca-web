@@ -6,15 +6,15 @@ const query = computed(() => ({
   days: 1,
 }));
 
-const { data: sources } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 20 } });
+// const { data: sources } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 20 } });
 
 </script>
 
 <template>
   <main>
     <section class="container-lg py-6 md:py-10 mx-auto">
-      <!-- <HomeHero /> -->
-      <LivePlayer :sources="sources?.data" />
+      <HomeHero />
+      <!-- <LivePlayer :sources="sources?.data" /> -->
     </section>
 
     <section class="container-lg pb-6 mx-auto">
