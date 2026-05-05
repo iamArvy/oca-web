@@ -4,7 +4,7 @@ import type { ApiListResponse, LiveSources } from "~/interfaces";
 
 const { settings, emblaMainApi, selectedIndex } = useHeroCarousel();
 
-const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 5 } });
+const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path);
 
 // const items = computed(() => {
 //   const merged = [
