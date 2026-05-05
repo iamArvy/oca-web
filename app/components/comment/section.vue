@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useIntersectionObserver } from "@vueuse/core";
+import { Plus } from "lucide-vue-next";
 import { ref } from "vue";
 import { APP_ROUTES } from "~/constants";
 
@@ -9,23 +10,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { comments, count, submit, isSubmitting, getComments, values, hasNextPage, loading, loadMore } = usePostComments(props.postId)
+const { comments, count, hasNextPage, loading, loadMore } = usePostComments({ post: props.postId })
+const { submit, isSubmitting, values } = useCommentForm(props.postId)
 const { user } = useAuth()
-
-onMounted(getComments)
-
-const loadTrigger = ref<HTMLElement | null>(null);
-useIntersectionObserver(loadTrigger, (entries) => {
-  const entry = entries[0];
-  if (entry && entry.isIntersecting) {
-    loadMore()
-  }
-});
 </script>
 
 <template>
   <div class="bg-card rounded-2xl p-6 md:p-10 mt-8 shadow-medium">
-    <!-- Header -->
     <div class="flex items-center justify-between mb-6">
       <h3 class="font-display text-2xl font-bold">
         Comments ({{ count }})
@@ -93,12 +84,5 @@ useIntersectionObserver(loadTrigger, (entries) => {
         </div>
       </template>
     </div>
-    <!-- <div v-if="comments.length > 0" class="space-y-6">
-      <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
-      <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">
-        End of comment section
-      </p>
-    </div> -->
-
   </div>
 </template>
