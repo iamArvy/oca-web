@@ -2,19 +2,9 @@
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, LiveSources } from "~/interfaces";
 
-const { settings, emblaMainApi, selectedIndex } = useHeroCarousel();
+const { settings, emblaMainApi } = useHeroCarousel();
 
 const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path);
-
-// const items = computed(() => {
-//   const merged = [
-//     ...(liveStreams.value?.data || [{ id: "default-id", name: "Channels TV", source: "https://www.youtube.com/embed/d4zDorDl5UE" }])
-//   ];
-
-//   return Array.from(
-//     new Map(merged.map(item => [item.id, item])).values()
-//   );
-// });
 </script>
 
 <template>
@@ -35,12 +25,6 @@ const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.li
           <EmbedItem :source="item.source" />
         </CarouselItem>
       </CarouselContent>
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
-        <button v-for="(_, index) in liveStreams?.data" :key="index" class="w-2 h-2 rounded-full transition-all" :class="index === selectedIndex
-          ? 'w-8 bg-primary'
-          : 'bg-white/50 hover:bg-white/70'
-          " />
-      </div>
     </Carousel>
   </section>
 </template>
