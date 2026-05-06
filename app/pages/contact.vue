@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { API_ROUTES } from '~/constants';
+import type { ApiResponse, Seo } from '~/interfaces';
+
 const stats = [
   {
     value: "1M+",
@@ -13,6 +16,18 @@ const stats = [
     label: "Mobile Engagement Rate"
   }
 ]
+
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.seo.path('contact'), { server: true });
+
+useSeoMeta(seo.value?.data ? {
+  title: seo.value.data.title,
+  description: seo.value.data.description,
+  ogTitle: seo.value.data.title,
+  ogDescription: seo.value.data.description,
+  twitterTitle: seo.value.data.title,
+  twitterDescription: seo.value.data.description,
+  keywords: seo.value.data.keywords.flat().join(', '),
+} : {})
 </script>
 
 <template>

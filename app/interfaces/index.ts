@@ -7,3 +7,4 @@ export * from './ad.interface';
 export * from './collection.interface';
 export * from './feed.interface';
 export * from './live-source.interface';
+export * from './seo.interface';

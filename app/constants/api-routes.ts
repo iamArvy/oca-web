@@ -63,4 +63,8 @@ export const API_ROUTES = {
     path: "/auth/reset-password",
     name: "Reset Password"
   },
+  seo: {
+    path: (slug: string) => `public/seo/${slug}`,
+    name: "Seo",
+  },
 }
