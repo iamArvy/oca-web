@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import { API_ROUTES } from '~/constants';
-import type { ApiListResponse, LiveSources } from '~/interfaces';
+import type { ApiResponse, Seo } from '~/interfaces';
 
 const query = computed(() => ({
   days: 1,
 }));
 
-// const { data: sources } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path, { query: { limit: 20 } });
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.seo.path('home'), { server: true });
 
+useSeoMeta(seo.value?.data ? {
+  title: seo.value.data.title,
+  description: seo.value.data.description,
+  ogTitle: seo.value.data.title,
+  ogDescription: seo.value.data.description,
+  twitterCard: 'summary_large_image',
+  twitterTitle: seo.value.data.title,
+  twitterDescription: seo.value.data.description,
+  keywords: seo.value.data.keywords.flat().join(', '),
+} : {})
 </script>
 
 <template>
