@@ -67,4 +67,8 @@ export const API_ROUTES = {
     path: (slug: string) => `public/seo/${slug}`,
     name: "Seo",
   },
+  contact: {
+    path: "/public/contact",
+    name: "Contact"
+  }
 }
