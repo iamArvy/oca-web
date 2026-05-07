@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ChevronRight, Megaphone } from 'lucide-vue-next'
+import { Megaphone } from 'lucide-vue-next'
 import { API_ROUTES, APP_ROUTES } from '~/constants';
 import type { ApiListResponse, Topics } from '~/interfaces';
 
 const isOpen = ref(false)
 const route = useRoute()
 
-// Close sheet when route changes
 watch(() => route.fullPath, () => {
   isOpen.value = false
 })
@@ -21,7 +20,8 @@ const { data: topics } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topicT
       <slot />
     </SheetTrigger>
     <SheetContent>
-      <SheetHeader>
+      <SheetHeader class="mt-4.5">
+        <AppSearch class="mb-2 flex md:hidden" />
         <SheetTitle>Topics</SheetTitle>
         <SheetDescription>
           Browse news by topics. Tap on a topic to view related articles.

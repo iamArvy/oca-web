@@ -26,7 +26,7 @@ const { isMobile } = useMobile()
         </NuxtLink>
 
         <div class="flex items-center gap-2">
-          <AppSearch />
+          <AppSearch class="hidden md:flex" />
           <AppTheme />
           <AppAccount />
           <LayoutMobileMenu v-if="isMobile" :topics="topics">
