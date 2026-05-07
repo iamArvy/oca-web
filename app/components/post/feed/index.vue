@@ -26,7 +26,7 @@ const components: Record<ViewMode, Component> = {
 };
 
 const component = computed(() => {
-  return components[mode.value] || grid;
+  return components[mode.value] || list;
 });
 
 const loadTrigger = ref<HTMLElement | null>(null);

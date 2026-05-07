@@ -16,7 +16,7 @@ const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.pa
       </NuxtLink>
     </h3>
     <div class="space-y-1">
-      <PostCard v-for="post in editorPicks?.data" :key="post.id" :post="post" variant="compact" />
+      <PostCard v-for="post in editorPicks?.data" :key="post.id" :post="post" />
     </div>
   </div>
 </template>

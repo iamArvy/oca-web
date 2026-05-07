@@ -2,23 +2,23 @@
 import { computed } from "vue";
 
 import compact from "./compact.vue";
-import base from "./base.vue";
+import grid from "./grid.vue";
 import list from "./list.vue";
 
 interface Props {
-  variant?: "default" | "compact" | "list";
+  variant?: "default" | "grid" | "list";
 };
 
 const props = defineProps<Props>();
 
 const component = computed(() => {
   switch (props.variant) {
-    case "compact":
-      return compact;
+    case "grid":
+      return grid;
     case "list":
       return list;
     default:
-      return base;
+      return compact;
   }
 });
 </script>

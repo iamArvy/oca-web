@@ -21,7 +21,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path
       </NuxtLink>
     </h3>
     <div class="space-y-1">
-      <PostCard v-for="post in hotClicks?.data" :key="post.id" :post="post" variant="compact" />
+      <PostCard v-for="post in hotClicks?.data" :key="post.id" :post="post" />
     </div>
   </div>
 </template>
