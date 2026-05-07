@@ -21,7 +21,7 @@ const props = defineProps<TopicPosts>()
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 stagger-children">
-      <PostCard v-for="post in props.posts.slice(0, 4)" :key="post.id" :post="post" />
+      <PostCard v-for="post in props.posts.slice(0, 4)" :key="post.id" :post="post" variant="grid" />
     </div>
   </section>
 </template>

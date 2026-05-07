@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 <template>
   <div class="space-y-4">
     <template v-for="(item, index) in items" :key="index">
-      <PostCard v-if="item.type === 'post' && item.post" :post="item.post" variant="compact" />
+      <PostCard v-if="item.type === 'post' && item.post" :post="item.post" />
       <AdComponent v-else size="inline" />
     </template>
   </div>

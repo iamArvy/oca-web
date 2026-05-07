@@ -4,12 +4,12 @@ import type { Post } from "~/interfaces";
 
 import featured from "./featured.vue";
 import compact from "./compact.vue";
-import base from "./base.vue";
+import grid from "./grid.vue";
 import list from "./list.vue";
 
 interface Props {
   post: Post;
-  variant?: "default" | "featured" | "compact" | "list";
+  variant?: "default" | "featured" | "grid" | "list";
   skeleton?: boolean;
 };
 
@@ -19,12 +19,12 @@ const component = computed(() => {
   switch (props.variant) {
     case "featured":
       return featured;
-    case "compact":
-      return compact;
+    case "grid":
+      return grid;
     case "list":
       return list;
     default:
-      return base;
+      return compact;
   }
 });
 </script>
