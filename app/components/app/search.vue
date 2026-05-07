@@ -1,22 +1,13 @@
 <script setup lang="ts">
 const { q, search } = useSearchForm()
-const { isMobile } = useMobile()
+
 </script>
 
 <template>
-  <Popover v-if="isMobile">
-    <PopoverTrigger as-child>
-      <Button variant="ghost" size="icon">
-        <Icon name="lucide:search" class="w-5 h-5" />
-      </Button>
-    </PopoverTrigger>
+  <div class="relative w-full">
+    <Icon name="lucide:search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
 
-    <PopoverContent align="end" class="w-72 bg-card">
-      <AppSearchInput />
-    </PopoverContent>
-  </Popover>
-
-  <div v-else class="hidden md:flex items-center">
-    <AppSearchInput />
+    <Input v-model="q" @keydown.enter="search" placeholder="Search news..."
+      class="pl-10 w-full bg-muted/50 border-0 focus-visible:ring-primary" />
   </div>
 </template>
