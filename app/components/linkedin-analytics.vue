@@ -31,7 +31,7 @@ onMounted(() => {
 
 <template>
   <noscript>
-    <img height="1" width="1" style="display: none" alt=""
+    <img height="1" width="1" style="display: none" alt="linked-in"
       :src="`https://px.ads.linkedin.com/collect/?pid=${pid}&fmt=gif`" />
   </noscript>
 </template>
