@@ -22,7 +22,7 @@ const { data: liveStreams } = useAPI<ApiListResponse<LiveSource>>(API_ROUTES.liv
       </div>
       <CarouselContent>
         <CarouselItem v-for="item in liveStreams?.data" :key="item.id">
-          <EmbedItem :source="item.source" />
+          <EmbedItem :title="item.name" :source="item.source" />
         </CarouselItem>
       </CarouselContent>
     </Carousel>

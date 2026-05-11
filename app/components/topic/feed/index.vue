@@ -30,13 +30,13 @@ const {
   query: query.value,
 });
 
-const items = computed(() => useTopicFeedItems(topics.value));
+const items = computed(() => useFeedItems<TopicPosts>(topics.value, 3));
 </script>
 
 <template>
   <div>
     <template v-for="(item, index) in items" :key="index">
-      <TopicFeedItem v-if="item.type === 'topic' && item.topic" v-bind="item.topic" />
+      <TopicFeedItem v-if="item.type === 'item' && item.item" v-bind="item.item" />
 
       <div v-else class="md:col-span-2 lg:col-span-3">
         <AdComponent size="banner" />

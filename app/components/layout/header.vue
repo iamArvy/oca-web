@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { Menu } from 'lucide-vue-next'
 import { API_ROUTES } from '~/constants'
-import type { ApiListResponse, Posts } from '~/interfaces'
+import type { ApiListResponse, Post } from '~/interfaces'
 
 const { topics } = await useTopics()
 
 // const { date, time } = useDateTime()
 
-const { data: latestNews } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { limit: 20 } })
+const { data: latestNews } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { limit: 20 } })
 const { isMobile } = useMobile()
 </script>
 

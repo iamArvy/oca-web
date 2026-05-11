@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import type { Post } from '~/interfaces';
+
 
 interface Props {
-  items: FeedItem[],
+  items: FeedItem<Post>[],
 }
 
 const props = defineProps<Props>()
@@ -10,7 +12,7 @@ const props = defineProps<Props>()
 <template>
   <div :class="`grid grid-cols-2 lg:grid-cols-3 gap-6 stagger-children`">
     <template v-for="(item, index) in props.items" :key="index">
-      <PostCard v-if="item.type === 'post' && item.post" :post="item.post" variant="grid" />
+      <PostCard v-if="item.type === 'item' && item.item" :post="item.item" variant="grid" />
 
       <div v-else class="col-span-2 lg:col-span-3">
         <AdComponent size="inline" />
