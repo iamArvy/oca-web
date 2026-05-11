@@ -45,6 +45,7 @@ export default defineNuxtConfig({
     description:
       "Stay ahead with OneClick Africa | Your premier source for African news, culture, and stories. Connecting the continent with the world.",
     url: "https://oneclickafrica.com",
+    ogUrl: "https://oneclickafrica.com",
     image: "https://oneclickafrica.com/og-image.png",
   },
   gtag: {

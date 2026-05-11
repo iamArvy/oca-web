@@ -36,7 +36,7 @@ const {
   initialItems: data,
   query,
 });
-const items = computed(() => useFeedItems(posts.value, 12));
+const items = computed(() => useFeedItems<Post>(posts.value, 12));
 
 const { mode, setViewMode } = useViewMode();
 
@@ -62,7 +62,7 @@ const { isMobile } = useMobile()
       </div>
       <div class="flex items-center justify-end gap-1 mb-4">
         <Button v-for="item in ViewModeItems" :key="item.mode" :variant="item.mode === mode ? 'default' : 'ghost'"
-          size="icon" class="h-8 w-8" @click="setViewMode(item.mode)">
+          size="icon" class="h-8 w-8" @click="setViewMode(item.mode)" :aria-label="`toggle-view-${item.mode}`">
           <component :is="item.icon" class="w-4 h-4" />
         </Button>
       </div>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES, APP_ROUTES } from '~/constants';
-import { SortPostOptions, type ApiListResponse, type Posts } from '~/interfaces';
+import { SortPostOptions, type ApiListResponse, type Post } from '~/interfaces';
 
 const socials = [
   {
@@ -49,8 +49,8 @@ const nav = [
 ]
 const { onSubmit, isSubmitting } = useNewsletterForm()
 
-const { data: editorPicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 4 } })
-const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4 } })
+const { data: editorPicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 4 } })
+const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4 } })
 </script>
 
 <template>
@@ -80,7 +80,8 @@ const { data: hotClicks } = useAPI<ApiListResponse<Posts>>(API_ROUTES.posts.path
                 <FormMessage />
               </FormItem>
             </FormField>
-            <Button :disable="isSubmitting" size="icon" class="bg-primary hover:bg-primary/90 shrink-0">
+            <Button :disable="isSubmitting" size="icon" class="bg-primary hover:bg-primary/90 shrink-0"
+              aria-label="submit-newsletter">
               <Icon name="lucide:arrow-right" class="w-4 h-4" />
             </Button>
           </form>
