@@ -22,9 +22,11 @@ useSeoMeta(seo.value?.data ? {
 
 <template>
   <main>
+    <h1 class="sr-only">
+      Latest News, Trends & Stories
+    </h1>
     <section class="container-lg py-6 md:py-10 mx-auto">
       <HomeHero />
-      <!-- <LivePlayer :sources="sources?.data" /> -->
     </section>
 
     <section class="container-lg pb-6 mx-auto">
