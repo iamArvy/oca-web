@@ -65,7 +65,8 @@ function handleMouseLeave() {
       </NuxtLink>
       <div class="flex items-center gap-4 text-sm text-white/70">
         <span v-if="post.author" class="flex items-center gap-1.5">
-          <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" class="w-4 h-4 rounded-full" />
+          <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" :alt="post.author.name"
+            class="w-4 h-4 rounded-full" />
           <Icon v-else name="lucide:user" class="w-4 h-4" />
           {{
             post.author.name
@@ -73,7 +74,7 @@ function handleMouseLeave() {
         </span>
         <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
           class="flex items-center gap-1.5 hover:underline">
-          <NuxtImg v-if="post.feed.image" :src="post.feed.image" class="w-4 h-4 rounded-full" />
+          <NuxtImg v-if="post.feed.image" :src="post.feed.image" :alt="post.feed.name" class="w-4 h-4 rounded-full" />
           <Icon v-else name="lucide:rss" class="w-4 h-4" />
           {{
             post.feed.name

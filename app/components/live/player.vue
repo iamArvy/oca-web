@@ -59,7 +59,7 @@ function scrollBy(dir: 1 | -1) {
         :class="s.id === activeId ? 'border-primary shadow-lg scale-[1.02]' : 'border-transparent'">
         <div class="relative aspect-video">
           <img :src="`https://img.youtube.com/vi/${extractYouTubeId(s.source)}/maxresdefault.jpg`"
-            class="w-full h-full object-cover" />
+            class="w-full h-full object-cover" :alt="s.name" />
           <div class="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
 
           <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 bg-red-600 text-white text-[9px] rounded">
