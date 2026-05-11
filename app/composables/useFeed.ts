@@ -1,4 +1,4 @@
-import type { ApiListResponse, Posts } from "~/interfaces";
+import type { ApiListResponse, Post, Posts } from "~/interfaces";
 import { API_ROUTES } from "~/constants";
 export function useFeed(query?: MaybeRef<Record<string, any>>) {
   const { $api } = useNuxtApp();
@@ -13,13 +13,13 @@ export function useFeed(query?: MaybeRef<Record<string, any>>) {
     loading.value = true;
 
     try {
-      const { data, meta } = await $api<ApiListResponse<Posts>>(
+      const { data, meta } = await $api<ApiListResponse<Post>>(
         API_ROUTES.posts.path,
         {
           query: {
             ...unref(query),
             page: currentPage.value,
-            limit: 30,
+            limit: 18,
           }
         }
       );

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { API_ROUTES } from "~/constants";
-import type { ApiListResponse, LiveSources } from "~/interfaces";
+import type { ApiListResponse, LiveSource } from "~/interfaces";
 
 const { settings, emblaMainApi } = useHeroCarousel();
 
-const { data: liveStreams } = useAPI<ApiListResponse<LiveSources>>(API_ROUTES.liveSources.path);
+const { data: liveStreams } = useAPI<ApiListResponse<LiveSource>>(API_ROUTES.liveSources.path);
 </script>
 
 <template>

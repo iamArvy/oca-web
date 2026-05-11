@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
-import { useIntersectionObserver } from "@vueuse/core";
+import { computed } from "vue";
+import type { ApiListResponse, TopicPosts } from "~/interfaces";
 
 interface Props {
   route: string;
@@ -9,16 +9,28 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { loading, topics, loadMore } = useTopicFeed(props.route, props.query);
-const items = computed(() => useTopicFeedItems(topics.value ?? []));
+const query = computed(() => ({
+  ...props.query,
+  limit: 3,
+  postLimit: 4,
+}));
 
-const loadTrigger = ref<HTMLElement | null>(null);
-useIntersectionObserver(loadTrigger, (entries) => {
-  const entry = entries[0];
-  if (entry && entry.isIntersecting) {
-    loadMore()
-  }
+const { data } = await useAPI<ApiListResponse<TopicPosts>>(props.route, {
+  query: query.value,
 });
+
+const {
+  items: topics,
+  hasNextPage,
+  loading,
+  loadTrigger
+} = usePagination<TopicPosts>({
+  route: props.route,
+  initialItems: data,
+  query: query.value,
+});
+
+const items = computed(() => useTopicFeedItems(topics.value));
 </script>
 
 <template>
@@ -31,6 +43,6 @@ useIntersectionObserver(loadTrigger, (entries) => {
       </div>
     </template>
     <TopicFeedPlaceholder v-if="loading" class="mt-4" />
-    <div ref="loadTrigger" class="h-10" />
+    <div v-if="hasNextPage" ref="loadTrigger" class="h-10" />
   </div>
 </template>
