@@ -15,7 +15,7 @@ export interface PaginationMeta {
   has_prev?: boolean;
 }
 
-export interface ApiListResponse<D> extends ApiResponse<D> {
+export interface ApiListResponse<D> extends ApiResponse<D[]> {
   meta: PaginationMeta;
 }
 

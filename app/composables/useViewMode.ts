@@ -27,8 +27,11 @@ export const ViewModeItems: {
 ];
 
 export default function useViewMode() {
-  const mode = useLocalStorage<ViewMode>('view-mode', ViewMode.LIST)
-
+  const mode = useState<ViewMode>(
+    'view-mode',
+    () => ViewMode.LIST
+  )
+  
   function setViewMode(value: ViewMode) {
     mode.value = value;
   }
