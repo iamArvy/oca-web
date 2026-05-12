@@ -23,7 +23,7 @@ useSeoMeta(seo.value?.data ? {
 <template>
   <main>
     <h1 class="sr-only">
-      Latest News, Trends & Stories
+      Latest News, Hot Clicks, Live Feeds
     </h1>
     <section class="container-lg py-6 md:py-10 mx-auto">
       <HomeHero />

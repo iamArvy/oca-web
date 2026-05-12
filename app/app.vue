@@ -3,6 +3,12 @@ import "vue-sonner/style.css";
 const config = useRuntimeConfig()
 
 useHead({
+  link: [
+    {
+      rel: 'apple-touch-icon',
+      href: '/apple-touch-icon.png',
+    },
+  ],
   script: [
     {
       innerHTML: getThemeInitScript(),

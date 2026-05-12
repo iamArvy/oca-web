@@ -52,8 +52,8 @@ function handleMouseLeave() {
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
     </div>
 
-    <div class="p-3">
-      <div class="flex items-center text-primary text-xs md:text-sm mb-1 space-x-1 line-clamp-2">
+    <p class="p-3">
+      <span class="flex items-center text-primary text-xs md:text-sm mb-1 space-x-1 line-clamp-2">
         <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline inline">
           {{ props.post.topic.name }}
         </NuxtLink>
@@ -63,32 +63,29 @@ function handleMouseLeave() {
         <span class="inline">
           {{ formatDateCompact(post.createdAt) }} ago
         </span>
-      </div>
+      </span>
       <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
         class="text-sm lg:text-base font-display font-bold mb-2 line-clamp-2 hover:text-primary transition-colors">
         {{ props.post.title }}
       </NuxtLink>
 
-      <div class="flex items-center justify-between text-xs text-foreground">
-        <div class="flex items-center gap-3">
-          <span v-if="post.author" class="flex items-center gap-1">
-            <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" :alt="post.author.name"
-              class="w-3 h-3 rounded-full" />
-            <Icon v-else name="lucide:user" class="w-3 h-3" />
-            {{
-              post.author.name
-            }}
-          </span>
-          <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
-            class="flex items-center gap-1 hover:underline">
-            <NuxtImg v-if="post.feed.image" :src="post.feed.image" :alt="post.feed.name" class="w-3 h-3 rounded-full" />
-            <Icon v-else name="lucide:rss" class="w-3 h-3" />
-            {{
-              post.feed.name
-            }}
-          </NuxtLink>
-        </div>
-      </div>
-    </div>
+      <!-- Work on filter for author -->
+      <span v-if="post.author" class="flex items-center text-xs text-foreground gap-1">
+        <NuxtImg v-if="post.author.avatar" :src="post.author.avatar" :alt="post.author.name"
+          class="w-3 h-3 rounded-full" />
+        <Icon v-else name="lucide:user" class="w-3 h-3" />
+        {{
+          post.author.name
+        }}
+      </span>
+      <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
+        class="flex items-center gap-1 hover:underline text-xs text-foreground">
+        <NuxtImg v-if="post.feed.image" :src="post.feed.image" :alt="post.feed.name" class="w-3 h-3 rounded-full" />
+        <Icon v-else name="lucide:rss" class="w-3 h-3" />
+        {{
+          post.feed.name
+        }}
+      </NuxtLink>
+    </p>
   </article>
 </template>

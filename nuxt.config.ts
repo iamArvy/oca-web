@@ -41,7 +41,7 @@ export default defineNuxtConfig({
     componentDir: "@/components/ui",
   },
   site: {
-    name: "OneClick Africa",
+    name: "OneClick Africa - Your premier source for African news",
     description:
       "Stay ahead with OneClick Africa | Your premier source for African news, culture, and stories. Connecting the continent with the world.",
     url: "https://oneclickafrica.com",
