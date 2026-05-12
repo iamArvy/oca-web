@@ -16,7 +16,7 @@ const props = defineProps<Props>();
       class="font-semibold text-sm mt-1 line-clamp-2 hover:text-primary transition-colors">
       {{ post.title }}
     </NuxtLink>
-    <div class="flex items-center text-xs">
+    <p class="flex items-center text-xs">
       <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline">
         {{ props.post.topic.name }}
       </NuxtLink>
@@ -28,9 +28,9 @@ const props = defineProps<Props>();
         {{ post.feed.name }}
       </NuxtLink>
       <Dot />
-      <p>
+      <span>
         {{ formatDateCompact(post.createdAt) }} ago
-      </p>
-    </div>
+      </span>
+    </p>
   </article>
 </template>

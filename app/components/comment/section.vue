@@ -26,7 +26,6 @@ const {
   loadMore,
   loading,
   count,
-  loadTrigger
 } = usePagination<Comment>({
   route: API_ROUTES.comments.path,
   initialItems: data,
