@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Megaphone } from 'lucide-vue-next'
 import { API_ROUTES, APP_ROUTES } from '~/constants';
-import type { ApiListResponse, Topics } from '~/interfaces';
+import type { ApiListResponse, Topic } from '~/interfaces';
 
 const isOpen = ref(false)
 const route = useRoute()
@@ -10,7 +10,7 @@ watch(() => route.fullPath, () => {
   isOpen.value = false
 })
 
-const { data: topics } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topicTree.path)
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topicTree.path)
 
 </script>
 

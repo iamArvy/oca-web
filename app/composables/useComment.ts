@@ -1,6 +1,6 @@
 import { API_ROUTES } from "~/constants";
 
-import type { ApiListResponse, ApiResponse, Comment, Comments } from "~/interfaces";
+import type { ApiListResponse, Comment } from "~/interfaces";
 
 export function usePostComments(query?: MaybeRef<Record<string, any>>) {
     const { $api } = useNuxtApp();
@@ -8,7 +8,7 @@ export function usePostComments(query?: MaybeRef<Record<string, any>>) {
   const currentPage = ref(1);
   const loading = ref(false);
   const hasNextPage = ref(false);
-  const comments = ref<Comments>([]);
+  const comments = ref<Comment[]>([]);
   const count = ref(0)
 
   const fetch = async () => {
@@ -16,7 +16,7 @@ export function usePostComments(query?: MaybeRef<Record<string, any>>) {
       loading.value = true;
   
       try {
-        const { data, meta } = await $api<ApiListResponse<Comments>>(
+        const { data, meta } = await $api<ApiListResponse<Comment>>(
           API_ROUTES.comments.path,
           {
             query: {
