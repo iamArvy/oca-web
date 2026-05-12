@@ -8,6 +8,15 @@ useHead({
       rel: 'apple-touch-icon',
       href: '/apple-touch-icon.png',
     },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/favicon.png',
+    },
+    {
+      rel: 'shortcut icon',
+      href: '/favicon.ico',
+    },
   ],
   script: [
     {
