@@ -20,7 +20,7 @@ const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topics.
   }
 })
 
-const { isMobile } = useMobile()
+const { isMobile } = useMobile('lg')
 
 </script>
 <template>
@@ -33,7 +33,7 @@ const { isMobile } = useMobile()
         </li>
         <LayoutMobileMenu :topics="topics">
           <Button variant="outline" size="sm" class="text-xs">
-            <span class="hidden md:flex">View Topics</span>
+            <span v-if="!isMobile" class="hidden md:flex">View Topics</span>
             <ChevronRight class="size-3" />
           </Button>
         </LayoutMobileMenu>
