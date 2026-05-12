@@ -1,5 +1,4 @@
-import type { ApiListResponse, Posts } from "~/interfaces";
-import { API_ROUTES } from "~/constants";
+import type { ApiListResponse } from "~/interfaces";
 import { useIntersectionObserver } from "@vueuse/core";
 
 interface UsePaginationOptions<I> {

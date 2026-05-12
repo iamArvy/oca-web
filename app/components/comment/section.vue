@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useIntersectionObserver } from "@vueuse/core";
 import { Plus } from "lucide-vue-next";
-import { ref } from "vue";
-import { APP_ROUTES } from "~/constants";
+import { API_ROUTES, APP_ROUTES } from "~/constants";
+import type { ApiListResponse, Comment } from "~/interfaces";
 
 interface Props {
   postId: string;
@@ -10,9 +9,28 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { comments, count, hasNextPage, loading, loadMore } = usePostComments({ post: props.postId })
 const { submit, isSubmitting, values } = useCommentForm(props.postId)
 const { user } = useAuth()
+const query = computed(() => ({
+  post: props.postId,
+  limit: 10,
+}));
+
+const { data } = await useAPI<ApiListResponse<Comment>>(API_ROUTES.comments.path, {
+  query,
+});
+
+const {
+  items: comments,
+  hasNextPage,
+  loadMore,
+  loading,
+  count,
+} = usePagination<Comment>({
+  route: API_ROUTES.comments.path,
+  initialItems: data,
+  query,
+});
 </script>
 
 <template>
@@ -63,26 +81,22 @@ const { user } = useAuth()
     </div>
 
     <div>
-      <div v-if="loading" class="text-center flex items-center justify-center py-6 text-muted-foreground">
-        <Spinner />
-      </div>
-      <template v-else>
-        <div v-if="comments.length > 0" class="space-y-6">
-          <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
-          <p v-if="!hasNextPage" class="text-center py-12 text-muted-foreground">
-            End of comment section
-          </p>
-        </div>
-        <div v-else class="text-center py-12 text-muted-foreground">
-          <p class="mb-4">Be the first to comment!</p>
-        </div>
-        <div v-if="hasNextPage" class="flex items-center justify-center mt-4">
-          <Button variant="outline" @click="loadMore">
-            <Plus />
+      <div v-if="count > 0 && comments.length > 0" class="space-y-6">
+        <CommentItem v-for="comment in comments" :key="comment.id" :comment="comment" />
+        <div v-if="hasNextPage" class="flex items-center justify-center">
+          <Button variant="outline" :disabled="loading" @click="loadMore">
+            <Spinner v-if="loading" />
+            <Plus v-else />
             Load More
           </Button>
         </div>
-      </template>
+        <p v-else class="text-center py-12 text-muted-foreground">
+          End of comment section
+        </p>
+      </div>
+      <div v-else class="text-center py-12 text-muted-foreground">
+        <p class="mb-4">Be the first to comment!</p>
+      </div>
     </div>
   </div>
 </template>

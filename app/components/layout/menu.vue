@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { API_ROUTES, APP_ROUTES } from '~/constants';
 import { ChevronRight } from 'lucide-vue-next'
-import type { ApiListResponse, Topic, Topics } from '~/interfaces';
+import type { ApiListResponse, Topic } from '~/interfaces';
 
 const currentTopic = ref<Topic | null>(null)
 
@@ -13,14 +13,14 @@ function onMouseLeave() {
   currentTopic.value = null
 }
 
-const { data: topics } = await useAPI<ApiListResponse<Topics>>(API_ROUTES.topics.path, {
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topics.path, {
   query: {
     limit: 7,
     isFeatured: 'true',
   }
 })
 
-const { isMobile } = useMobile()
+const { isMobile } = useMobile('lg')
 
 </script>
 <template>
@@ -33,7 +33,7 @@ const { isMobile } = useMobile()
         </li>
         <LayoutMobileMenu :topics="topics">
           <Button variant="outline" size="sm" class="text-xs">
-            <span class="hidden md:flex">View Topics</span>
+            <span v-if="!isMobile" class="hidden md:flex">View Topics</span>
             <ChevronRight class="size-3" />
           </Button>
         </LayoutMobileMenu>

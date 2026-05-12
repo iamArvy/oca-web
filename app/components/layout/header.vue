@@ -8,7 +8,7 @@ const { topics } = await useTopics()
 // const { date, time } = useDateTime()
 
 const { data: latestNews } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { limit: 20 } })
-const { isMobile } = useMobile()
+const { isMobile } = useMobile('lg')
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const { isMobile } = useMobile()
       </div>
       <div class="flex justify-between gap-2">
         <LayoutMenu :topics="topics" />
-        <AppSearch class="hidden md:flex max-w-70" />
+        <AppSearch v-if="isMobile" class="hidden lg:flex max-w-70" />
       </div>
     </div>
   </header>

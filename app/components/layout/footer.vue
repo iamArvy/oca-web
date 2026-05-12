@@ -86,7 +86,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path,
             </Button>
           </form>
           <div class="flex gap-3">
-            <NuxtLink v-for="item in socials" :key="item.label" :href="item.url"
+            <NuxtLink v-for="item in socials" :key="item.label" :href="item.url" :aria-label="item.label"
               class="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
               <Icon :name="item.icon" class="w-4 h-4" />
             </NuxtLink>

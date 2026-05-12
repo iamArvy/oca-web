@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES } from "~/constants";
-import { AdContentType, type Ads, type Ad, type ApiListResponse } from "~/interfaces";
+import { AdContentType, type Ad, type ApiListResponse } from "~/interfaces";
 
 interface AdPlacementProps {
   size: "banner" | "sidebar" | "inline";
@@ -14,7 +14,7 @@ const sizeClasses = {
   inline: "h-20",
 };
 
-const { data } = useAPI<ApiListResponse<Ads>>(API_ROUTES.ads.path);
+const { data } = useAPI<ApiListResponse<Ad>>(API_ROUTES.ads.path);
 
 const ads = computed(() => data.value?.data ?? []);
 

@@ -50,7 +50,7 @@ const component = computed(() => {
   return components[mode.value] || list;
 });
 
-const { isMobile } = useMobile()
+const { isMobile } = useMobile('lg')
 </script>
 
 <template>
