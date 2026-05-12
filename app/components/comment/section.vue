@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { useIntersectionObserver } from "@vueuse/core";
 import { Plus } from "lucide-vue-next";
-import { ref } from "vue";
 import { API_ROUTES, APP_ROUTES } from "~/constants";
 import type { ApiListResponse, Comment } from "~/interfaces";
 
@@ -11,7 +9,6 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// const { comments, count, hasNextPage, loading, loadMore } = usePostComments({ post: props.postId })
 const { submit, isSubmitting, values } = useCommentForm(props.postId)
 const { user } = useAuth()
 const query = computed(() => ({
