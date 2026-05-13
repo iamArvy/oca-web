@@ -11,7 +11,7 @@ watch(() => route.fullPath, () => {
 })
 
 const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topicTree.path)
-
+const { isMobile } = useMobile('lg')
 </script>
 
 <template>
@@ -21,7 +21,7 @@ const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topicTr
     </SheetTrigger>
     <SheetContent>
       <SheetHeader class="mt-4.5">
-        <AppSearch class="mb-2 flex md:hidden" />
+        <AppSearch v-if="isMobile" class="mb-2 flex lg:hidden" />
         <SheetTitle>Topics</SheetTitle>
         <SheetDescription>
           Browse news by topics. Tap on a topic to view related articles.
