@@ -9,9 +9,7 @@ import {
 
 interface SocialAccount {
   name: string
-  handle: string
   url: string
-  followers: string
   icon: any
   color: string
 }
@@ -45,41 +43,31 @@ const TikTokIcon = defineComponent({
 const socialAccounts: SocialAccount[] = [
   {
     name: 'Facebook',
-    handle: '@OneclickAfrica-Limited',
     url: 'https://web.facebook.com/people/OneclickAfrica-Limited/61582526614120',
-    followers: '245K',
     icon: Facebook,
     color: 'bg-[#1877F2]',
   },
   {
     name: 'X',
-    handle: '@1clickAfrica',
     url: 'https://x.com/1clickAfrica',
-    followers: '189K',
     icon: Twitter,
     color: 'bg-[#0A0A0A] dark:bg-[#E7E9EA]',
   },
   {
     name: 'Instagram',
-    handle: '@oneclickafrica',
     url: 'https://www.instagram.com/oneclickafrica',
-    followers: '312K',
     icon: Instagram,
     color: 'bg-gradient-to-tr from-[#F58529] via-[#DD2A7B] to-[#8134AF]',
   },
   {
     name: 'LinkedIn',
-    handle: '@Oneclick Africa',
     url: 'https://www.linkedin.com/company/oneclickafricalimited/',
-    followers: '98K',
     icon: Linkedin,
     color: 'bg-[#0A66C2]',
   },
   {
     name: 'TikTok',
-    handle: '@oneclickafrica',
     url: 'https://www.tiktok.com/@oneclickafrica',
-    followers: '456K',
     icon: TikTokIcon,
     color: 'bg-[#000000] dark:bg-[#ffffff]',
   },
@@ -104,14 +92,9 @@ const socialAccounts: SocialAccount[] = [
           <component :is="account.icon" class="w-4 h-4" />
         </div>
 
-        <div class="flex-1 min-w-0">
-          <p class="text-sm font-semibold group-hover:text-primary transition-colors">
-            {{ account.name }}
-          </p>
-          <p class="text-xs text-muted-foreground">
-            {{ account.handle }}
-          </p>
-        </div>
+        <p class="flex-1 min-w-0 text-sm font-semibold group-hover:text-primary transition-colors">
+          {{ account.name }}
+        </p>
 
         <!-- <span class="text-xs font-medium text-muted-foreground bg-muted px-2 py-1 rounded-full shrink-0">
           {{ account.followers }}
