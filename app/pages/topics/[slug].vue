@@ -34,7 +34,6 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
         <WidgetsHotClicks :topic="slug" />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
       </template>
       <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" />
     </AppContent>

@@ -30,11 +30,9 @@ const query = {
       </template>
 
       <template #sidebar>
-        <AdComponent size="sidebar" />
         <WidgetsEditorPick />
         <AdComponent size="sidebar" />
         <WidgetsHotClicks />
-        <AdComponent size="sidebar" />
       </template>
     </AppContent>
   </main>
