@@ -33,7 +33,6 @@ const query = {
         <WidgetsHotClicks />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
       </template>
     </AppContent>
   </main>

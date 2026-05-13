@@ -41,7 +41,6 @@ useSeoMeta(seo.value?.data ? {
         <WidgetsHotClicks />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
-        <AdComponent size="sidebar" />
       </template>
       <TopicFeed :route="API_ROUTES.topicPosts.path" />
     </AppContent>

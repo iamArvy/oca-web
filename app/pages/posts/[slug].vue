@@ -56,7 +56,6 @@ useSeoMeta({
         <PostSource v-else-if="post.feed" v-bind="post.feed" />
         <AdComponent size="sidebar" />
         <WidgetsHotClicks />
-        <AdComponent size="sidebar" />
         <!-- Related Post widget -->
       </template>
       <TopicFeed :route="API_ROUTES.relatedTopics.path(post.topic.slug)" />
