@@ -9,7 +9,7 @@ export const useNewsletterForm = () => {
     email: z.string().email().nonempty('Email is required'),
   }))
 
-const { handleSubmit, isSubmitting } = useForm({
+const { handleSubmit, isSubmitting, meta } = useForm({
   validationSchema: formSchema,
 })
 
@@ -31,6 +31,7 @@ const onSubmit = handleSubmit(async (values) => {
 
   return {
     onSubmit,
-    isSubmitting
+    isSubmitting,
+    meta
   }
 }
