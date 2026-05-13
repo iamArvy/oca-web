@@ -16,8 +16,8 @@ const { isMobile } = useMobile('lg')
 
       <aside class="space-y-6 mt-3 lg:mt-0 ">
         <slot name="sidebar" />
-        <WidgetsSocialMedia />
-        <WidgetsNewsletter />
+        <AdComponent size="sidebar" />
+        <WidgetsSocial />
       </aside>
     </div>
 
