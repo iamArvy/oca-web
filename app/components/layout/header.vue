@@ -38,7 +38,7 @@ const { isMobile } = useMobile('lg')
       </div>
       <div class="flex justify-between gap-2">
         <LayoutMenu :topics="topics" />
-        <AppSearch v-if="isMobile" class="hidden lg:flex max-w-70" />
+        <AppSearch v-if="!isMobile" class="hidden lg:flex max-w-70" />
       </div>
     </div>
   </header>
