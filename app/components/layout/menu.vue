@@ -31,12 +31,14 @@ const { isMobile } = useMobile('lg')
           <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
             :active="currentTopic?.slug === item.slug" :hasChildren="item.children && item.children.length > 0" />
         </li>
-        <LayoutMobileMenu :topics="topics">
-          <Button variant="outline" size="sm" class="text-xs">
-            <span v-if="!isMobile" class="hidden md:flex">View Topics</span>
-            <ChevronRight class="size-3" />
-          </Button>
-        </LayoutMobileMenu>
+        <li>
+          <LayoutMobileMenu :topics="topics">
+            <Button variant="outline" size="sm" class="text-xs">
+              <span v-if="!isMobile" class="hidden md:flex">View Topics</span>
+              <ChevronRight class="size-3" />
+            </Button>
+          </LayoutMobileMenu>
+        </li>
       </ul>
       <ul class="flex space-x-4 overflow-x-auto mt-1 transition-all duration-300 scrollbar-hide "
         v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">
