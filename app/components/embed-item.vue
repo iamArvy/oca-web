@@ -29,7 +29,8 @@ const isPlaying = ref(false);
 
 <template>
   <div class="h-100 md:h-125 rounded-2xl overflow-hidden">
-    <iframe ref="iframeRef" :title="title" :src="source" class="w-full h-full" frameborder="0" allow="encrypted-media"
+    <iframe ref="iframeRef" :title="title" :src="source" class="w-full h-full" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       allowfullscreen />
   </div>
 </template>

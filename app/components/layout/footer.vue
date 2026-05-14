@@ -1,33 +1,33 @@
 <script setup lang="ts">
-import { API_ROUTES, APP_ROUTES } from '~/constants';
-import { SortPostOptions, type ApiListResponse, type Post } from '~/interfaces';
+import { APP_ROUTES } from '~/constants';
+// import { SortPostOptions, type ApiListResponse, type Post } from '~/interfaces';
 
-const socials = [
-  {
-    label: '',
-    value: '',
-    icon: 'lucide:facebook',
-    url: 'https://web.facebook.com/people/OneclickAfrica-Limited/61582526614120'
-  },
-  {
-    label: '',
-    value: '',
-    icon: 'lucide:twitter',
-    url: 'https://x.com/1clickAfrica'
-  },
-  {
-    label: '',
-    value: '',
-    icon: 'lucide:instagram',
-    url: 'https://www.instagram.com/oneclickafrica'
-  },
-  {
-    label: '',
-    value: '',
-    icon: 'lucide:linkedin',
-    url: 'https://www.linkedin.com/company/oneclickafricalimited/'
-  }
-]
+// const socials = [
+//   {
+//     label: '',
+//     value: '',
+//     icon: 'lucide:facebook',
+//     url: 'https://web.facebook.com/people/OneclickAfrica-Limited/61582526614120'
+//   },
+//   {
+//     label: '',
+//     value: '',
+//     icon: 'lucide:twitter',
+//     url: 'https://x.com/1clickAfrica'
+//   },
+//   {
+//     label: '',
+//     value: '',
+//     icon: 'lucide:instagram',
+//     url: 'https://www.instagram.com/oneclickafrica'
+//   },
+//   {
+//     label: '',
+//     value: '',
+//     icon: 'lucide:linkedin',
+//     url: 'https://www.linkedin.com/company/oneclickafricalimited/'
+//   }
+// ]
 
 const nav = [
   {
@@ -47,15 +47,15 @@ const nav = [
     url: APP_ROUTES.contact.path
   },
 ]
-const { onSubmit, isSubmitting } = useNewsletterForm()
+// const { onSubmit, isSubmitting } = useNewsletterForm()
 
-const { data: editorPicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 4 } })
-const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4 } })
+// const { data: editorPicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { collection: 'editor-picks', limit: 4 } })
+// const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4 } })
 </script>
 
 <template>
   <footer class="bg-black text-white">
-    <div class="container-lg py-12 mx-auto">
+    <!-- <div class="container-lg py-12 mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div class="col-span-3 grid md:grid-cols-2 gap-8 ">
           <WidgetsFooter v-if="editorPicks" label="Editor's Picks" :posts="editorPicks?.data?.slice(0, 5) ?? []" />
@@ -93,7 +93,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path,
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="border-t border-white/10">
       <div

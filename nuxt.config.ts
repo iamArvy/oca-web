@@ -40,6 +40,17 @@ export default defineNuxtConfig({
     componentDir: "@/components/ui",
   },
 
+  security: {
+    headers: {
+      crossOriginEmbedderPolicy: false,
+      contentSecurityPolicy: false,
+      crossOriginOpenerPolicy: false,
+      crossOriginResourcePolicy: false,
+      originAgentCluster: false,
+      referrerPolicy: false,
+    },
+  },
+
   sitemap: {
     enabled: true,
   },
