@@ -11,7 +11,7 @@ defineProps<Props>()
 </script>
 <template>
   <div class="text-white">
-    <h3 class="text-xl mb-3">{{ label }}</h3>
+    <p class="text-xl mb-3">{{ label }}</p>
     <ul class="space-y-4">
       <li v-for="item in posts" :key="item.id">
         <NuxtLink :to="APP_ROUTES.post.path(item.slug)"
