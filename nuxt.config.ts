@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     'nuxt-schema-org',
     'nuxt-seo-utils',
+    "nuxt-security",
   ],
 
   shadcn: {
