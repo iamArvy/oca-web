@@ -2,12 +2,10 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
-  // ssr: true,
-  // nitro: {
-  //   preset: 'static'
-  // },
   compatibilityDate: "2025-07-15",
+  
   devtools: { enabled: true },
+
   css: ["~/assets/css/tailwind.css", "~/assets/css/main.css"],
 
   vite: {
@@ -16,16 +14,16 @@ export default defineNuxtConfig({
 
   modules: [
     "@nuxt/a11y",
-    "@nuxt/eslint",
-    "@nuxt/fonts",
-    "@nuxt/hints",
     "@nuxt/icon",
     "@nuxt/image",
-    "@nuxt/test-utils",
     "shadcn-nuxt",
-    "@nuxtjs/seo",
     "nuxt-gtag",
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots',
+    'nuxt-schema-org',
+    'nuxt-seo-utils',
   ],
+
   shadcn: {
     /**
      * Prefix for all the imported component.
@@ -40,6 +38,15 @@ export default defineNuxtConfig({
      */
     componentDir: "@/components/ui",
   },
+
+  sitemap: {
+    enabled: true,
+  },
+
+  robots: {
+    enabled: true,
+  },
+
   site: {
     name: "OneClick Africa - Your premier source for African news",
     description:
@@ -48,9 +55,11 @@ export default defineNuxtConfig({
     ogUrl: "https://oneclickafrica.com",
     image: "https://oneclickafrica.com/og-image.png",
   },
+
   gtag: {
     id: process.env.GOOGLE_TAG_ID ?? "",
   },
+
   runtimeConfig: {
     public: {
       apiBase: process.env.NUXT_PUBLIC_API_BASE || "http://localhost:3000",
