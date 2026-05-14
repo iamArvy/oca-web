@@ -63,7 +63,7 @@ const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path,
         </div>
 
         <div class="space-y-4">
-          <h4 class="font-display text-lg font-bold">Newsletter</h4>
+          <p class="font-display text-lg font-bold">Newsletter</p>
           <p class="text-white/70 text-sm">
             Get the latest African news delivered to your inbox.
           </p>
