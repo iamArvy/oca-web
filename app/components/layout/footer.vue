@@ -25,16 +25,8 @@ const nav = [
 <template>
   <footer class="bg-black text-white border-t-5 border-primary">
     <div class="container mx-auto pt-16 pb-10">
-      <div class="flex flex-col items-center text-center space-y-6">
-        <div class="relative">
-          <h2
-            class="font-display text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none select-none">
-            OneClick Africa
-          </h2>
-
-          <div
-            class="absolute -top-2 -right-2 md:-top-4 md:-right-4 w-3 h-3 md:w-4 md:h-4 bg-primary rounded-full animate-pulse" />
-        </div>
+      <div class="flex flex-col items-center text-center space-y-4">
+        <AppLogo class="w-60" />
 
         <p class="text-sm md:text-base max-w-md tracking-wide uppercase">
           Africa's premier digital hub for impactful news, entertainment, and business insights.
