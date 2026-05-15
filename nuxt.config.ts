@@ -49,6 +49,7 @@ export default defineNuxtConfig({
       originAgentCluster: false,
       referrerPolicy: false,
       xFrameOptions: false,
+      permissionsPolicy: false,
     },
     removeLoggers: false,
   },
