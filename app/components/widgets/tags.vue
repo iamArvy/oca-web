@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
 
-const tags = ['Breaking News', 'Economy', 'Innovation', 'Climate', 'Football', 'Startups', 'Music', 'Elections']
+interface Props {
+  tags: string[]
+}
+
+defineProps<Props>()
 </script>
 
 <template>

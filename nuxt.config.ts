@@ -48,7 +48,9 @@ export default defineNuxtConfig({
       crossOriginResourcePolicy: false,
       originAgentCluster: false,
       referrerPolicy: false,
+      xFrameOptions: false,
     },
+    removeLoggers: false,
   },
 
   sitemap: {

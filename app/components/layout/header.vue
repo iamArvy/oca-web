@@ -9,6 +9,8 @@ const { topics } = await useTopics()
 
 const { data: latestNews } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { limit: 20 } })
 const { isMobile } = useMobile('lg')
+const { currentTheme } = useTheme()
+
 </script>
 
 <template>
@@ -22,7 +24,7 @@ const { isMobile } = useMobile('lg')
     <div class="container-lg py-4 mx-auto space-y-3">
       <div class="flex items-center justify-between gap-4">
         <NuxtLink to="/" class="flex items-center gap-2" aria-label="OneClick Africa">
-          <AppLogo class="w-20 sm:w-30 md:w-35 lg:w-40" />
+          <AppLogo :variant="currentTheme === 'light' ? 'dark' : 'light'" class="w-20 sm:w-30 md:w-35 lg:w-40" />
         </NuxtLink>
 
         <div class="flex items-center gap-2">

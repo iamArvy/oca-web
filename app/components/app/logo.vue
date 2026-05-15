@@ -1,6 +1,14 @@
 <script setup lang="ts">
-const { currentTheme } = useTheme()
+interface Props {
+  variant?: 'dark' | 'light'
+}
+
+withDefaults(
+  defineProps<Props>(), {
+  variant: 'light'
+}
+)
 </script>
 <template>
-  <img :src="currentTheme === 'dark' ? '/logo-white.png' : '/logo.webp'" alt="OneClick Africa Logo">
+  <img :src="variant === 'dark' ? '/logo.webp' : '/logo-white.png'" alt="OneClick Africa Logo">
 </template>

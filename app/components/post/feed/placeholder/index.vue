@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import list from "./list.vue";
-import grid from "./grid.vue";
 import basic from "./basic.vue";
-
+import base from "./default.vue";
 
 interface Props {
   mode: ViewMode
@@ -11,13 +9,12 @@ interface Props {
 
 const props = defineProps<Props>();
 const components: Record<ViewMode, Component> = {
-  [ViewMode.GRID]: grid,
-  [ViewMode.LIST]: list,
+  [ViewMode.DEFAULT]: base,
   [ViewMode.BASIC]: basic,
 };
 
 const component = computed(() => {
-  return components[props.mode] || grid;
+  return components[props.mode] || base;
 });
 </script>
 

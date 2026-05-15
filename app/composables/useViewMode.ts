@@ -3,21 +3,22 @@ import { LayoutGrid, List, Text } from "lucide-vue-next";
 import type { Component } from "vue";
 
 export enum ViewMode {
-  GRID = "grid",
-  LIST = "list",
-  BASIC = "basic"
+  // GRID = "grid",
+  // LIST = "list",
+  BASIC = "basic",
+  DEFAULT = "default"
 }
 
 export const ViewModeItems: {
   mode: ViewMode;
   icon: Component;
 }[] = [
+  // {
+  //   mode: ViewMode.LIST,
+  //   icon: List,
+  // },
   {
-    mode: ViewMode.LIST,
-    icon: List,
-  },
-  {
-    mode: ViewMode.GRID,
+    mode: ViewMode.DEFAULT,
     icon: LayoutGrid,
   },
   {
@@ -29,7 +30,7 @@ export const ViewModeItems: {
 export default function useViewMode() {
   const mode = useState<ViewMode>(
     'view-mode',
-    () => ViewMode.LIST
+    () => ViewMode.DEFAULT
   )
   
   function setViewMode(value: ViewMode) {
