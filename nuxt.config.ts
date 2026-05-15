@@ -41,16 +41,17 @@ export default defineNuxtConfig({
   },
 
   security: {
-    headers: {
-      crossOriginEmbedderPolicy: false,
-      contentSecurityPolicy: false,
-      crossOriginOpenerPolicy: false,
-      crossOriginResourcePolicy: false,
-      originAgentCluster: false,
-      referrerPolicy: false,
-      xFrameOptions: false,
-      permissionsPolicy: false,
-    },
+    // headers: {
+    //   crossOriginEmbedderPolicy: false,
+    //   contentSecurityPolicy: false,
+    //   crossOriginOpenerPolicy: false,
+    //   crossOriginResourcePolicy: false,
+    //   originAgentCluster: false,
+    //   referrerPolicy: false,
+    //   xFrameOptions: false,
+    //   permissionsPolicy: false,
+    // },
+    headers: false,
     removeLoggers: false,
   },
 
