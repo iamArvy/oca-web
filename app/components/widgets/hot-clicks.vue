@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { API_ROUTES, APP_ROUTES } from '~/constants';
+import { API_ROUTES } from '~/constants';
 import { SortPostOptions, type ApiListResponse, type Post } from '~/interfaces';
 import { Flame } from 'lucide-vue-next';
 

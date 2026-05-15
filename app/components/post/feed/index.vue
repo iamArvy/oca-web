@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import list from "./list.vue";
-import grid from "./grid.vue";
 import basic from "./basic.vue";
+import base from "./default.vue";
+
 import { Plus } from "lucide-vue-next";
-import { useIntersectionObserver } from "@vueuse/core";
 
 interface Props {
   query: Record<string, any>;
@@ -41,13 +40,12 @@ const items = computed(() => useFeedItems<Post>(posts.value, 12));
 const { mode, setViewMode } = useViewMode();
 
 const components: Record<ViewMode, Component> = {
-  [ViewMode.GRID]: grid,
-  [ViewMode.LIST]: list,
+  [ViewMode.DEFAULT]: base,
   [ViewMode.BASIC]: basic,
 };
 
 const component = computed(() => {
-  return components[mode.value] || list;
+  return components[mode.value] || base;
 });
 
 const { isMobile } = useMobile('lg')
