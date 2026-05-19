@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue"
 import { useRouter } from "vue-router"
-const { submit, isSubmitting } = useLoginForm();
+const { email, password, errors, isSubmitting, submit } = useLoginForm()
+const { passwordButton, toggleHidePassword } = usePasswordButton()
 
 import { Eye, EyeOff, Mail, Lock } from "lucide-vue-next"
 import { APP_ROUTES } from "~/constants";
@@ -14,15 +15,15 @@ definePageMeta({
 const router = useRouter()
 const route = useRoute()
 const redirect = route.query.redirect as string
-const showPassword = ref(false)
+// const showPassword = ref(false)
 
-const { user } = useAuth()
+// const { user } = useAuth()
 
-watchEffect(() => {
-  if (user.value) {
-    router.push(redirect ?? APP_ROUTES.home.path)
-  }
-})
+// watchEffect(() => {
+//   if (user.value) {
+//     router.push(redirect ?? APP_ROUTES.home.path)
+//   }
+// })
 
 </script>
 
@@ -37,7 +38,49 @@ watchEffect(() => {
     </template>
 
     <form @submit.prevent="submit" class="space-y-4">
-      <FormField v-slot="{ componentField }" name="email">
+      <FieldGroup>
+        <FieldSet>
+          <FieldGroup>
+            <Field>
+              <FieldLabel for="login-email-field">
+                Email Address
+              </FieldLabel>
+              <Input id="login-email-field" type="email" placeholder="youremail@domain.com" v-model="email" required />
+              <FieldError v-if="errors.email">{{ errors.email }}</FieldError>
+            </Field>
+            <Field>
+              <FieldLabel for="login-password-field" class="justify-between">
+                Password
+                <NuxtLink :to="APP_ROUTES.forgotPassword.path" class="underline text-destructive">
+                  Forgot Password?
+                </NuxtLink>
+              </FieldLabel>
+              <InputGroup>
+                <InputGroupInput id="login-password-field" placeholder="Enter Password" :type="passwordButton.type"
+                  v-model="password" required />
+                <InputGroupAddon align="inline-end">
+                  <InputGroupButton :aria-label="passwordButton.label" :title="passwordButton.label" type="button"
+                    size="icon-xs" @click="toggleHidePassword">
+                    <Icon :name="passwordButton.icon" />
+                  </InputGroupButton>
+                </InputGroupAddon>
+              </InputGroup>
+              <FieldError v-if="errors.password">{{ errors.password }}</FieldError>
+            </Field>
+            <Button :disabled="isSubmitting" size="lg">
+              <Spinner v-if="isSubmitting" />
+              Continue
+            </Button>
+            <p class="text-center">
+              Don't have an account?
+              <NuxtLink :to="APP_ROUTES.register.path" class="text-primary">
+                Sign up
+              </NuxtLink>
+            </p>
+          </FieldGroup>
+        </FieldSet>
+      </FieldGroup>
+      <!-- <FormField v-slot="{ componentField }" name="email">
         <FormItem>
           <FormLabel>Email</FormLabel>
           <FormControl>
@@ -76,20 +119,20 @@ watchEffect(() => {
             </NuxtLink>
           </FormDescription>
         </FormItem>
-      </FormField>
+      </FormField> -->
 
-      <Button type="submit" class="w-full bg-primary hover:opacity-90" :disabled="isSubmitting">
+      <!-- <Button type="submit" class="w-full bg-primary hover:opacity-90" :disabled="isSubmitting">
         {{ isSubmitting ? 'Please wait...' : 'Sign In' }}
-      </Button>
+      </Button> -->
     </form>
 
     <!-- Toggle login/signup -->
-    <p class="text-center text-sm text-muted-foreground">
+    <!-- <p class="text-center text-sm text-muted-foreground">
       Don't have an account?
 
       <NuxtLink to="/register" class="text-primary hover:underline font-medium ml-1">
         Sign up
       </NuxtLink>
-    </p>
+    </p> -->
   </LayoutAuthCard>
 </template>

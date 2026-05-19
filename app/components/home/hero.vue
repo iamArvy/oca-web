@@ -8,7 +8,7 @@ const { data: liveStreams } = useAPI<ApiListResponse<LiveSource>>(API_ROUTES.liv
 </script>
 
 <template>
-  <section class="relative">
+  <section v-if="liveStreams && liveStreams.data.length > 0" class="relative">
     <Carousel v-bind="settings" @init-api="(val) => (emblaMainApi = val)" class="group">
       <div class="flex items-center">
         <div class="flex-1 mb-6 relative">
