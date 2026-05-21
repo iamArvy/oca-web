@@ -10,6 +10,20 @@ export default defineNuxtConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    optimizeDeps: {
+      include: [
+        '@vee-validate/zod',
+        '@vueuse/core',
+        'class-variance-authority',
+        'clsx',
+        'lucide-vue-next',
+        'reka-ui',
+        'tailwind-merge',
+        'vee-validate',
+        'vue-sonner',
+        'zod',
+      ]
+    }
   },
 
   modules: [
@@ -64,9 +78,9 @@ export default defineNuxtConfig({
   },
 
   site: {
-    name: "OneClick Africa - Your premier source for African news",
+    name: "OneClickAfrica - Your premier source for African news",
     description:
-      "Stay ahead with OneClick Africa | Your premier source for African news, culture, and stories. Connecting the continent with the world.",
+      "Stay ahead with OneClickAfrica | Your premier source for African news, culture, and stories. Connecting the continent with the world.",
     url: "https://oneclickafrica.com",
     ogUrl: "https://oneclickafrica.com",
     image: "https://oneclickafrica.com/og-image.png",

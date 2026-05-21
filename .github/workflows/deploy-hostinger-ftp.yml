@@ -1,0 +1,65 @@
+name: Deploy static site to Hostinger
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+  workflow_dispatch:
+    inputs:
+      deploy_environment:
+        description: Environment to deploy when running manually
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - staging
+
+concurrency:
+  group: hostinger-ftp-deploy-${{ github.event_name == 'workflow_dispatch' && inputs.deploy_environment || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    name: Build SSG and deploy
+    runs-on: ubuntu-latest
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy_environment || (github.ref_name == 'main' && 'production' || github.ref_name) }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Enable pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Generate static site
+        run: pnpm generate
+        env:
+          NUXT_PUBLIC_API_BASE: ${{ vars.NUXT_PUBLIC_API_BASE || secrets.NUXT_PUBLIC_API_BASE }}
+          ADSENSE_CLIENT: ${{ vars.ADSENSE_CLIENT || secrets.ADSENSE_CLIENT }}
+          GOOGLE_TAG_ID: ${{ vars.GOOGLE_TAG_ID || secrets.GOOGLE_TAG_ID }}
+          GOOGLE_TAG_MANAGER_ID: ${{ vars.GOOGLE_TAG_MANAGER_ID || secrets.GOOGLE_TAG_MANAGER_ID }}
+          LINKEDIN_PARTNER_ID: ${{ vars.LINKEDIN_PARTNER_ID || secrets.LINKEDIN_PARTNER_ID }}
+
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          local-dir: ./.output/public/
+          server-dir: ${{ vars.HOSTINGER_FTP_SERVER_DIR || secrets.HOSTINGER_FTP_SERVER_DIR }}
+          protocol: ftp

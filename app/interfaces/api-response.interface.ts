@@ -1,9 +1,9 @@
 import type { User } from "./user.interface";
 
-export interface ApiResponse<D> {
+export interface ApiResponse<D = undefined> {
   status_code: number;
   message: string | null;
-  data?: D;
+  data: D;
 }
 
 export interface PaginationMeta {

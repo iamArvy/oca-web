@@ -1,4 +1,10 @@
 export const API_ROUTES = {
+  login: {
+    path: '/auth/login'
+  },
+  register: {
+    path: '/auth/register'
+  },
   topic: {
     path: (slug: string) => '/public/topics/' + slug,
     name: 'Topic'
