@@ -41,7 +41,9 @@ const { isMobile } = useMobile('lg')
     </ul>
     <ul class="flex space-x-4 overflow-x-auto mt-1 transition-all duration-300 scrollbar-hide"
       v-if="currentTopic && currentTopic.children && currentTopic.children.length > 0">
-      <li v-for="child in currentTopic.children.slice(0, 7)" :key="child.id" class="shrink-0">
+      <li v-for="child in [...currentTopic.children]
+        .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured))
+        .slice(0, 7)" :key="child.id" class="shrink-0">
         <LayoutNav :label="child.name" :value="APP_ROUTES.topic.path(child.slug)" />
       </li>
     </ul>
