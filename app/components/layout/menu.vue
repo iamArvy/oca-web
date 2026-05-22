@@ -17,6 +17,7 @@ const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topics.
   query: {
     limit: 7,
     isFeatured: 'true',
+    isRootParent: 'true',
   }
 })
 
