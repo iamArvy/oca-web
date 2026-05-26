@@ -79,7 +79,7 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    enabled: true,
+    blockNonSeoBots: true
   },
 
   site: {
