@@ -5,9 +5,9 @@ export default defineSitemapEventHandler(async (event) => {
   try {
     // const api = createApi(event)
 
-    const posts = await $fetch<ApiListResponse<Post>>('/api/sitemap/post')
+    const posts = await $fetch<Post[]>('/api/sitemap/post')
 
-    return posts.data.map((post) => ({
+    return posts.map((post) => ({
       loc: `/posts/${post.slug}`,
       lastmod: post.updatedAt,
     }))
