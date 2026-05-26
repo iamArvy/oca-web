@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { FolderOpen } from 'lucide-vue-next';
 import { APP_ROUTES } from '~/constants';
 import type { Topic } from '~/interfaces';
 

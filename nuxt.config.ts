@@ -2,6 +2,8 @@
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
+  ssr: true,
+  
   compatibilityDate: "2025-07-15",
   
   devtools: { enabled: true },
@@ -70,7 +72,10 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    enabled: true,
+    sources: [
+      '/api/__sitemap__/posts',
+      '/api/__sitemap__/topics'
+    ],
   },
 
   robots: {

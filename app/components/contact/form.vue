@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Send } from "lucide-vue-next";
 
-const { submit, isSubmitting, values: formData } = useContactForm();
+const { submit, isSubmitting } = useContactForm();
 
 
 </script>
@@ -82,11 +82,9 @@ const { submit, isSubmitting, values: formData } = useContactForm();
       </div>
 
       <Button type="submit" class="w-full bg-primary hover:opacity-90" :disabled="isSubmitting">
-        <template v-if="isSubmitting">Sending...</template>
-        <template v-else>
-          <Send class="w-4 h-4 mr-2" />
-          Send Inquiry
-        </template>
+        <Spinner v-if="isSubmitting" />
+        <Send v-else class="w-4 h-4 mr-2" />
+        Send Inquiry
       </Button>
     </form>
   </Card>

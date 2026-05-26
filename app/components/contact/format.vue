@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Building2 } from "lucide-vue-next";
-
 const formats = [
   { title: 'Display Advertising', desc: 'Banner ads, sidebar placements, and interstitials' },
   { title: 'Sponsored Content', desc: 'Native articles and branded storytelling' },
@@ -20,7 +18,7 @@ const formats = [
 
     <div class="space-y-4 p-6">
       <div v-for="format in formats" :key="format.title" class="flex items-start gap-4 p-3 rounded-lg bg-muted/50">
-        <Building2 class="w-5 h-5 text-primary mt-0.5" />
+        <Icon name="lucide:building-2" class="w-5 h-5 text-primary mt-0.5" />
         <div>
           <p class="font-medium">{{ format.title }}</p>
           <p class="text-sm text-muted-foreground">

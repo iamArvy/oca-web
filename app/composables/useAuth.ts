@@ -1,6 +1,3 @@
-import { toTypedSchema } from "@vee-validate/zod";
-import { useForm } from "vee-validate";
-import * as z from "zod";
 import type { ApiResponse, User } from "~/interfaces";
 
 export const useAuth = () => {

@@ -1,33 +1,26 @@
 <script setup lang="ts">
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-} from "lucide-vue-next";
-
 const CONTACT_INFORMATION = [
   {
     label: "Email",
-    icon: Mail,
+    icon: "lucide:mail",
     value: "info@oneclickafrica.com",
     url: "mailto:info@oneclickafrica.com"
   },
   {
     label: "Phone",
-    icon: Phone,
+    icon: "lucide:phone",
     value: "+2348183243769",
     url: "tel:+234 8183243769"
   },
   {
     label: "Office",
-    icon: MapPin,
+    icon: "lucide:map-pin",
     value: "Plot 8 The Providence Str. Lekki Phase 1, Lagos 105102, Lagos",
     url: "https://maps.app.goo.gl/WQTVvG4cXoAKojW48"
   },
   {
     label: "Response Time",
-    icon: Clock,
+    icon: "lucide:clock",
     value: "Within 24-48 hours"
   }
 ]
@@ -41,7 +34,7 @@ const CONTACT_INFORMATION = [
     <div class="space-y-4 p-6">
       <div v-for="(item, index) in CONTACT_INFORMATION" :key="index" class="flex items-start gap-4">
         <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-          <component :is="item.icon" class="w-5 h-5 text-primary" />
+          <Icon :name="item.icon" class="w-5 h-5 text-primary" />
         </div>
         <div>
           <p class="font-medium">{{ item.label }}</p>
