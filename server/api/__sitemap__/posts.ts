@@ -1,11 +1,16 @@
 import { ApiListResponse, Post } from '~/interfaces'
-// import { API_ROUTES } from '~/constants'
+import { API_ROUTES } from '~/constants'
 
 export default defineSitemapEventHandler(async (event) => {
   try {
-    // const api = createApi(event)
+    const api = createApi(event)
 
-    const posts = await $fetch<Post[]>('/api/sitemap/post')
+    const { data:posts } = await api<ApiListResponse<Post>>(API_ROUTES.posts.path, {
+    query: {
+      limit: 1000,
+      days: 7,
+    },
+  })
 
     return posts.map((post) => ({
       loc: `/posts/${post.slug}`,
