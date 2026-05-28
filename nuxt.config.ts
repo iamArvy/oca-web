@@ -70,11 +70,14 @@ export default defineNuxtConfig({
   },
 
   sitemap: {
-    enabled: true,
+    sources: [
+      '/api/__sitemap__/posts',
+      '/api/__sitemap__/topics'
+    ],
   },
 
   robots: {
-    enabled: true,
+    blockNonSeoBots: true
   },
 
   site: {

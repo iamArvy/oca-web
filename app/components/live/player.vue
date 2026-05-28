@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { ChevronLeft, ChevronRight, Radio, Volume2, Maximize2, Play } from 'lucide-vue-next'
 import type { LiveSources } from '~/interfaces';
 
 const props = defineProps<{
@@ -37,17 +36,17 @@ function scrollBy(dir: 1 | -1) {
     <div class="relative">
       <div class="flex items-center justify-between mb-2 px-1">
         <h3 class="text-sm font-semibold flex items-center gap-2">
-          <Radio class="w-4 h-4 text-primary" />
+          <Item name="lucide:radio" class="w-4 h-4 text-primary" />
           Live channels
           <span class="text-xs text-muted-foreground">({{ sources.length }})</span>
         </h3>
 
         <div class="hidden md:flex gap-1">
           <button class="h-8 w-8 border rounded flex items-center justify-center" @click="scrollBy(-1)">
-            <ChevronLeft class="w-4 h-4" />
+            <Icon name="lucide:chevron-left" class="w-4 h-4" />
           </button>
           <button class="h-8 w-8 border rounded flex items-center justify-center" @click="scrollBy(1)">
-            <ChevronRight class="w-4 h-4" />
+            <Icon name="lucide:chevron-right" class="w-4 h-4" />
           </button>
         </div>
       </div>
@@ -68,7 +67,7 @@ function scrollBy(dir: 1 | -1) {
 
           <span v-if="s.id === activeId" class="absolute inset-0 flex items-center justify-center">
             <span class="w-9 h-9 rounded-full bg-primary flex items-center justify-center">
-              <Play class="w-4 h-4 text-primary-foreground fill-primary-foreground ml-0.5" />
+              <Icon name="lucide:play" class="w-4 h-4 text-primary-foreground fill-primary-foreground ml-0.5" />
             </span>
           </span>
         </div>

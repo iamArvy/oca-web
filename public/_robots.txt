@@ -1,2 +1,7 @@
-User-Agent: *
-Disallow:
+User-agent: *
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /*?query=
+Disallow: /*?page=
+Disallow: /*?sort=
+Disallow: /*?filter=

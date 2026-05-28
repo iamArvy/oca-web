@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { ChevronDown } from 'lucide-vue-next';
-
-
 interface Props {
   label: string,
   value: string,

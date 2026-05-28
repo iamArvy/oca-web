@@ -6,6 +6,7 @@ export interface Topic extends BaseItem {
   slug: string;
   parent?: Topic | null;
   children?: Topic[] | [];
+  isFeatured: boolean;
 }
 
 export type Topics = Topic[];
