@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import { API_ROUTES } from "~/constants";
+import type { ApiListResponse, PostWebsiteListData } from "~/types";
+
 import { computed } from "vue";
 import basic from "./basic.vue";
 import base from "./default.vue";
@@ -12,15 +15,13 @@ interface Props {
 
 const props = defineProps<Props>();
 
-import { API_ROUTES } from "~/constants";
-import type { ApiListResponse, Post } from "~/interfaces";
 
 const query = computed(() => ({
   ...props.query,
   limit: 18,
 }));
 
-const { data } = await useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, {
+const { data } = await useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, {
   query,
 });
 
@@ -30,12 +31,12 @@ const {
   loadMore,
   loading,
   loadTrigger
-} = usePagination<Post>({
-  route: API_ROUTES.posts.path,
+} = usePagination<PostWebsiteListData>({
+  route: API_ROUTES.public.posts,
   initialItems: data,
   query,
 });
-const items = computed(() => useFeedItems<Post>(posts.value, 12));
+const items = computed(() => useFeedItems<PostWebsiteListData>(posts.value, 12));
 
 const { mode, setViewMode } = useViewMode();
 

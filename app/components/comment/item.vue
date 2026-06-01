@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import type { Comment } from "~/interfaces";
+import type { CommentWebsiteData } from "~/types";
 
 interface Props {
-  comment: Comment;
+  comment: CommentWebsiteData;
 }
 
 const props = defineProps<Props>();

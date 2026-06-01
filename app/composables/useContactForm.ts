@@ -3,7 +3,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import * as z from "zod";
 
-import type { ApiResponse } from "~/interfaces";
+import type { ApiResponse } from "~/types";
 
 export enum ContactType {
   DISPLAY = 'display',
@@ -37,7 +37,7 @@ export function useContactForm() {
     const { handleSubmit, isSubmitting, values, handleReset } = useForm({ validationSchema: formSchema });
     const submit = handleSubmit(async (values) => {
       try {
-        await $api<ApiResponse<Comment>>(API_ROUTES.contact.path, {
+        await $api<ApiResponse<Comment>>(API_ROUTES.public.contact, {
           method: "POST",
           body: values,
         });

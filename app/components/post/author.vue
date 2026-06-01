@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { User } from "~/interfaces";
-defineProps<User>();
+import type { PostAuthor } from "~/types";
+defineProps<PostAuthor>();
 </script>
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive">

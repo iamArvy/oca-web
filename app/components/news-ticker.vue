@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Posts } from '~/interfaces';
+import type { PostWebsiteListData } from '~/types';
 
 interface Props {
-  posts: Posts
+  posts: PostWebsiteListData[]
 }
 
 const props = defineProps<Props>()

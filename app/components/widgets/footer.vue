@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
-import type { Posts } from '~/interfaces';
+import type { PostWebsiteData } from '~/types';
 
 interface Props {
   label: string;
-  posts: Posts
+  posts: PostWebsiteData[]
 }
 
 defineProps<Props>()
@@ -14,13 +14,13 @@ defineProps<Props>()
     <p class="text-xl mb-3">{{ label }}</p>
     <ul class="space-y-4">
       <li v-for="item in posts" :key="item.id">
-        <NuxtLink :to="APP_ROUTES.post.path(item.slug)"
+        <NuxtLink :to="APP_ROUTES.post(item.slug)"
           class="line-clamp-2 hover:text-primary transition-colors duration-300 ">
           {{ item.title }}
         </NuxtLink>
         <small>
           <span v-if="item.author">Posted By: {{ item.author.name }}</span>
-          <NuxtLink v-else-if="item.feed" :to="APP_ROUTES.source.path(item.feed.slug)">
+          <NuxtLink v-else-if="item.feed" :to="APP_ROUTES.source(item.feed.slug)">
             Source: {{ item.feed.name }}
           </NuxtLink>
           |

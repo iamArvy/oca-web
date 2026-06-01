@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants'
-import type { TopicPosts } from '~/interfaces'
+import type { TopicPosts } from '~/types'
 
 const props = defineProps<TopicPosts>()
 </script>
@@ -13,7 +13,7 @@ const props = defineProps<TopicPosts>()
         <span class="absolute -bottom-2 left-0 w-12 h-1 bg-primary rounded-full" />
       </h2>
 
-      <NuxtLink :to="APP_ROUTES.topic.path(slug)"
+      <NuxtLink :to="APP_ROUTES.topic(slug)"
         class="flex items-center gap-1 text-sm font-medium text-primary hover:gap-2 transition-all">
         View All
         <Icon name="lucide:arrow-right" class="w-4 h-4" />

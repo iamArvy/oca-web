@@ -5,20 +5,24 @@ import { socials } from '~/constants/socials';
 const nav = [
   {
     label: 'Home',
-    url: APP_ROUTES.home.path
+    url: APP_ROUTES.home
   },
   {
     label: 'About',
-    url: APP_ROUTES.about.path
+    url: APP_ROUTES.about
   },
   {
     label: 'Privacy Policy',
-    url: APP_ROUTES.privacy.path
+    url: APP_ROUTES.privacy
   },
   {
     label: 'Contact',
-    url: APP_ROUTES.contact.path
+    url: APP_ROUTES.contact
   },
+  {
+    label: 'Admin Dashboard',
+    url: APP_ROUTES.admin.dashboard
+  }
 ]
 </script>
 

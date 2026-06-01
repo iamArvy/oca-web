@@ -1,58 +1,30 @@
 export const APP_ROUTES = {
-  home: {
-    path: '/',
-    name: "Home"
-  },
-  topic: {
-    path: (slug: string) => '/topics/' + slug,
-    name: 'topics-slug'
-  },
-  post: {
-    path: (slug: string) => '/posts/' + slug,
-    name: 'posts-slug'
-  },
-  search: {
-    path: (q: string) => '/search?q=' + q,
-    name: 'search'
-  },
-  tags:{
-    path: (slug: string) => '/tags/' + slug,
-    name: 'tags-slug'
-  },
-  contact: {
-    path: '/contact',
-    name: 'contact'
-  },
-  about: {
-    path: '/about',
-    name: 'about'
-  },
-  privacy: {
-    path: '/privacy',
-    name: 'privacy'
-  },
-  login: {
-    path: '/login',
-    name: 'Login'
-  },
-  register: {
-    path: '/register',
-    name: 'Register'
-  },
-  forgotPassword: {
-    path: '/forgot-password',
-    name: 'Forgot Password'
-  },
-  collection: {
-    path: (slug: string) => `/collections/${slug}`,
-    name: 'collection'
-  },
-  profile: {
-    path: '/profile',
-    name: 'profile'
-  },
-  source: {
-    path: (slug: string) => `/sources/${slug}`,
-    name: 'source'
+  home: '/',
+  topic:  (slug: string) => '/topics/' + slug,
+  post: (slug: string) => '/posts/' + slug,
+  search: (q: string) => '/search?q=' + q,
+  tags: (slug: string) => '/tags/' + slug,
+  contact: '/contact',
+  about: '/about',
+  privacy: '/privacy',
+  collection: (slug: string) => `/collections/${slug}`,
+  source: (slug: string) => `/sources/${slug}`,
+  admin: {
+    dashboard: "/admin/dashboard",
+    analytics: "/admin/analytics",
+    topics: "/admin/topics",
+    posts: "/admin/posts",
+    profile: "/admin/profile",
+    roles: "/admin/roles",
+    settings: "/admin/settings",
+    users: "/admin/users",
+    collections: "/admin/collections",
+    feeds: "/admin/feeds",
+    forgotPassword: "/admin/forgot-password",
+    ads: "/admin/ads",
+    liveSources: "/admin/live-sources",
+    staticPages: "/admin/static-pages",
+    contactMessages:  "/admin/contact-messages",
+    login: '/admin/login',
   }
 }

@@ -12,6 +12,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
+        
+        '@tiptap/extension-image',
+        '@tiptap/extension-link',
+        '@tiptap/extension-placeholder',
+        '@tiptap/extension-youtube',
+        '@tiptap/starter-kit',
+        '@tiptap/vue-3',
         '@vee-validate/zod',
         '@vueuse/core',
         'class-variance-authority',
@@ -99,6 +106,15 @@ export default defineNuxtConfig({
       adsenseClient: process.env.ADSENSE_CLIENT,
       googleTagManagerId: process.env.GOOGLE_TAG_MANAGER_ID,
       linkedinPartnerId: process.env.LINKEDIN_PARTNER_ID,
+    },
+  },
+
+  routeRules: {
+    '/admin': {
+      redirect: {
+        to: '/admin/dashboard',
+        statusCode: 301,
+      },
     },
   },
 });

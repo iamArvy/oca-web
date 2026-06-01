@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { API_ROUTES } from '~/constants';
-import type { ApiResponse, Seo } from '~/interfaces';
+import type { ApiResponse, Seo } from '~/types';
 
 const query = computed(() => ({
   days: 1,
 }));
 
-const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.seo.path('home'), { server: true });
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.seo('home'), { server: true });
 
 useSeoMeta(seo.value?.data ? {
   title: seo.value.data.title,
@@ -42,7 +42,7 @@ useSeoMeta(seo.value?.data ? {
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
       </template>
-      <TopicFeed :route="API_ROUTES.topicPosts.path" />
+      <TopicFeed :route="API_ROUTES.public.topicPosts" />
     </AppContent>
   </main>
 </template>

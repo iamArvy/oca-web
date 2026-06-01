@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { API_ROUTES, APP_ROUTES } from '~/constants';
 import { ChevronRight } from 'lucide-vue-next'
-import type { ApiListResponse, Topic } from '~/interfaces';
+import type { ApiListResponse, Topic } from '~/types';
 
 const currentTopic = ref<Topic | null>(null)
 
@@ -13,7 +13,7 @@ function onMouseLeave() {
   currentTopic.value = null
 }
 
-const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topics.path, {
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topics, {
   query: {
     limit: 7,
     isFeatured: 'true',
@@ -28,8 +28,8 @@ const { isMobile } = useMobile('lg')
   <nav @mouseleave="onMouseLeave" class="w-full overflow-x-auto">
     <ul v-if="topics" class="flex space-x-4 overflow-x-auto scrollbar-hide items-center">
       <li v-for="item in topics.data" :key="item.id" @mouseover="onMouseEnter(item)" class="shrink-0">
-        <LayoutNav :label="item.name" :value="APP_ROUTES.topic.path(item.slug)"
-          :active="currentTopic?.slug === item.slug" :hasChildren="item.children && item.children.length > 0" />
+        <LayoutNav :label="item.name" :value="APP_ROUTES.topic(item.slug)" :active="currentTopic?.slug === item.slug"
+          :hasChildren="item.children && item.children.length > 0" />
       </li>
       <li>
         <LayoutMobileMenu :topics="topics">
@@ -45,7 +45,7 @@ const { isMobile } = useMobile('lg')
       <li v-for="child in [...currentTopic.children]
         .sort((a, b) => Number(b.isFeatured) - Number(a.isFeatured))
         .slice(0, 7)" :key="child.id" class="shrink-0">
-        <LayoutNav :label="child.name" :value="APP_ROUTES.topic.path(child.slug)" />
+        <LayoutNav :label="child.name" :value="APP_ROUTES.topic(child.slug)" />
       </li>
     </ul>
   </nav>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES } from '~/constants';
-import { SortPostOptions, type ApiListResponse, type Post } from '~/interfaces';
+import { SortPostOptions, type ApiListResponse, type PostWebsiteListData } from '~/types';
 import { Flame } from 'lucide-vue-next';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const { data: hotClicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4, topic: props.topic } })
+const { data: hotClicks } = useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, { query: { sort: SortPostOptions.VIEWS, days: 1, limit: 4, topic: props.topic } })
 </script>
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive border-l-4 border-l-primary">

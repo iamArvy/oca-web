@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import type { LiveSources } from '~/interfaces';
+import type { LiveSourceWebsiteData } from '~/types';
 
 const props = defineProps<{
-  sources?: LiveSources
+  sources: LiveSourceWebsiteData[]
 }>()
 
 const sources = computed(() => props.sources ?? [])
@@ -52,7 +52,7 @@ function scrollBy(dir: 1 | -1) {
       </div>
 
       <div ref="scrollerRef"
-        class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth p-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"">
+        class="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth p-2 [-ms-overflow-style:none] [scrollbar-none] [&::-webkit-scrollbar]:hidden"">
         <div v-for="s in sources" :key="s.id" @click="activeId = s.id"
         class="group shrink-0 snap-start w-44 md:w-52 rounded-xl overflow-hidden border-2 transition-all text-left"
         :class="s.id === activeId ? 'border-primary shadow-lg scale-[1.02]' : 'border-transparent'">

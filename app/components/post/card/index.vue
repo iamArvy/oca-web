@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { Post } from "~/interfaces";
+import type { PostWebsiteListData } from "~/types";
 
-import featured from "./featured.vue";
 import compact from "./compact.vue";
 import grid from "./grid.vue";
 import list from "./list.vue";
 
 interface Props {
-  post: Post;
-  variant?: "default" | "featured" | "grid" | "list";
+  post: PostWebsiteListData;
+  variant?: "default" | "grid" | "list";
   skeleton?: boolean;
 };
 
@@ -17,8 +16,6 @@ const props = defineProps<Props>();
 
 const component = computed(() => {
   switch (props.variant) {
-    case "featured":
-      return featured;
     case "grid":
       return grid;
     case "list":

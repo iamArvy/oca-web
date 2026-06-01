@@ -3,12 +3,12 @@ import { computed } from "vue";
 import { useRoute } from "vue-router";
 import placeholder from "~/assets/images/oca-placeholder.png";
 import { API_ROUTES } from "~/constants";
-import type { Post, ApiResponse } from "~/interfaces";
+import type { PostWebsiteData, ApiResponse } from "~/types";
 
 const route = useRoute();
 const slug = computed(() => route.params.slug as string);
 
-const { data: res } = await useAPI<ApiResponse<Post>>(API_ROUTES.post.path(slug.value));
+const { data: res } = await useAPI<ApiResponse<PostWebsiteData>>(API_ROUTES.public.post(slug.value));
 
 if (!res.value || !res.value.data) {
   throw createError({
@@ -42,7 +42,8 @@ useSeoMeta({
   <main>
     <!-- Hero Image -->
     <div class="relative h-75 md:h-112.5 overflow-hidden">
-      <NuxtImg :src="post.image" :alt="post.title" :placeholder="placeholder" class="w-full h-full object-cover" />
+      <NuxtImg :src="post.image ?? undefined" :alt="post.title" :placeholder="placeholder"
+        class="w-full h-full object-cover" />
       <div class="absolute inset-0 bg-linear-to-t from-background via-background/50 to-transparent" />
     </div>
     <AppContent class="-mt-32 relative z-10">
@@ -58,7 +59,7 @@ useSeoMeta({
         <WidgetsHotClicks />
         <!-- Related Post widget -->
       </template>
-      <TopicFeed :route="API_ROUTES.relatedTopics.path(post.topic.slug)" />
+      <TopicFeed :route="API_ROUTES.public.relatedTopics(post.topic.slug)" />
     </AppContent>
   </main>
 </template>

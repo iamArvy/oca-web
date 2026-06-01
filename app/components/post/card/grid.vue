@@ -2,10 +2,10 @@
 import { Play } from "lucide-vue-next";
 import { APP_ROUTES } from "~/constants";
 import { PostType } from "~/enums";
-import type { Post } from "~/interfaces";
+import type { PostWebsiteListData } from "~/types";
 
 interface Props {
-  post: Post;
+  post: PostWebsiteListData;
   skeleton?: boolean
 }
 
@@ -44,17 +44,17 @@ function handleMouseLeave() {
         <Play class="w-3 h-3 fill-current" />
       </div>
       <template v-if="isHovering && post.type === PostType.VIDEO">
-        <iframe ref="iframeRef" :src="post.content + '?enablejsapi=1&controls=0&rel=0&mute=1'"
+        <!-- <iframe ref="iframeRef" :src="post.content + '?enablejsapi=1&controls=0&rel=0&mute=1'"
           class="absolute inset-0 w-full h-full object-cover" frameborder="0" allow="autoplay; encrypted-media"
-          allowfullscreen />
+          allowfullscreen /> -->
       </template>
-      <NuxtImg v-else :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
+      <NuxtImg v-else :src="props.post.image ?? undefined" :alt="props.post.title" placeholder="/oca-placeholder.png"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
     </div>
 
     <p class="p-3">
       <span class="flex items-center text-primary text-xs md:text-sm mb-1 space-x-1 line-clamp-2">
-        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline inline">
+        <NuxtLink :to="APP_ROUTES.topic(post.topic.slug)" class="hover:underline inline">
           {{ props.post.topic.name }}
         </NuxtLink>
         <span class="inline mx-1">
@@ -64,7 +64,7 @@ function handleMouseLeave() {
           {{ formatDateCompact(post.createdAt) }} ago
         </span>
       </span>
-      <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
+      <NuxtLink :to="APP_ROUTES.post(post.slug)"
         class="text-sm lg:text-base font-display font-bold mb-2 line-clamp-2 hover:text-primary transition-colors">
         {{ props.post.title }}
       </NuxtLink>
@@ -78,7 +78,7 @@ function handleMouseLeave() {
           post.author.name
         }}
       </span>
-      <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
+      <NuxtLink :to="APP_ROUTES.source(post.feed.slug)" v-else-if="post.feed"
         class="flex items-center gap-1 hover:underline text-xs text-foreground">
         <NuxtImg v-if="post.feed.image" :src="post.feed.image" :alt="post.feed.name" class="w-3 h-3 rounded-full" />
         <Icon v-else name="lucide:rss" class="w-3 h-3" />
