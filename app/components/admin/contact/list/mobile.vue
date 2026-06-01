@@ -27,7 +27,7 @@ defineEmits<Emits>();
           </p>
         </div>
 
-        <ContactListMenu :item="item" @delete="$emit('delete', $event)" />
+        <AdminContactListMenu :item="item" @delete="$emit('delete', $event)" />
       </div>
     </div>
   </div>

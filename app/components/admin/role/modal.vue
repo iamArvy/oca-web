@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { ref, computed, watch } from "vue";
 import { Users, Edit, Shield } from "lucide-vue-next";
 
@@ -182,4 +182,8 @@ const groupedPermissions = computed(() => {
       </DialogFooter>
     </DialogContent>
   </Dialog>
+</template> -->
+
+<template>
+  <div></div>
 </template>

@@ -46,7 +46,7 @@ defineEmits<Emits>();
             {{ item.createdAt }}
           </TableCell>
           <TableCell>
-            <ContactListMenu :item="item" @delete="$emit('delete', $event)" />
+            <AdminContactListMenu :item="item" @delete="$emit('delete', $event)" />
           </TableCell>
         </TableRow>
       </TableBody>
