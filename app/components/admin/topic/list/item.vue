@@ -31,7 +31,7 @@ const childrenOpen = ref(false);
               <Folder v-else class="w-5 h-5 text-primary" />
               {{ item.name }}
             </h2>
-            <TopicListMenu :topic="item" @edit="$emit('edit', $event)" @delete="$emit('delete', $event)"
+            <AdminTopicListMenu :topic="item" @edit="$emit('edit', $event)" @delete="$emit('delete', $event)"
               @create-subtopic="$emit('create-subtopic', $event)" @toggle-featured="$emit('toggle-featured', $event)" />
           </div>
         </div>

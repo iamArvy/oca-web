@@ -450,7 +450,7 @@ const emptyProps = {
     <AdminModalComponent v-model:open="modalOpen" :title="mode === 'create' ? 'Create New User' : 'Edit User'">
       <AdminUserForm :user="selectedItem" :mode="mode" @cancel="handleClose" />
     </AdminModalComponent>
-    <DeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" label="User" :value="itemToDelete.name ?? ''"
+    <AdminDeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" label="User" :value="itemToDelete.name ?? ''"
       @confirm="confirmDelete" />
   </div>
 </template>

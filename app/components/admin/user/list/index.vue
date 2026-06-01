@@ -25,7 +25,7 @@ function getRoleBadgeColor(role: UserRole) {
   }
 }
 
-const { isMobile } = useMobile();
+const { isMobile } = useMobile('md');
 </script>
 
 <template>

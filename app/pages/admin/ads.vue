@@ -75,7 +75,7 @@ const emptyProps = {
     </template>
     <AdminEmptyList v-else v-bind="emptyProps" />
     <AdminModalComponent v-model:open="modalOpen" :title="mode === 'create' ? 'Create New Ads' : 'Edit Ads'">
-      <AdsForm :ad="selectedItem" :mode="mode" @cancel="handleClose" />
+      <AdminAdsForm :ad="selectedItem" :mode="mode" @cancel="handleClose" />
     </AdminModalComponent>
     <AdminDeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" label="Post" :value="itemToDelete.title ?? ''"
       @confirm="confirmDelete" />

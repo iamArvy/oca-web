@@ -14,7 +14,7 @@ interface Emits {
 defineProps<Props>();
 defineEmits<Emits>();
 
-const { isMobile } = useMobile();
+const { isMobile } = useMobile('md');
 
 const components = {
   mobile,

@@ -12,6 +12,13 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
     optimizeDeps: {
       include: [
+        
+        '@tiptap/extension-image',
+        '@tiptap/extension-link',
+        '@tiptap/extension-placeholder',
+        '@tiptap/extension-youtube',
+        '@tiptap/starter-kit',
+        '@tiptap/vue-3',
         '@vee-validate/zod',
         '@vueuse/core',
         'class-variance-authority',

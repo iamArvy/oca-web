@@ -19,7 +19,7 @@ const { topicOptions } = await useTopics();
       <FormItem>
         <FormLabel>Featured Image</FormLabel>
         <FormControl>
-          <ImageUpload v-model="fileRef" :initial-value="post?.image ?? null" />
+          <AdminImageUpload v-model="fileRef" :initial-value="post?.image ?? null" />
           <Input v-bind="componentField" class="mt-2" placeholder="Or paste image URL..." />
         </FormControl>
         <!-- <FormDescription> This is your public display name. </FormDescription> -->
@@ -44,8 +44,9 @@ const { topicOptions } = await useTopics();
         <FormItem>
           <FormLabel>Topics</FormLabel>
           <FormControl>
-            <AppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions" placeholder="Select topic"
-              search-placeholder="Search topic..." empty-text="No topic found." class="w-full" />
+            <AdminAppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions"
+              placeholder="Select topic" search-placeholder="Search topic..." empty-text="No topic found."
+              class="w-full" />
           </FormControl>
           <FormMessage />
         </FormItem>
@@ -106,7 +107,7 @@ const { topicOptions } = await useTopics();
       <FormItem>
         <FormLabel>Content</FormLabel>
         <FormControl>
-          <TextEditor v-bind="componentField" />
+          <AdminTextEditor v-bind="componentField" />
         </FormControl>
         <!-- <FormDescription> This is your public display name. </FormDescription> -->
         <FormMessage />

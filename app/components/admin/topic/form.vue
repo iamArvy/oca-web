@@ -35,8 +35,9 @@ const { topicOptions } = await useTopics();
       <FormItem>
         <FormLabel>Parent</FormLabel>
         <FormControl>
-          <AppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions" placeholder="Select topic"
-            search-placeholder="Search topic..." empty-text="No topic found." class="w-full" />
+          <AdminAppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions"
+            placeholder="Select topic" search-placeholder="Search topic..." empty-text="No topic found."
+            class="w-full" />
         </FormControl>
         <FormMessage />
       </FormItem>

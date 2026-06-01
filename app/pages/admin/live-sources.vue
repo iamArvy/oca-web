@@ -68,19 +68,19 @@ const emptyProps = {
 <template>
   <div class="space-y-6">
     <AdminPageHeader v-bind="header">
-      <FeedFilter />
+      <AdminSourceFilter />
     </AdminPageHeader>
     <template v-if="sources && sources.data && sources.data.length > 0">
-      <SourceList v-if="sources?.data" :sources="sources?.data" @edit="handleEdit" @delete="handleDelete" />
+      <AdminSourceList v-if="sources?.data" :sources="sources?.data" @edit="handleEdit" @delete="handleDelete" />
       <AppPagination v-if="sources.meta.total_pages && sources.meta.total_pages > 1" :meta="sources.meta"
         @change="handlePageChange" />
     </template>
     <AdminEmptyList v-else v-bind="emptyProps" />
 
     <AdminModalComponent v-model:open="modalOpen" :title="mode === 'create' ? 'Create New Feed' : 'Edit Feed'">
-      <SourceForm :source="selectedItem" :mode="mode" @cancel="handleClose" />
+      <AdminSourceForm :source="selectedItem" :mode="mode" @cancel="handleClose" />
     </AdminModalComponent>
-    <DeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" label="Source" :value="itemToDelete.name ?? ''"
+    <AdminDeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" label="Source" :value="itemToDelete.name ?? ''"
       @confirm="confirmDelete" />
   </div>
 </template>

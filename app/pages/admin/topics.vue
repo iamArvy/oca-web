@@ -95,7 +95,7 @@ const emptyProps = {
       ">
       <AdminTopicForm :topic="selectedItem" :mode="mode" :type="type" @cancel="handleClose" />
     </AdminModalComponent>
-    <DeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen" :label="itemToDelete.parent ? 'Subtopic' : 'Topic'"
-      :value="itemToDelete.name ?? ''" @confirm="confirmDelete" />
+    <AdminDeleteDialog v-if="itemToDelete" v-model="deleteDialogOpen"
+      :label="itemToDelete.parent ? 'Subtopic' : 'Topic'" :value="itemToDelete.name ?? ''" @confirm="confirmDelete" />
   </div>
 </template>

@@ -19,7 +19,7 @@ defineEmits<Emits>();
 <template>
   <div class="bg-card rounded-2xl card-interactive overflow-hidden">
     <div type="multiple" class="w-full space-y-1">
-      <TopicListItem v-for="item in topics" :key="item.id" :item="item" @edit="$emit('edit', $event)"
+      <AdminTopicListItem v-for="item in topics" :key="item.id" :item="item" @edit="$emit('edit', $event)"
         @delete="$emit('delete', $event)" @create-subtopic="$emit('create-subtopic', $event)"
         @toggle-featured="$emit('toggle-featured', $event)" />
     </div>

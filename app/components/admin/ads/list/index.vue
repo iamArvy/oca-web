@@ -56,13 +56,13 @@ const getContentTypeColor = (contentType: AdContentType) => {
   }
 };
 
-const { isMobile } = useMobile();
+const { isMobile } = useMobile('md');
 </script>
 
 <template>
-  <AdsListMobile v-if="isMobile" :ads="ads" :placement-color="getPlacementColor"
+  <AdminAdsListMobile v-if="isMobile" :ads="ads" :placement-color="getPlacementColor"
     :content-type-color="getContentTypeColor" :status-color="getStatusColor" @edit="$emit('edit', $event)"
     @delete="$emit('delete', $event)" />
-  <AdsListDesktop v-else :ads="ads" :placement-color="getPlacementColor" :content-type-color="getContentTypeColor"
+  <AdminAdsListDesktop v-else :ads="ads" :placement-color="getPlacementColor" :content-type-color="getContentTypeColor"
     :status-color="getStatusColor" @edit="$emit('edit', $event)" @delete="$emit('delete', $event)" />
 </template>

@@ -22,7 +22,7 @@ const { topicOptions } = await useTopics();
       <FormItem>
         <FormLabel>Feed Icon</FormLabel>
         <FormControl>
-          <ImageUpload v-model="fileRef" :initial-value="feed?.image ?? null" />
+          <AdminImageUpload v-model="fileRef" :initial-value="feed?.image ?? null" />
           <Input v-bind="componentField" class="mt-2" placeholder="Or paste image URL..." />
         </FormControl>
         <FormMessage />
@@ -54,8 +54,9 @@ const { topicOptions } = await useTopics();
         <FormItem>
           <FormLabel>Topic</FormLabel>
           <FormControl>
-            <AppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions" placeholder="Select topic"
-              search-placeholder="Search topic..." empty-text="No topic found." class="w-full" />
+            <AdminAppCombobox v-if="topicOptions" v-bind="componentField" :options="topicOptions"
+              placeholder="Select topic" search-placeholder="Search topic..." empty-text="No topic found."
+              class="w-full" />
           </FormControl>
           <FormMessage />
         </FormItem>

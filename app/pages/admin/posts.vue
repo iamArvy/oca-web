@@ -92,7 +92,7 @@ const emptyProps = {
       <AdminPostView v-if="mode === 'view' && selectedPost" v-bind="selectedPost" />
       <AdminPostForm v-else :post="selectedPost" :mode="mode" @cancel="handleClose" />
     </AdminModalComponent>
-    <DeleteDialog v-if="postToDelete" v-model="deleteDialogOpen" label="Post" :value="postToDelete.title ?? ''"
+    <AdminDeleteDialog v-if="postToDelete" v-model="deleteDialogOpen" label="Post" :value="postToDelete.title ?? ''"
       @confirm="confirmDelete" />
   </div>
 </template>
