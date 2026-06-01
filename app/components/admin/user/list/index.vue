@@ -29,6 +29,6 @@ const { isMobile } = useMobile('md');
 </script>
 
 <template>
-  <UserListMobile v-if="isMobile" :users="users" :role-color="getRoleBadgeColor" @edit="$emit('edit', $event)" />
-  <UserListDesktop v-else :users="users" :role-color="getRoleBadgeColor" @edit="$emit('edit', $event)" />
+  <AdminUserListMobile v-if="isMobile" :users="users" :role-color="getRoleBadgeColor" @edit="$emit('edit', $event)" />
+  <AdminUserListDesktop v-else :users="users" :role-color="getRoleBadgeColor" @edit="$emit('edit', $event)" />
 </template>
