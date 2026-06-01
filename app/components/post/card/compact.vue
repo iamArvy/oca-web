@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { APP_ROUTES } from "~/constants";
-import type { Post } from "~/interfaces";
+import type { PostWebsiteListData } from "~/types";
 
 interface Props {
-  post: Post;
+  post: PostWebsiteListData;
 }
 
 const props = defineProps<Props>();
@@ -11,11 +11,11 @@ const props = defineProps<Props>();
 
 <template>
   <article class="flex gap-4 p-3 rounded-xl hover:bg-muted/50 transition-colors">
-    <NuxtImg :src="props.post.image" :alt="props.post.title" placeholder="/oca-placeholder.png"
+    <NuxtImg :src="props.post.image ?? undefined" :alt="props.post.title" placeholder="/oca-placeholder.png"
       class="w-20 h-20 object-cover rounded-lg shrink-0" />
     <p class="flex-1 min-w-0 ">
       <span class="flex items-center text-primary text-xs space-x-1">
-        <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="hover:underline">
+        <NuxtLink :to="APP_ROUTES.topic(post.topic.slug)" class="hover:underline">
           {{ props.post.topic.name }}
         </NuxtLink>
         <span>
@@ -25,7 +25,7 @@ const props = defineProps<Props>();
           {{ formatDateCompact(post.createdAt) }} ago
         </span>
       </span>
-      <NuxtLink :to="APP_ROUTES.post.path(post.slug)"
+      <NuxtLink :to="APP_ROUTES.post(post.slug)"
         class="font-semibold text-sm mt-1 line-clamp-2 hover:text-primary transition-colors">
         {{ post.title }}
       </NuxtLink>
@@ -37,7 +37,7 @@ const props = defineProps<Props>();
           post.author.name
         }}
       </span>
-      <NuxtLink :to="APP_ROUTES.source.path(post.feed.slug)" v-else-if="post.feed"
+      <NuxtLink :to="APP_ROUTES.source(post.feed.slug)" v-else-if="post.feed"
         class="flex items-center gap-1.5 hover:underline text-xs mt-2">
         <NuxtImg v-if="post.feed.image" :src="post.feed.image" class="w-3 h-3 rounded-full" :alt="post.feed.name" />
         <Icon v-else name="lucide:rss" class="w-3 h-3" />

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Menu } from 'lucide-vue-next'
 import { API_ROUTES } from '~/constants'
-import type { ApiListResponse, Post } from '~/interfaces'
+import type { ApiListResponse, PostWebsiteListData, Topic } from '~/types'
 
-const { topics } = await useTopics()
-
-const { data: latestNews } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { limit: 20 } })
+// const { topics } = await useTopics()
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topics)
+const { data: latestNews } = useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, { query: { limit: 20 } })
 const { isMobile } = useMobile('lg')
 const { currentTheme } = useTheme()
 
@@ -28,8 +28,8 @@ const { currentTheme } = useTheme()
         <div class="flex items-center gap-2">
           <!-- <AppSearch class="hidden md:flex" /> -->
           <AppTheme />
-          <AppAccount />
-          <LayoutMobileMenu v-if="isMobile" :topics="topics">
+          <!-- <AppAccount /> -->
+          <LayoutMobileMenu v-if="isMobile" :topics="topics?.data">
             <Button variant="ghost" size="icon">
               <Menu class="size-4" />
             </Button>

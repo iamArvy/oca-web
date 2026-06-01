@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { APP_ROUTES } from "~/constants";
-import type { Post } from "~/interfaces";
+import type { PostWebsiteData } from "~/types";
 
 defineProps<{
-  post: Post;
+  post: PostWebsiteData;
 }>();
 </script>
 <template>
@@ -16,7 +16,7 @@ defineProps<{
     </NuxtLink>
 
     <div class="flex items-center gap-2 mb-4">
-      <NuxtLink :to="APP_ROUTES.topic.path(post.topic.slug)" class="category-pill">
+      <NuxtLink :to="APP_ROUTES.topic(post.topic.slug)" class="category-pill">
         {{ post.topic.name }}
       </NuxtLink>
     </div>

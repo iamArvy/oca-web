@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Megaphone } from 'lucide-vue-next'
 import { API_ROUTES, APP_ROUTES } from '~/constants';
-import type { ApiListResponse, Topic } from '~/interfaces';
+import type { ApiListResponse, Topic } from '~/types';
 
 const isOpen = ref(false)
 const route = useRoute()
@@ -10,7 +10,7 @@ watch(() => route.fullPath, () => {
   isOpen.value = false
 })
 
-const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.topicTree.path)
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topicTree)
 const { isMobile } = useMobile('lg')
 </script>
 
@@ -33,7 +33,7 @@ const { isMobile } = useMobile('lg')
         </Accordion>
       </div>
       <SheetFooter>
-        <NuxtLink :to="APP_ROUTES.contact.path"
+        <NuxtLink :to="APP_ROUTES.contact"
           class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
           <Megaphone class="w-5 h-5" />
           Advertise with Us

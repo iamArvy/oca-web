@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Plus } from "lucide-vue-next";
 import { API_ROUTES, APP_ROUTES } from "~/constants";
-import type { ApiListResponse, Comment } from "~/interfaces";
+import type { ApiListResponse, CommentWebsiteData } from "~/types";
 
 interface Props {
   postId: string;
@@ -16,7 +16,7 @@ const query = computed(() => ({
   limit: 10,
 }));
 
-const { data } = await useAPI<ApiListResponse<Comment>>(API_ROUTES.comments.path, {
+const { data } = await useAPI<ApiListResponse<CommentWebsiteData>>(API_ROUTES.public.comments, {
   query,
 });
 
@@ -26,8 +26,8 @@ const {
   loadMore,
   loading,
   count,
-} = usePagination<Comment>({
-  route: API_ROUTES.comments.path,
+} = usePagination<CommentWebsiteData>({
+  route: API_ROUTES.public.comments,
   initialItems: data,
   query,
 });
@@ -73,7 +73,7 @@ const {
           Sign in to post comments and engage with the community.
         </p>
 
-        <Button @click="$router.push(APP_ROUTES.login.path + `?redirect=${$route.path}`)"
+        <Button @click="$router.push(`${APP_ROUTES.admin.login}?redirect=${$route.path}`)"
           class="bg-primary hover:opacity-90">
           Login to Comment
         </Button>

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { Award } from 'lucide-vue-next';
 import { API_ROUTES } from '~/constants';
-import type { ApiListResponse, Post } from '~/interfaces';
+import type { ApiListResponse, PostWebsiteListData } from '~/types';
 
 const collection = 'editor-picks'
-const { data: editorPicks } = useAPI<ApiListResponse<Post>>(API_ROUTES.posts.path, { query: { collection, limit: 4 } })
+const { data: editorPicks } = useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, { query: { collection, limit: 4 } })
 </script>
 
 <template>

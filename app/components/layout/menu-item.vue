@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { APP_ROUTES } from '~/constants';
-import type { Topic } from '~/interfaces';
+import type { Topic } from '~/types';
 
 interface Props {
   item: Topic
@@ -23,7 +23,7 @@ const hasChildren = computed(() => props.item.children ? props.item.children.len
       </template>
 
       <template v-else>
-        <NuxtLink :to="APP_ROUTES.topic.path(item.slug)"
+        <NuxtLink :to="APP_ROUTES.topic(item.slug)"
           class="flex-1 px-4 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
           {{ item.name }}
         </NuxtLink>
@@ -32,7 +32,7 @@ const hasChildren = computed(() => props.item.children ? props.item.children.len
 
     <AccordionContent v-if="hasChildren" class="pb-0">
       <div class="pl-4 space-y-1 pb-2">
-        <NuxtLink :to="APP_ROUTES.topic.path(item.slug)"
+        <NuxtLink :to="APP_ROUTES.topic(item.slug)"
           class="block px-4 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg hover:no-underline transition-colors">
           All {{ item.name }}
         </NuxtLink>

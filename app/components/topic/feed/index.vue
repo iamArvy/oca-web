@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import type { ApiListResponse, TopicPosts } from "~/interfaces";
+import type { ApiListResponse, TopicPosts } from "~/types";
 
 interface Props {
   route: string;

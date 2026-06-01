@@ -2,12 +2,12 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { API_ROUTES } from '~/constants'
-import type { ApiResponse, Topic } from '~/interfaces'
+import type { ApiResponse, Topic } from '~/types'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const { data: topic, error } = await useAPI<ApiResponse<Topic>>(API_ROUTES.topic.path(slug.value))
+const { data: topic, error } = await useAPI<ApiResponse<Topic>>(API_ROUTES.public.topic(slug.value))
 
 if (!topic.value?.data) {
   throw createError(error.value || {
@@ -35,7 +35,7 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
       </template>
-      <TopicFeed :route="API_ROUTES.relatedTopics.path(slug)" />
+      <TopicFeed :route="API_ROUTES.public.relatedTopics(slug)" />
     </AppContent>
   </main>
 </template>

@@ -3,7 +3,7 @@ import { toTypedSchema } from "@vee-validate/zod";
 import { useForm } from "vee-validate";
 import * as z from "zod";
 
-import type { ApiResponse, Comment } from "~/interfaces";
+import type { ApiResponse, CommentWebsiteData } from "~/types";
 
 export function useCommentForm(postId: MaybeRef<string>) {
     const { success, error } = useToast();
@@ -21,7 +21,7 @@ export function useCommentForm(postId: MaybeRef<string>) {
     } });
     const submit = handleSubmit(async (values) => {
       try {
-        const { message } = await $api<ApiResponse<Comment>>(API_ROUTES.comments.path, {
+        const { message } = await $api<ApiResponse<CommentWebsiteData>>(API_ROUTES.admin.comments, {
           method: "POST",
           body: values,
         });

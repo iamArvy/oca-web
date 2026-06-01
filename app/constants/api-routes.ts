@@ -1,80 +1,61 @@
 export const API_ROUTES = {
-  login: {
-    path: '/auth/login'
+  public: {
+    topic: (slug: string) => '/public/topics/' + slug,
+    topics: '/public/topics/',
+    posts: '/public/posts',
+    post: (slug: string) => '/public/posts/' + slug,
+    comments: '/comments',
+    ads: '/public/ads',
+    ads_click: (id: string) => `/public/ads/${id}/clicks`,
+    collection: (slug: string) => '/public/collections/' + slug,
+    feed: (slug: string) => '/public/feeds/' + slug,
+    topicPosts: '/public/topic-posts',
+    topicTree: '/public/topics-tree',
+    relatedTopics: (slug: string) => `/public/related-topics/${slug}`,
+    liveSources: "/public/live-sources",
+    subscribe: "/public/subscribe",
+    seo: (slug: string) => `public/seo/${slug}`,
+    contact: "/public/contact",
   },
-  register: {
-    path: '/auth/register'
+  auth: {
+    login: '/auth/login',
+    register: '/auth/register',
+    forgotPassword: "/auth/forgot-password",
+    resetPassword: "/auth/reset-password",
+    logout: "/auth/logout",
   },
-  topic: {
-    path: (slug: string) => '/public/topics/' + slug,
-    name: 'Topic'
+  sitemap: {
+    topics: '/public/topics/',
+    posts: '/public/posts',
   },
-  topics: {
-    path: '/public/topics/',
-    name: 'Topics'
+  admin: {
+    topic: (id: string) => "/topics/" + id,
+    toggleTopicFeature: (id: string) => `/topics/${id}/toggle-featured`,
+    topics: "/topics",
+    topicTree: "/public/topics-tree",
+    posts: "/posts",
+    post: (id: string) => "/posts/" + id,
+    collections: "/collections",
+    comments: "/comments",
+    ads: "/ads",
+    ad: (id: string) => "/ads/" + id,
+    collection: (id: string) => "/collections/" + id,
+    upload: (type: string) => `/uploads?type=${type}`,
+    feed: (id: string) => "/feeds/" + id,
+    feeds: "/feeds",
+    manageCollectionPosts: (collectionId: string) => `/collections/${collectionId}/manage-posts`,
+    users: "/users",
+    user: (id: string) => "/users/" + id,
+    liveSources: "live-sources",
+    liveSource: (id: string) => `live-sources/${id}`,
+    seos: "seos",
+    seo: (id: string) => `seos/${id}`,
+    contactMessages: "contact-messages",
+    contactMessage: (id: string) => `contact-messages/${id}`,
   },
-  posts: {
-    path: '/public/posts',
-    name: "Posts"
+  me: {
+    base: '/me', 
+    changePassword: "me/change-password",
+    updateProfile: "me/update",
   },
-  post: {
-    path: (slug: string) => '/public/posts/' + slug,
-    name: 'Post'
-  },
-  comments: {
-    path: '/comments',
-    name: 'Comment'
-  },
-  ads: {
-    path: '/public/ads',
-    name: 'Ads'
-  },
-  ads_click: {
-    path: (id: string) => `/public/ads/${id}/clicks`,
-    name: 'Ads Click'
-  },
-  collection: {
-    path: (slug: string) => '/public/collections/' + slug,
-    name: 'Collection'
-  },
-  feed: {
-    path: (slug: string) => '/public/feeds/' + slug,
-    name: 'Feed'
-  },
-  topicPosts: {
-    path: '/public/topic-posts',
-    name: 'Topic Posts'
-  },
-  topicTree: {
-    path: '/public/topics-tree',
-    name: 'Topic Tree'
-  },
-  relatedTopics: {
-    path: (slug: string) => `/public/related-topics/${slug}`,
-    name: 'Related Topics'
-  },
-  liveSources: {
-    path: "/live-sources",
-    name: "Live Sources",
-  },
-  subscribe: {
-    path: "/public/subscribe",
-    name: "Subscribe"
-  },
-  forgotPassword: {
-    path: "/auth/forgot-password",
-    name: "Forgot Password"
-  },
-  resetPassword: {
-    path: "/auth/reset-password",
-    name: "Reset Password"
-  },
-  seo: {
-    path: (slug: string) => `public/seo/${slug}`,
-    name: "Seo",
-  },
-  contact: {
-    path: "/public/contact",
-    name: "Contact"
-  }
 }

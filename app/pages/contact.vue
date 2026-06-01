@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES } from '~/constants';
-import type { ApiResponse, Seo } from '~/interfaces';
+import type { ApiResponse, Seo } from '~/types';
 
 const stats = [
   {
@@ -17,7 +17,7 @@ const stats = [
   }
 ]
 
-const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.seo.path('contact'), { server: true });
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.seo('contact'), { server: true });
 
 useSeoMeta(seo.value?.data ? {
   title: seo.value.data.title,

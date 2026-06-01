@@ -1,11 +1,11 @@
-import { ApiListResponse, Topic } from '~/interfaces'
+import { ApiListResponse, SitemapData } from '~/types'
 import { API_ROUTES } from '~/constants'
 import { createApi } from '~~/server/utils/api'
 
 export default defineSitemapEventHandler(async (event) => {
   const api = createApi(event)
 
-  const topics = await api<ApiListResponse<Topic>>(API_ROUTES.topics.path, {
+  const topics = await api<ApiListResponse<SitemapData>>(API_ROUTES.public.topics, {
     query: {
       limit: 1000,
     },

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES } from "~/constants";
-import { AdContentType, type Ad, type ApiListResponse } from "~/interfaces";
+import { AdContentType, type AdWebsiteData, type ApiListResponse } from "~/types";
 
 interface AdPlacementProps {
   size: "banner" | "sidebar" | "inline";
@@ -14,7 +14,7 @@ const sizeClasses = {
   inline: "h-20",
 };
 
-const { data } = useAPI<ApiListResponse<Ad>>(API_ROUTES.ads.path);
+const { data } = useAPI<ApiListResponse<AdWebsiteData>>(API_ROUTES.public.ads);
 
 const ads = computed(() => data.value?.data ?? []);
 
@@ -36,11 +36,11 @@ onMounted(() => {
     if (filteredAds.value.length <= 1) return;
 
     currentIndex.value = (currentIndex.value + 1) % filteredAds.value.length;
-  }, 6000);
+  }, 15000);
 });
 
-const clickAd = async (ad: Ad) => {
-  await useAPI(API_ROUTES.ads_click.path(ad.id), {
+const clickAd = async (ad: AdWebsiteData) => {
+  await useAPI(API_ROUTES.public.ads_click(ad.id), {
     method: "POST",
     body: {
       adId: ad.id,

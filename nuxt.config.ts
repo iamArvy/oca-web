@@ -101,4 +101,13 @@ export default defineNuxtConfig({
       linkedinPartnerId: process.env.LINKEDIN_PARTNER_ID,
     },
   },
+
+  routeRules: {
+    '/admin': {
+      redirect: {
+        to: '/admin/dashboard',
+        statusCode: 301,
+      },
+    },
+  },
 });

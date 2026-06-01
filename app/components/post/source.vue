@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { APP_ROUTES } from "~/constants";
-import type { Feed } from "~/interfaces";
-defineProps<Feed>();
+import type { PostFeed } from "~/types";
+defineProps<PostFeed>();
 </script>
 <template>
   <div class="bg-card rounded-2xl p-6 card-interactive">
@@ -15,7 +15,7 @@ defineProps<Feed>();
         <AvatarImage :src="image ?? ''" :alt="name" />
         <AvatarFallback>{{ getInitials(name) }}</AvatarFallback>
       </Avatar>
-      <NuxtLink :to="APP_ROUTES.source.path(slug)">
+      <NuxtLink :to="APP_ROUTES.source(slug)">
         <p class="font-semibold">{{ name }}</p>
         <!-- <p class="text-sm text-muted-foreground">{{ role }}</p> -->
       </NuxtLink>

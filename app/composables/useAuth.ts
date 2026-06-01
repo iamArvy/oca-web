@@ -1,8 +1,9 @@
-import type { ApiResponse, User } from "~/interfaces";
+import { API_ROUTES, APP_ROUTES } from "~/constants";
+import type { ApiResponse, UserAdminData } from "~/types";
 
 export const useAuth = () => {
   const { success, error } = useToast();
-  const user = useState<User | null>('auth_user', () => null);
+  const user = useState<UserAdminData | null>('auth_user', () => null);
   const loading = useState('auth_loading', () => false);
   const { $api } = useNuxtApp();
 
@@ -10,7 +11,7 @@ export const useAuth = () => {
     try {
       loading.value = true;
 
-      const { data } = await $api<ApiResponse<User>>('/me');
+      const { data } = await $api<ApiResponse<UserAdminData>>(API_ROUTES.me.base);
 
       user.value = data ?? null;
     } catch (e) {
@@ -23,11 +24,12 @@ export const useAuth = () => {
   const logout = async () => {
     const { $api } = useNuxtApp();
     try {
-      await $api('/auth/logout', {
+      await $api(API_ROUTES.auth.logout, {
         method: 'POST',
       });
       success('Logout Successful');
       await refreshNuxtData();
+      navigateTo(APP_ROUTES.home);
     } catch (e: unknown) {
       error(handleError(e, "Something went wrong"));
     }

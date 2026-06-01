@@ -17,7 +17,7 @@ const { $api } = useNuxtApp();
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    await $api(API_ROUTES.subscribe.path, {
+    await $api(API_ROUTES.public.subscribe, {
       method: 'POST',
       body: values,
     })
