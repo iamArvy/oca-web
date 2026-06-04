@@ -18,10 +18,6 @@ const nav = [
   {
     label: 'Contact',
     url: APP_ROUTES.contact
-  },
-  {
-    label: 'Admin Dashboard',
-    url: APP_ROUTES.admin.dashboard
   }
 ]
 </script>
