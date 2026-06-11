@@ -30,7 +30,6 @@ const { data: pages, refresh } = useAPI<ApiListResponse<ContactMessage>>(
     query: {
       ...route.query,
       page,
-      limit: 20,
     },
   },
 );

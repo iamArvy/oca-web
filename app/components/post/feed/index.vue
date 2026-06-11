@@ -18,7 +18,6 @@ const props = defineProps<Props>();
 
 const query = computed(() => ({
   ...props.query,
-  limit: 18,
 }));
 
 const { data } = await useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, {

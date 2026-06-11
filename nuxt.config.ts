@@ -19,10 +19,14 @@ export default defineNuxtConfig({
         '@tiptap/extension-youtube',
         '@tiptap/starter-kit',
         '@tiptap/vue-3',
+        '@unovis/vue', 
         '@vee-validate/zod',
         '@vueuse/core',
         'class-variance-authority',
         'clsx',
+        'date-fns',
+        'embla-carousel-autoplay',
+        'embla-carousel-vue',
         'lucide-vue-next',
         'reka-ui',
         'tailwind-merge',
@@ -79,7 +83,8 @@ export default defineNuxtConfig({
   sitemap: {
     sources: [
       '/api/__sitemap__/posts',
-      '/api/__sitemap__/topics'
+      '/api/__sitemap__/topics',
+      '/api/__sitemap__/sources'
     ],
   },
 

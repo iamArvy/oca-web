@@ -13,13 +13,7 @@ function onMouseLeave() {
   currentTopic.value = null
 }
 
-const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topics, {
-  query: {
-    limit: 7,
-    isFeatured: 'true',
-    isRootParent: 'true',
-  }
-})
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.navigation.top)
 
 const { isMobile } = useMobile('lg')
 

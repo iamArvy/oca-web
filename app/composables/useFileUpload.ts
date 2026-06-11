@@ -9,7 +9,7 @@ export function useFileUpload() {
   // ✅ holds the selected file
   const fileRef = ref<File | null>(null);
 
-  async function upload(type: UploadType, metadata?: Record<string, string>) {
+  async function upload(context: UploadType, metadata?: Record<string, string>) {
     if (!fileRef.value) {
       error("Please select a file");
       return null;
@@ -22,7 +22,7 @@ export function useFileUpload() {
         formData.append("metadata", JSON.stringify(metadata));
       }
       const res = await $api<ApiResponse<FileData>>(
-        API_ROUTES.admin.upload(type),
+        API_ROUTES.media.upload(context),
         {
           method: "POST",
           body: formData,

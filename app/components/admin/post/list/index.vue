@@ -6,7 +6,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: "view" | "edit" | "delete", post: PostAdminData): void;
+  (e: "share" | "edit" | "delete", post: PostAdminData): void;
 }
 
 defineProps<Props>();
@@ -16,8 +16,8 @@ const { isMobile } = useMobile('md');
 </script>
 
 <template>
-  <AdminPostListMobile v-if="isMobile" :posts="posts" @view="$emit('view', $event)" @edit="$emit('edit', $event)"
+  <AdminPostListMobile v-if="isMobile" :posts="posts" @share="$emit('share', $event)" @edit="$emit('edit', $event)"
     @delete="$emit('delete', $event)" />
-  <AdminPostListDesktop v-else :posts="posts" @view="$emit('view', $event)" @edit="$emit('edit', $event)"
+  <AdminPostListDesktop v-else :posts="posts" @share="$emit('share', $event)" @edit="$emit('edit', $event)"
     @delete="$emit('delete', $event)" />
 </template>

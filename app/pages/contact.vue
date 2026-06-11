@@ -17,7 +17,7 @@ const stats = [
   }
 ]
 
-const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.seo('contact'), { server: true });
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.page.seo('contact'), { server: true });
 
 useSeoMeta(seo.value?.data ? {
   title: seo.value.data.title,

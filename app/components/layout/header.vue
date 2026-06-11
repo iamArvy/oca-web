@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { Menu } from 'lucide-vue-next'
-import { API_ROUTES } from '~/constants'
-import type { ApiListResponse, PostWebsiteListData, Topic } from '~/types'
 
-// const { topics } = await useTopics()
-const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topics)
-const { data: latestNews } = useAPI<ApiListResponse<PostWebsiteListData>>(API_ROUTES.public.posts, { query: { limit: 20 } })
 const { isMobile } = useMobile('lg')
 const { currentTheme } = useTheme()
 
@@ -15,7 +10,7 @@ const { currentTheme } = useTheme()
   <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
     <div class="bg-primary text-primary-foreground py-2">
       <div class="container-lg flex justify-between items-center text-sm mx-auto gap-4">
-        <NewsTicker v-if="latestNews" :posts="latestNews?.data ?? []" />
+        <NewsTicker />
       </div>
     </div>
 
@@ -29,7 +24,7 @@ const { currentTheme } = useTheme()
           <!-- <AppSearch class="hidden md:flex" /> -->
           <AppTheme />
           <!-- <AppAccount /> -->
-          <LayoutMobileMenu v-if="isMobile" :topics="topics?.data">
+          <LayoutMobileMenu v-if="isMobile">
             <Button variant="ghost" size="icon">
               <Menu class="size-4" />
             </Button>
@@ -37,7 +32,7 @@ const { currentTheme } = useTheme()
         </div>
       </div>
       <div class="flex justify-between gap-2">
-        <LayoutMenu :topics="topics" />
+        <LayoutMenu />
         <AppSearch v-if="!isMobile" class="hidden lg:flex max-w-70" />
       </div>
     </div>

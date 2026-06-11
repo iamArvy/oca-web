@@ -5,12 +5,7 @@ export default defineSitemapEventHandler(async (event) => {
   try {
     const api = createApi(event)
 
-    const { data:posts } = await api<ApiListResponse<SitemapData>>(API_ROUTES.sitemap.posts, {
-    query: {
-      limit: 1000,
-      days: 7,
-    },
-  })
+    const { data:posts } = await api<ApiListResponse<SitemapData>>(API_ROUTES.sitemap.posts)
 
     return posts.map((post) => ({
       loc: `/posts/${post.slug}`,

@@ -10,8 +10,7 @@ export interface Topic extends BaseItem {
   keywords: string[] | null;
 }
 
-export interface TopicPosts extends BaseItem {
-  name: string;
-  slug: string;
+export interface TopicPosts {
+  topic: Topic;
   posts: PostWebsiteData[]
 }

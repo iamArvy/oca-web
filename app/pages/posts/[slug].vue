@@ -59,7 +59,7 @@ useSeoMeta({
         <WidgetsHotClicks />
         <!-- Related Post widget -->
       </template>
-      <TopicFeed :route="API_ROUTES.public.relatedTopics(post.topic.slug)" />
+      <TopicFeed :route="API_ROUTES.public.topics" :query="{ relatedTo: post.topic.id }" />
     </AppContent>
   </main>
 </template>

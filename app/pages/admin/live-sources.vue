@@ -40,7 +40,6 @@ const { data: sources, refresh } = useAPI<ApiListResponse<LiveSourceAdminData>>(
     query: {
       ...route.query,
       page,
-      limit: 20,
     },
   },
 );

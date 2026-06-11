@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { APP_ROUTES } from "~/constants";
 import type { PostAdminData } from "~/types";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: "view" | "edit" | "delete", post: PostAdminData): void;
+  (e: "share" | "edit" | "delete", post: PostAdminData): void;
 }
 
 defineProps<Props>();
@@ -21,10 +22,10 @@ defineEmits<Emits>();
           placeholder="/oca-placeholder.png" />
 
         <div class="flex-1 min-w-0">
-          <button class="font-medium text-sm line-clamp-2 text-left hover:text-primary transition-colors"
-            @click="$emit('view', post)">
+          <NuxtLink :to="APP_ROUTES.post(post.slug)" target="__blank"
+            class="font-medium text-sm line-clamp-2 text-left hover:text-primary transition-colors">
             {{ post.title }}
-          </button>
+          </NuxtLink>
 
           <p class="text-xs text-muted-foreground mt-1">
             {{ post.author?.name ?? post.feed?.name ?? "Guest" }}
@@ -36,7 +37,7 @@ defineEmits<Emits>();
             </span>
           </div>
         </div>
-        <AdminPostListMenu :item="post" @view="$emit('view', $event)" @edit="$emit('edit', $event)"
+        <AdminPostListMenu :item="post" @share="$emit('share', $event)" @edit="$emit('edit', $event)"
           @delete="$emit('delete', $event)" />
       </div>
     </div>

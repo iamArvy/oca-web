@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/chart";
 // import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { VisArea, VisAxis, VisLine, VisXYContainer } from "@unovis/vue";
+import { API_ROUTES } from "~/constants";
 import type { ApiResponse, VisitorsChartData } from "~/types";
 
 const chartConfig = {
@@ -101,7 +102,7 @@ const filterOptions = [
 ];
 
 const { data } = useAPI<ApiResponse<VisitorsChartData[]>>(
-  "/analytics/visitors-chart",
+  API_ROUTES.admin.analytics.visitorsChart,
   {
     method: "GET",
     query,

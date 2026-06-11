@@ -38,7 +38,7 @@ const route = useRoute();
 
 const page = computed(() => Number(route.query.page) || 1);
 const { data: topics, refresh } = useAPI<ApiListResponse<Topic>>(
-  API_ROUTES.admin.topicTree,
+  API_ROUTES.admin.topics, //TODO: switch to tree make the topic and object so it's easier to access
   {
     query: {
       ...route.query,

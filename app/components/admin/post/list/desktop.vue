@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { APP_ROUTES } from "~/constants";
 import type { PostAdminData } from "~/types";
 
 interface Props {
@@ -6,7 +7,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: "view" | "edit" | "delete", post: PostAdminData): void;
+  (e: "share" | "edit" | "delete", post: PostAdminData): void;
 }
 
 defineProps<Props>();
@@ -35,12 +36,10 @@ defineEmits<Emits>();
               <NuxtImg :src="item.image ?? undefined" class="aspect-square" placeholder="/oca-placeholder.png" />
             </TableCell>
             <TableCell class="font-medium truncate">
-              <button class="hover:text-primary transition-colors line-clamp-1 text-left flex items-center gap-2"
-                @click="$emit('view', item)">
-                <span class="max-w-125 truncate">
-                  {{ item.title }}
-                </span>
-              </button>
+              <NuxtLink :to="APP_ROUTES.post(item.slug)" target="__blank"
+                class="hover:text-primary transition-colors line-clamp-1 text-left flex items-center gap-2 max-w-125 truncate">
+                {{ item.title }}
+              </NuxtLink>
             </TableCell>
 
             <TableCell class="text-muted-foreground">
@@ -60,7 +59,7 @@ defineEmits<Emits>();
             </TableCell>
 
             <TableCell>
-              <AdminPostListMenu :item="item" @view="$emit('view', $event)" @edit="$emit('edit', $event)"
+              <AdminPostListMenu :item="item" @share="$emit('share', $event)" @edit="$emit('edit', $event)"
                 @delete="$emit('delete', $event)" />
             </TableCell>
           </TableRow>

@@ -40,7 +40,7 @@ onMounted(() => {
 });
 
 const clickAd = async (ad: AdWebsiteData) => {
-  await useAPI(API_ROUTES.public.ads_click(ad.id), {
+  await useAPI(API_ROUTES.public.adClick(ad.id), {
     method: "POST",
     body: {
       adId: ad.id,

@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiResponse, PostAdminData } from "~/types";
 
-type PostMode = "view" | "edit" | "create";
+type PostMode = "edit" | "create";
 
 export function usePostActions() {
   const { success, error } = useToast();
@@ -20,10 +20,8 @@ export function usePostActions() {
     modalOpen.value = true;
   }
 
-  function handleView(post: PostAdminData) {
-    selectedPost.value = post;
-    mode.value = "view";
-    modalOpen.value = true;
+  function handleShare(post: PostAdminData) {
+    return
   }
 
   function handleEdit(post: PostAdminData) {
@@ -68,7 +66,7 @@ export function usePostActions() {
     handleCreate,
     handleDelete,
     confirmDelete,
-    handleView,
+    handleShare,
     handleEdit,
     handleClose,
   };

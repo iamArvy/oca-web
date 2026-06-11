@@ -55,3 +55,11 @@ const nav = [
     </div>
   </footer>
 </template>
+<!-- Event snippet for Page view conversion page -->
+<!-- <script>
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18223242860/MwHcCOOqlLscEOy8wvFD',
+      'value': 1.0,
+      'currency': 'USD'
+  });
+</script> -->

@@ -32,7 +32,15 @@ const header = {
     value: handleCreate,
   },
 };
-const { data: feeds, refresh } = useAPI<ApiListResponse<FeedAdminData>>(API_ROUTES.admin.feeds);
+
+const page = computed(() => Number(route.query.page) || 1);
+
+const { data: feeds, refresh } = useAPI<ApiListResponse<FeedAdminData>>(API_ROUTES.admin.feeds, {
+  query: {
+    ...route.query,
+    page,
+  },
+});
 watch(
   () => route.query.page,
   () => {

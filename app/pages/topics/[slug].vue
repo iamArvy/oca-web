@@ -17,7 +17,7 @@ if (!topic.value?.data) {
 }
 
 const query = {
-  topic: slug.value
+  topic: topic.value.data.id,
 }
 
 const pageTitle = computed(() => topic.value?.data?.name || slug.value)
@@ -31,11 +31,11 @@ const pageTitle = computed(() => topic.value?.data?.name || slug.value)
       </template>
 
       <template #sidebar>
-        <WidgetsHotClicks :topic="slug" />
+        <WidgetsHotClicks :topic="topic?.data.id" />
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
       </template>
-      <TopicFeed :route="API_ROUTES.public.relatedTopics(slug)" />
+      <TopicFeed :route="API_ROUTES.public.topics" :query="{ relatedTo: topic?.data.id }" />
     </AppContent>
   </main>
 </template>

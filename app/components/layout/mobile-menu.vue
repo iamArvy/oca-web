@@ -10,7 +10,7 @@ watch(() => route.fullPath, () => {
   isOpen.value = false
 })
 
-const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.topicTree)
+const { data: topics } = await useAPI<ApiListResponse<Topic>>(API_ROUTES.public.navigation.main)
 const { isMobile } = useMobile('lg')
 </script>
 
