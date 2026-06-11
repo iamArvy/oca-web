@@ -7,7 +7,7 @@ import type { ApiResponse, FeedWebsiteData } from '~/types'
 const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
-const { data: feed, error } = await useAPI<ApiResponse<FeedWebsiteData>>(API_ROUTES.public.feed(slug.value))
+const { data: feed, error } = await useAPI<ApiResponse<FeedWebsiteData>>(API_ROUTES.public.source(slug.value))
 
 if (!feed.value?.data) {
   throw createError(error.value || {
@@ -17,7 +17,7 @@ if (!feed.value?.data) {
 }
 
 const query = {
-  feed: slug.value
+  feed: feed.value.data.id
 };
 
 </script>

@@ -15,7 +15,7 @@ const {
   modalOpen,
   selectedPost,
   handleCreate,
-  handleView,
+  handleShare,
   handleEdit,
   handleDelete,
   confirmDelete,
@@ -39,7 +39,6 @@ const { data: posts, refresh } = useAPI<ApiListResponse<PostAdminData>>(API_ROUT
   query: {
     ...route.query,
     page,
-    limit: 20,
   },
 });
 
@@ -51,7 +50,7 @@ watch(
 );
 
 function handlePageChange(newPage: number) {
-  router.push({ query: { ...route.query, page: newPage, limit: 20 } });
+  router.push({ query: { ...route.query, page: newPage } });
 }
 
 const emptyProps = {
@@ -71,7 +70,7 @@ const emptyProps = {
       <AdminPostFilter />
     </AdminPageHeader>
     <template v-if="posts && posts.data && posts.data.length > 0">
-      <AdminPostList v-if="posts?.data" :posts="posts?.data" @view="handleView" @edit="handleEdit"
+      <AdminPostList v-if="posts?.data" :posts="posts?.data" @share="handleShare" @edit="handleEdit"
         @delete="handleDelete" />
       <AdminPagination v-if="posts.meta.total_pages && posts.meta.total_pages > 1" :meta="posts.meta"
         @change="handlePageChange" />
@@ -84,13 +83,8 @@ const emptyProps = {
         ? 'Edit Post'
         : 'View Post'
       ">
-      <template #button>
-        <Button v-if="mode === 'view' && selectedPost" variant="outline" size="sm" class="gap-2" @click="mode = 'edit'">
-          <Edit class="w-4 h-4" /> Edit
-        </Button>
-      </template>
-      <AdminPostView v-if="mode === 'view' && selectedPost" v-bind="selectedPost" />
-      <AdminPostForm v-else :post="selectedPost" :mode="mode" @cancel="handleClose" />
+
+      <AdminPostForm :post="selectedPost" :mode="mode" @cancel="handleClose" />
     </AdminModalComponent>
     <AdminDeleteDialog v-if="postToDelete" v-model="deleteDialogOpen" label="Post" :value="postToDelete.title ?? ''"
       @confirm="confirmDelete" />

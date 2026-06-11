@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/chart";
 // import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts"
 import { VisArea, VisAxis, VisLine, VisXYContainer } from "@unovis/vue";
+import { API_ROUTES } from "~/constants";
 import type { ApiResponse, AdsChartData } from "~/types";
 
 const chartConfig = {
@@ -100,7 +101,7 @@ const filterOptions = [
 ];
 
 const { data } = useAPI<ApiResponse<AdsChartData[]>>(
-  "/analytics/ads-chart",
+  API_ROUTES.admin.analytics.adsChart,
   {
     method: "GET",
     query,

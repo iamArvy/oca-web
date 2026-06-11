@@ -3,10 +3,10 @@ import { API_ROUTES } from '~/constants';
 import type { ApiResponse, Seo } from '~/types';
 
 const query = computed(() => ({
-  days: 1,
+  hours: 24,
 }));
 
-const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.seo('home'), { server: true });
+const { data: seo } = useAPI<ApiResponse<Seo>>(API_ROUTES.public.page.seo('home'), { server: true });
 
 useSeoMeta(seo.value?.data ? {
   title: seo.value.data.title,
@@ -42,7 +42,7 @@ useSeoMeta(seo.value?.data ? {
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
       </template>
-      <TopicFeed :route="API_ROUTES.public.topicPosts" />
+      <TopicFeed :route="API_ROUTES.public.topics" :query="{ isFeatured: true }" />
     </AppContent>
   </main>
 </template>

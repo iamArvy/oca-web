@@ -22,7 +22,7 @@ const query = computed(() => ({
         <AdComponent size="sidebar" />
         <WidgetsEditorPick />
       </template>
-      <TopicFeed :route="API_ROUTES.public.topicPosts" />
+      <TopicFeed :route="API_ROUTES.public.topics" :query="{ isFeatured: true }" />
     </AppContent>
   </main>
 </template>

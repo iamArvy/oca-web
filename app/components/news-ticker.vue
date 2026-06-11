@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import type { PostWebsiteListData } from '~/types';
+import { API_ROUTES } from '~/constants';
+import type { ApiListResponse } from '~/types';
 
-interface Props {
-  posts: PostWebsiteListData[]
-}
+const { data: ticker } = useAPI<ApiListResponse<string>>(API_ROUTES.public.widgets.ticker)
 
-const props = defineProps<Props>()
-const tickerContent = props.posts.map(p => p.title).join(' • ')
+const tickerContent = ticker.value?.data.map(p => p).join(' • ')
 </script>
 
 <template>

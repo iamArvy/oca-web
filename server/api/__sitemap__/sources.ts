@@ -5,10 +5,10 @@ import { createApi } from '~~/server/utils/api'
 export default defineSitemapEventHandler(async (event) => {
   const api = createApi(event)
 
-  const topics = await api<ApiListResponse<SitemapData>>(API_ROUTES.sitemap.topics)
+  const sources = await api<ApiListResponse<SitemapData>>(API_ROUTES.sitemap.sources)
 
-  return topics.data.map((topic) => ({
-    loc: `/topics/${topic.slug}`,
-    lastmod: topic.updatedAt,
+  return sources.data.map((source) => ({
+    loc: `/topics/${source.slug}`,
+    lastmod: source.updatedAt,
   }))
 })

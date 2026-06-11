@@ -53,11 +53,6 @@ const menuItems = [
         icon: FolderOpen,
       },
       {
-        title: 'Collections (Depreciated)',
-        url: APP_ROUTES.admin.collections,
-        icon: Layers,
-      },
-      {
         title: 'Ads',
         url: APP_ROUTES.admin.ads,
         icon: Megaphone,

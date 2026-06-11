@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Edit, Trash2, MoreHorizontal } from "lucide-vue-next";
+import { Edit, Trash2, MoreHorizontal, Check } from "lucide-vue-next";
 
 import { ContactMessageStatusOptions, type ContactMessage } from "~/types";
 

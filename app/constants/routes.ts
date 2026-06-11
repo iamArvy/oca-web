@@ -18,7 +18,6 @@ export const APP_ROUTES = {
     roles: "/admin/roles",
     settings: "/admin/settings",
     users: "/admin/users",
-    collections: "/admin/collections",
     feeds: "/admin/feeds",
     forgotPassword: "/admin/forgot-password",
     ads: "/admin/ads",

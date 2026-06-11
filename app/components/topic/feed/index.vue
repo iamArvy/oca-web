@@ -11,8 +11,6 @@ const props = defineProps<Props>();
 
 const query = computed(() => ({
   ...props.query,
-  limit: 3,
-  postLimit: 4,
 }));
 
 const { data } = await useAPI<ApiListResponse<TopicPosts>>(props.route, {
