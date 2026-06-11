@@ -20,9 +20,9 @@ export const API_ROUTES = {
     liveSources: "/live-sources",
     subscribe: "/newsletter/subscribe",
     widgets: {
-      ticker: 'widgets/ticker',
-      hotClicks: 'widgets/hot-clicks',
-      editorPicks: 'widgets/editor-picks'
+      ticker: '/widgets/ticker',
+      hotClicks: '/widgets/hot-clicks',
+      editorPicks: '/widgets/editor-picks'
     }
   },
   auth: {
