@@ -217,6 +217,7 @@ import {
   Rss,
   Megaphone,
 } from "lucide-vue-next";
+import { API_ROUTES } from "~/constants";
 import type { AnalyticsOverview, ApiResponse } from "~/types";
 
 definePageMeta({
@@ -230,7 +231,7 @@ const header = {
 };
 
 const { data: overview } = await useAPI<ApiResponse<AnalyticsOverview>>(
-  "/analytics/overview",
+  API_ROUTES.admin.analytics.overview,
 );
 
 const statsData = overview.value?.data;
