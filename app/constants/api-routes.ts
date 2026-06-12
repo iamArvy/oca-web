@@ -57,6 +57,7 @@ export const API_ROUTES = {
     posts: "/admin/posts",
     post: (id: string) => "/admin/posts/" + id,
     topics: "/admin/topics",
+    topicsTree: "/admin/topics/tree",
     topic: (id: string) => `/admin/topics/${id}`,
     toggleTopicFeature: (id: string) => `/admin/topics/${id}/toggle-featured`,
     users: "/admin/users",
