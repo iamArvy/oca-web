@@ -35,9 +35,19 @@ defineEmits<Emits>();
         Edit
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="gap-2" @click="$emit('share', item)">
-        <Share2 class="w-4 h-4" />
-        Share
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.FACEBOOK, item.slug, item.excerpt)">
+        <Icon name="lucide:facebook" class="w-4 h-4" />
+        Share to Facebook
+      </DropdownMenuItem>
+
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.X, item.slug, item.excerpt)">
+        <Icon name="lucide:x" class="w-4 h-4" />
+        Share to X
+      </DropdownMenuItem>
+
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.LINKEDIN, item.slug, item.excerpt)">
+        <Icon name="lucide:linkedin" class="w-4 h-4" />
+        Share to LinkedIn
       </DropdownMenuItem>
 
       <NuxtLink :to="`/posts/${item.slug}`" target="_blank" rel="noopener noreferrer" as-child>
