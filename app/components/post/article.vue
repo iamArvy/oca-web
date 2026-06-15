@@ -78,15 +78,15 @@ defineProps<{
             class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
             <Icon name="lucide:copy" class="w-4 h-4" />
           </Button>
-          <Button @click="shareTo(SocialPlatform.FACEBOOK, post.slug, post.excerpt)" variant="outline" size="icon"
+          <Button @click="shareTo(SocialPlatform.FACEBOOK, post)" variant="outline" size="icon"
             class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
             <Icon name="lucide:facebook" class="w-4 h-4" />
           </Button>
-          <Button @click="shareTo(SocialPlatform.X, post.slug, post.excerpt)" variant="outline" size="icon"
+          <Button @click="shareTo(SocialPlatform.X, post)" variant="outline" size="icon"
             class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
             <Icon name="lucide:x" class="w-4 h-4" />
           </Button>
-          <Button @click="shareTo(SocialPlatform.LINKEDIN, post.slug, post.excerpt)" variant="outline" size="icon"
+          <Button @click="shareTo(SocialPlatform.LINKEDIN, post)" variant="outline" size="icon"
             class="rounded-full hover:bg-primary hover:text-primary-foreground hover:border-primary">
             <Icon name="lucide:linkedin" class="w-4 h-4" />
           </Button>

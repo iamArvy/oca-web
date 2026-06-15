@@ -1,3 +1,5 @@
+import type { PostAdminData } from "~/types";
+
 export enum SocialPlatform {
   FACEBOOK = "facebook",
   X = "x",
@@ -7,12 +9,11 @@ export enum SocialPlatform {
 
 export async function shareTo(
   platform: SocialPlatform,
-  slug: string,
-  text?: string | null,
+  post: PostAdminData,
 ) {
-  const url = await getPostUrl(slug);
+  const url = await getPostUrl(post.slug);
   const encodedUrl = encodeURIComponent(url);
-  const encodedText = text ? encodeURIComponent(text) : "";
+  const encodedText = encodeURIComponent(`${post.topic.name}: ${post.title}`);
   let shareUrl = "";
 
   switch (platform) {
@@ -23,7 +24,7 @@ export async function shareTo(
       shareUrl = `https://x.com/intent/tweet?url=${encodedUrl}&text=${encodedText}`;
       break;
     case SocialPlatform.LINKEDIN:
-      shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodedUrl}&title=${encodedText}`;
+      shareUrl = shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}&quote=${encodedText}`;
       break;
     case SocialPlatform.WHATSAPP:
       shareUrl = `https://api.whatsapp.com/send?text=${encodedText}%20${encodedUrl}`;

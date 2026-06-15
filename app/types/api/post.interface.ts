@@ -11,10 +11,6 @@ export enum PostType {
 
 export const PostTypeOptions = Object.values(PostType);
 
-export interface PostCollection {
-  collection: Collection;
-}
-
 export interface IAuthor {
   name: string;
   url: string;
@@ -47,7 +43,6 @@ export interface PostAdminData extends BaseItem {
   views: number;
   readTime: number;
   externalSourceUrl: string | null;
-  collections: PostCollection[];
 }
 
 export interface PostWebsiteData extends BaseItem {

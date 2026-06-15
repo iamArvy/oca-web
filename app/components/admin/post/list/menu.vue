@@ -35,17 +35,17 @@ defineEmits<Emits>();
         Edit
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.FACEBOOK, item.slug, item.excerpt)">
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.FACEBOOK, item)">
         <Icon name="lucide:facebook" class="w-4 h-4" />
         Share to Facebook
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.X, item.slug, item.excerpt)">
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.X, item)">
         <Icon name="lucide:x" class="w-4 h-4" />
         Share to X
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.LINKEDIN, item.slug, item.excerpt)">
+      <DropdownMenuItem class="gap-2" @click="shareTo(SocialPlatform.LINKEDIN, item)">
         <Icon name="lucide:linkedin" class="w-4 h-4" />
         Share to LinkedIn
       </DropdownMenuItem>
