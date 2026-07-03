@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { API_ROUTES } from '~/constants';
 import { type ApiListResponse, type PostWebsiteListData } from '~/types';
-import { Flame } from 'lucide-vue-next';
+import { Flame } from '@lucide/vue';
 
 interface Props {
   topic?: string;

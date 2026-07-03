@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Award } from 'lucide-vue-next';
+import { Award } from '@lucide/vue';
 import { API_ROUTES } from '~/constants';
 import type { ApiListResponse, PostWebsiteListData } from '~/types';
 

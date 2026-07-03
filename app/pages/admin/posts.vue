@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Edit, FileText } from "lucide-vue-next";
+import { Edit, FileText } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, PostAdminData } from "~/types";
 

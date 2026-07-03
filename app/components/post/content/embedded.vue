@@ -1,12 +1,16 @@
 <script setup lang="ts">
 
-defineProps < {
+const props = defineProps < {
   link: string
 } > ();
+
+const safeEmbedUrl = computed(() => getSafeEmbedUrl(props.link));
 </script>
 
 <template>
-  <div class="w-full h-64 md:h-96">
-    <iframe :src="link" frameborder="0" allowfullscreen class="w-full h-full rounded-lg shadow-md" />
+  <div v-if="safeEmbedUrl" class="w-full h-64 md:h-96">
+    <iframe :src="safeEmbedUrl" frameborder="0" allowfullscreen class="w-full h-full rounded-lg shadow-md"
+      sandbox="allow-scripts allow-same-origin allow-presentation" referrerpolicy="strict-origin-when-cross-origin"
+      allow="encrypted-media; picture-in-picture" />
   </div>
 </template>

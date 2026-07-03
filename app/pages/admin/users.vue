@@ -7,7 +7,7 @@ import {
   UserX,
   UserCheck,
   Shield,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import {
   Button,
   Input,
@@ -371,7 +371,7 @@ function getRoleBadgeColor(role: string) {
   </div>
 </template> -->
 <script setup lang="ts">
-import { Users as UsersIcon } from "lucide-vue-next";
+import { Users as UsersIcon } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, UserAdminData } from "~/types";
 

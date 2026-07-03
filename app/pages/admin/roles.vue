@@ -7,7 +7,7 @@ import {
   Trash2,
   Shield,
   Users,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import {
   Button,
   Input,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SlidersHorizontal } from "lucide-vue-next";
+import { SlidersHorizontal } from "@lucide/vue"
 
 interface Emits {
   (e: "save" | "reset"): void;
@@ -29,12 +29,7 @@ defineEmits<Emits>();
       <div class="space-y-3">
         <slot />
 
-        <Button
-          variant="outline"
-          size="sm"
-          class="w-full"
-          @click="$emit('reset')"
-        >
+        <Button variant="outline" size="sm" class="w-full" @click="$emit('reset')">
           Reset Filters
         </Button>
       </div>

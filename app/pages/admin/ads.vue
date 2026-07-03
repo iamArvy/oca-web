@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Megaphone } from "lucide-vue-next";
+import { Megaphone } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { AdAdminData, ApiListResponse } from "~/types";
 definePageMeta({

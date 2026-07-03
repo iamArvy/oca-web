@@ -56,6 +56,7 @@ export const API_ROUTES = {
     liveSource: (id: string) => `/admin/live-sources/${id}`,
     posts: "/admin/posts",
     post: (id: string) => "/admin/posts/" + id,
+    postShare: (id: string) => `/admin/posts/${id}/share`,
     topics: "/admin/topics",
     topicsTree: "/admin/topics/tree",
     topic: (id: string) => `/admin/topics/${id}`,
@@ -64,6 +65,8 @@ export const API_ROUTES = {
     user: (id: string) => `/admin/users/${id}`,
     seos: "/admin/seo",
     seo: (id: string) => `/admin/seo/${id}`,
+    socialPlatforms: "/admin/social-platforms",
+    socialPlatform:(platform: string) =>  `/admin/social-platforms/${platform}`
   },
   media:{
     upload: (context: string) => `/media/upload?type=${context}`
@@ -73,4 +76,16 @@ export const API_ROUTES = {
     changePassword: "/me/change-password",
     updateProfile: "/me/update",
   },
+  socials: {
+    facebook: {
+      authorize: "/social/facebook/authorize",
+      callback: "/social/facebook/callback",
+      connect: "/social/facebook/connect",
+    },
+    linkedin: {
+      authorize: "/social/linkedin/authorize",
+      callback: "/social/linkedin/callback",
+      connect: "/social/linkedin/connect",
+    }
+  }
 }

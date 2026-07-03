@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { API_ROUTES, APP_ROUTES } from '~/constants';
-import { ChevronRight } from 'lucide-vue-next'
+import { ChevronRight } from '@lucide/vue'
 import type { ApiListResponse, Topic } from '~/types';
 
 const currentTopic = ref<Topic | null>(null)

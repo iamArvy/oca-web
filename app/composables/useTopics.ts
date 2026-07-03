@@ -53,7 +53,7 @@ export async function useTopics() {
       API_ROUTES.admin.topics,
       {
         query: {
-          limit: 200,
+          limit: 500,
         },
       },
     );

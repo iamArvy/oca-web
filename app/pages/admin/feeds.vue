@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RefreshCcw } from "lucide-vue-next";
+import { RefreshCcw } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, FeedAdminData } from "~/types";
 

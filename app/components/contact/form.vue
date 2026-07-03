@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Send } from "lucide-vue-next";
+import { Send } from "@lucide/vue";
 
 const { submit, isSubmitting } = useContactForm();
 

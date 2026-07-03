@@ -15,7 +15,7 @@ defineProps<PostFeed>();
         <AvatarImage :src="image ?? ''" :alt="name" />
         <AvatarFallback>{{ getInitials(name) }}</AvatarFallback>
       </Avatar>
-      <NuxtLink :to="APP_ROUTES.source(slug)">
+      <NuxtLink :to="APP_ROUTES.source(slug)" rel="noopener noreferrer nofollow" target="__blank">
         <p class="font-semibold">{{ name }}</p>
         <!-- <p class="text-sm text-muted-foreground">{{ role }}</p> -->
       </NuxtLink>

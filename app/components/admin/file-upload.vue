@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { X, ImageIcon, VideoIcon, FileIcon } from "lucide-vue-next";
+import { X, ImageIcon, VideoIcon, FileIcon } from "@lucide/vue";
 import { Button } from "@/components/ui/button";
 
 const props = defineProps<{

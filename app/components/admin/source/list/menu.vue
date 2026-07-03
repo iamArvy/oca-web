@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Edit, Trash2, MoreHorizontal } from "lucide-vue-next";
+import { Edit, Trash2, MoreHorizontal } from "@lucide/vue";
 
 import type { LiveSourceAdminData } from "~/types";
 

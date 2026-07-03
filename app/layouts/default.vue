@@ -1,6 +1,10 @@
 <script setup lang="ts">
 const config = useRuntimeConfig()
 
+const adsenseClient = config.public.adsenseClient;
+const linkedinPartnerId = config.public.linkedinPartnerId;
+const gtmId = config.public.googleTagManagerId;
+
 useHead({
   link: [
     {
@@ -18,11 +22,11 @@ useHead({
     },
   ],
   script: [
-    {
+    adsenseClient ? {
       async: true,
-      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${config.public.adsenseClient}`,
+      src: `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`,
       crossorigin: "anonymous",
-    },
+    } : undefined,
   ],
 });
 
@@ -30,8 +34,10 @@ useHead({
 
 <template>
   <div class="min-h-screen bg-background">
+    <GoogleTagManager v-if="gtmId" :id="gtmId" />
     <LayoutHeader />
     <slot />
     <LayoutFooter />
+    <LinkedinAnalytics v-if="linkedinPartnerId" :id="linkedinPartnerId" />
   </div>
 </template>

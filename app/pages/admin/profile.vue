@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Camera } from "lucide-vue-next";
+import { Camera } from "@lucide/vue";
 import { AdminProfileInformation, AdminProfileSecurity } from "#components";
 
 definePageMeta({

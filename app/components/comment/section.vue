@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Plus } from "lucide-vue-next";
+import { Plus } from "@lucide/vue";
 import { API_ROUTES, APP_ROUTES } from "~/constants";
 import type { ApiListResponse, CommentWebsiteData } from "~/types";
 

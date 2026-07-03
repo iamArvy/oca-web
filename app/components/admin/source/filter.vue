@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDebounceFn } from "@vueuse/core";
-import { Search } from "lucide-vue-next";
+import { Search } from "@lucide/vue";
 
 interface FeedFilter {
   q?: string;
@@ -22,9 +22,7 @@ watch(filters, applyFilters, { deep: true });
 <template>
   <AdminFilterButton>
     <div class="relative flex-1">
-      <Search
-        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-      />
+      <Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
       <Input v-model="filters.q" placeholder="Search feeds..." class="pl-10" />
     </div>
   </AdminFilterButton>

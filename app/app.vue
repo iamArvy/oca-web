@@ -16,9 +16,7 @@ useHead({
 
 <template>
   <NuxtLayout>
-    <GoogleTagManager />
     <NuxtPage />
   </NuxtLayout>
   <Toaster />
-  <LinkedinAnalytics />
 </template>

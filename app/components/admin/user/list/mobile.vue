@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Edit, MoreHorizontal } from "lucide-vue-next";
+import { Edit, MoreHorizontal } from "@lucide/vue";
 import { UserRole } from "~/enums/roles.enum";
 
 import type { UserAdminData } from "~/types";

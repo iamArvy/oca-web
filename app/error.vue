@@ -2,7 +2,6 @@
 import { useError } from '#app'
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Home, ArrowLeft, Search, AlertTriangle } from 'lucide-vue-next'
 
 const route = useRoute()
 const router = useRouter()
@@ -32,7 +31,7 @@ function handleSearch(e: Event) {
     <div class="max-w-lg w-full text-center">
       <!-- Error Icon -->
       <div class="w-24 h-24 mx-auto mb-8 rounded-full bg-destructive/10 flex items-center justify-center">
-        <AlertTriangle class="w-12 h-12 text-destructive" />
+        <Icon name="lucide:triangle-alert" class="w-12 h-12 text-destructive" />
       </div>
 
       <!-- Error Code -->
@@ -55,7 +54,7 @@ function handleSearch(e: Event) {
       <!-- Search Box -->
       <form @submit="handleSearch" class="mb-8">
         <div class="relative max-w-sm mx-auto">
-          <Search class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Icon name="lucide:search" class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <Input placeholder="Search for articles..." v-model="searchQuery" class="pl-10 pr-4" />
         </div>
       </form>
@@ -63,12 +62,12 @@ function handleSearch(e: Event) {
       <!-- Action Buttons -->
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <Button variant="outline" @click="router.back()">
-          <ArrowLeft class="w-4 h-4 mr-2" />
+          <Icon name="lucide:arrow-left" class="w-4 h-4 mr-2" />
           Go Back
         </Button>
 
         <Button class="bg-primary hover:opacity-90" @click="router.push('/')">
-          <Home class="w-4 h-4 mr-2" />
+          <Icon name="lucide:house" class="w-4 h-4 mr-2" />
           Return Home
         </Button>
       </div>

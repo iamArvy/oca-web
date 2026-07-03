@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Save, Shield } from "lucide-vue-next";
-
 const { onSubmit, meta } = useProfileSecurityForm();
 
 const fields = [

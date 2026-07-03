@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FolderOpen } from "lucide-vue-next";
+import { FolderOpen } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, Topic } from "~/types";
 

@@ -8,7 +8,7 @@ import {
   BarChart3,
   Globe,
   FolderOpen,
-} from 'lucide-vue-next';
+} from '@lucide/vue';
 import { analyticsData } from '@/lib/mockData';
 
 // import Unovis charts
@@ -216,7 +216,7 @@ import {
   Layers,
   Rss,
   Megaphone,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { AnalyticsOverview, ApiResponse } from "~/types";
 

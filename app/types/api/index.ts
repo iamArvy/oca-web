@@ -12,3 +12,4 @@ export * from './seo.interface';
 export * from './contact.interface';
 export * from './comment.interface';
 export * from './sitemap.interface';
+export * from './socials.interface';

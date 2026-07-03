@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { File, Folder, FolderOpen } from "lucide-vue-next";
+import { File, Folder, FolderOpen } from "@lucide/vue";
 import type { Topic } from "~/types";
 
 interface Props {

@@ -20,8 +20,19 @@ export function usePostActions() {
     modalOpen.value = true;
   }
 
-  function handleShare(post: PostAdminData) {
-    return
+  async function handleShare(post: PostAdminData) {
+    try {
+      const res = await $api<ApiResponse>(
+        API_ROUTES.admin.postShare(post.id),
+        {
+          method: "POST",
+        },
+      );
+      success(res.message);
+      await refreshNuxtData();
+    } catch (e) {
+      error(handleError(e, "Error sharing post"));
+    }
   }
 
   function handleEdit(post: PostAdminData) {

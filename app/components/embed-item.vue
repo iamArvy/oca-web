@@ -5,32 +5,14 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+const safeSource = computed(() => getSafeEmbedUrl(props.source));
 
-const iframeRef = ref<HTMLIFrameElement | null>(null);
-const isPlaying = ref(false);
-
-// function toggleVideo() {
-//   if (!iframeRef.value) return;
-
-//   const command = isPlaying.value ? "pauseVideo" : "playVideo";
-
-//   iframeRef.value.contentWindow?.postMessage(
-//     JSON.stringify({
-//       event: "command",
-//       func: command,
-//       args: "",
-//     }),
-//     "*"
-//   );
-
-//   isPlaying.value = !isPlaying.value;
-// }
 </script>
 
 <template>
-  <div class="h-100 md:h-125 rounded-2xl overflow-hidden">
-    <iframe ref="iframeRef" :title="title" :src="source" class="w-full h-full" frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen />
+  <div v-if="safeSource" class="h-100 md:h-125 rounded-2xl overflow-hidden">
+    <iframe ref="iframeRef" :title="title" :src="safeSource" class="w-full h-full" frameborder="0"
+      sandbox="allow-scripts allow-same-origin allow-presentation"
+      referrerpolicy="strict-origin-when-cross-origin" allow="picture-in-picture; web-share" allowfullscreen />
   </div>
 </template>

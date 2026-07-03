@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Play } from "lucide-vue-next";
+import { Play } from "@lucide/vue";
 import { APP_ROUTES } from "~/constants";
 import { PostType } from "~/enums";
 import type { PostWebsiteListData } from "~/types";
@@ -39,16 +39,7 @@ function handleMouseLeave() {
   <article class="bg-card rounded-2xl overflow-hidden card-interactive h-full" @mouseenter="handleMouseEnter"
     @mouseleave="handleMouseLeave">
     <div class="relative overflow-hidden aspect-16/10">
-      <div v-if="post.type === PostType.VIDEO"
-        class="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-2 py-1 bg-background/80 backdrop-blur-sm rounded-full text-xs font-medium">
-        <Play class="w-3 h-3 fill-current" />
-      </div>
-      <template v-if="isHovering && post.type === PostType.VIDEO">
-        <!-- <iframe ref="iframeRef" :src="post.content + '?enablejsapi=1&controls=0&rel=0&mute=1'"
-          class="absolute inset-0 w-full h-full object-cover" frameborder="0" allow="autoplay; encrypted-media"
-          allowfullscreen /> -->
-      </template>
-      <NuxtImg v-else :src="props.post.image ?? undefined" :alt="props.post.title" placeholder="/oca-placeholder.png"
+      <NuxtImg :src="props.post.image ?? undefined" :alt="props.post.title" placeholder="/oca-placeholder.png"
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
     </div>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RefreshCcw } from "lucide-vue-next";
+import { RefreshCcw } from "@lucide/vue";
 import { API_ROUTES } from "~/constants";
 import type { ApiListResponse, LiveSourceAdminData } from "~/types";
 
@@ -71,7 +71,7 @@ const emptyProps = {
     </AdminPageHeader>
     <template v-if="sources && sources.data && sources.data.length > 0">
       <AdminSourceList v-if="sources?.data" :sources="sources?.data" @edit="handleEdit" @delete="handleDelete" />
-      <AppPagination v-if="sources.meta.total_pages && sources.meta.total_pages > 1" :meta="sources.meta"
+      <AdminAppPagination v-if="sources.meta.total_pages && sources.meta.total_pages > 1" :meta="sources.meta"
         @change="handlePageChange" />
     </template>
     <AdminEmptyList v-else v-bind="emptyProps" />

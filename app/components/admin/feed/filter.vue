@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDebounceFn } from "@vueuse/core";
-import { Search } from "lucide-vue-next";
+import { Search } from "@lucide/vue"
 
 interface FeedFilter {
   q?: string;

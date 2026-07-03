@@ -13,6 +13,7 @@ const activeId = ref(sources.value[0]?.id)
 const active = computed(() => {
   return sources.value.find(s => s.id === activeId.value) ?? sources.value[0]
 })
+const safeActiveSource = computed(() => getSafeEmbedUrl(active.value?.source));
 
 const scrollerRef = ref<HTMLDivElement | null>(null)
 
@@ -28,9 +29,10 @@ function scrollBy(dir: 1 | -1) {
 
 <template>
   <section v-if="active" class="space-y-3">
-    <div class="h-100 md:h-125 rounded-2xl overflow-hidden">
-      <iframe ref="iframeRef" :src="`${active.source}`" class="w-full h-full" frameborder="0" allow="encrypted-media"
-        allowfullscreen />
+    <div v-if="safeActiveSource" class="h-100 md:h-125 rounded-2xl overflow-hidden">
+      <iframe ref="iframeRef" :src="safeActiveSource" class="w-full h-full" frameborder="0" allow="encrypted-media"
+        allowfullscreen sandbox="allow-scripts allow-same-origin allow-presentation"
+        referrerpolicy="strict-origin-when-cross-origin" />
     </div>
 
     <div class="relative">
@@ -57,8 +59,9 @@ function scrollBy(dir: 1 | -1) {
         class="group shrink-0 snap-start w-44 md:w-52 rounded-xl overflow-hidden border-2 transition-all text-left"
         :class="s.id === activeId ? 'border-primary shadow-lg scale-[1.02]' : 'border-transparent'">
         <div class="relative aspect-video">
-          <img :src="`https://img.youtube.com/vi/${extractYouTubeId(s.source)}/maxresdefault.jpg`"
+          <img v-if="extractYouTubeId(s.source)" :src="`https://img.youtube.com/vi/${extractYouTubeId(s.source)}/maxresdefault.jpg`"
             class="w-full h-full object-cover" :alt="s.name" />
+          <div v-else class="w-full h-full bg-muted" />
           <div class="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
 
           <span class="absolute top-1.5 left-1.5 px-1.5 py-0.5 bg-red-600 text-white text-[9px] rounded">

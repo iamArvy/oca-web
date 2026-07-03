@@ -31,9 +31,9 @@ import { socials } from '~/constants/socials';
       <p class="text-sm opacity-90 mb-4">Stay up to date on our social media platforms.</p>
       <ul class="flex gap-3 items-center">
         <li v-for="item in socials" :key="item.name">
-          <NuxtLink :href="item.url" :aria-label="item.name"
+          <NuxtLink :href="item.url" :aria-label="item.name" target="__blank" rel="noopener noreferral nofollow"
             class="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
-            <component :is="item.icon" class="w-4 h-4" />
+            <Icon :name="item.icon" class="w-4 h-4" />
           </NuxtLink>
         </li>
       </ul>

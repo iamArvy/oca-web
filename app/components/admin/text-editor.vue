@@ -14,13 +14,12 @@ import {
   ListOrdered,
   Link as LinkIcon,
   Image as ImageIcon,
-  Youtube as YoutubeIcon,
   Heading1,
   Heading2,
   Quote,
   Undo,
   Redo,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 
 interface Props {
   modelValue?: string;
@@ -116,157 +115,70 @@ const isActive = (name: string, options?: object) =>
 <template>
   <div class="border border-border rounded-lg overflow-hidden bg-background">
     <!-- Toolbar -->
-    <div
-      class="flex flex-wrap items-center gap-1 p-2 border-b border-border bg-muted/50"
-    >
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn(
-            'h-8 w-8 p-0',
-            isActive('heading', { level: 1 }) && 'bg-muted text-primary',
-          )
-        "
-        @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()"
-        title="Heading 1"
-      >
+    <div class="flex flex-wrap items-center gap-1 p-2 border-b border-border bg-muted/50">
+      <Button type="button" variant="ghost" size="sm" :class="cn(
+        'h-8 w-8 p-0',
+        isActive('heading', { level: 1 }) && 'bg-muted text-primary',
+      )
+        " @click="editor?.chain().focus().toggleHeading({ level: 1 }).run()" title="Heading 1">
         <Heading1 class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn(
-            'h-8 w-8 p-0',
-            isActive('heading', { level: 2 }) && 'bg-muted text-primary',
-          )
-        "
-        @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()"
-        title="Heading 2"
-      >
+      <Button type="button" variant="ghost" size="sm" :class="cn(
+        'h-8 w-8 p-0',
+        isActive('heading', { level: 2 }) && 'bg-muted text-primary',
+      )
+        " @click="editor?.chain().focus().toggleHeading({ level: 2 }).run()" title="Heading 2">
         <Heading2 class="w-4 h-4" />
       </Button>
 
       <div class="w-px h-6 bg-border mx-1" />
 
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
+      <Button type="button" variant="ghost" size="sm"
         :class="cn('h-8 w-8 p-0', isActive('bold') && 'bg-muted text-primary')"
-        @click="editor?.chain().focus().toggleBold().run()"
-        title="Bold"
-      >
+        @click="editor?.chain().focus().toggleBold().run()" title="Bold">
         <Bold class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn('h-8 w-8 p-0', isActive('italic') && 'bg-muted text-primary')
-        "
-        @click="editor?.chain().focus().toggleItalic().run()"
-        title="Italic"
-      >
+      <Button type="button" variant="ghost" size="sm" :class="cn('h-8 w-8 p-0', isActive('italic') && 'bg-muted text-primary')
+        " @click="editor?.chain().focus().toggleItalic().run()" title="Italic">
         <Italic class="w-4 h-4" />
       </Button>
 
       <div class="w-px h-6 bg-border mx-1" />
 
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn('h-8 w-8 p-0', isActive('bulletList') && 'bg-muted text-primary')
-        "
-        @click="editor?.chain().focus().toggleBulletList().run()"
-        title="Bullet List"
-      >
+      <Button type="button" variant="ghost" size="sm" :class="cn('h-8 w-8 p-0', isActive('bulletList') && 'bg-muted text-primary')
+        " @click="editor?.chain().focus().toggleBulletList().run()" title="Bullet List">
         <ListIcon class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn('h-8 w-8 p-0', isActive('orderedList') && 'bg-muted text-primary')
-        "
-        @click="editor?.chain().focus().toggleOrderedList().run()"
-        title="Numbered List"
-      >
+      <Button type="button" variant="ghost" size="sm" :class="cn('h-8 w-8 p-0', isActive('orderedList') && 'bg-muted text-primary')
+        " @click="editor?.chain().focus().toggleOrderedList().run()" title="Numbered List">
         <ListOrdered class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="
-          cn('h-8 w-8 p-0', isActive('blockquote') && 'bg-muted text-primary')
-        "
-        @click="editor?.chain().focus().toggleBlockquote().run()"
-        title="Quote"
-      >
+      <Button type="button" variant="ghost" size="sm" :class="cn('h-8 w-8 p-0', isActive('blockquote') && 'bg-muted text-primary')
+        " @click="editor?.chain().focus().toggleBlockquote().run()" title="Quote">
         <Quote class="w-4 h-4" />
       </Button>
 
       <div class="w-px h-6 bg-border mx-1" />
 
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        :class="cn('h-8 w-8 p-0', isActive('link') && 'bg-muted text-primary')"
-        @click="setLink"
-        title="Add Link"
-      >
+      <Button type="button" variant="ghost" size="sm"
+        :class="cn('h-8 w-8 p-0', isActive('link') && 'bg-muted text-primary')" @click="setLink" title="Add Link">
         <LinkIcon class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        class="h-8 w-8 p-0"
-        @click="addImage"
-        title="Add Image"
-      >
+      <Button type="button" variant="ghost" size="sm" class="h-8 w-8 p-0" @click="addImage" title="Add Image">
         <ImageIcon class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        class="h-8 w-8 p-0"
-        @click="addYoutube"
-        title="Add YouTube Video"
-      >
-        <YoutubeIcon class="w-4 h-4" />
+      <Button type="button" variant="ghost" size="sm" class="h-8 w-8 p-0" @click="addYoutube" title="Add YouTube Video">
+        <Icon name="lucide:youtube" class="w-4 h-4" />
       </Button>
 
       <div class="flex-1" />
 
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        class="h-8 w-8 p-0"
-        @click="editor?.chain().focus().undo().run()"
-        title="Undo"
-      >
+      <Button type="button" variant="ghost" size="sm" class="h-8 w-8 p-0" @click="editor?.chain().focus().undo().run()"
+        title="Undo">
         <Undo class="w-4 h-4" />
       </Button>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        class="h-8 w-8 p-0"
-        @click="editor?.chain().focus().redo().run()"
-        title="Redo"
-      >
+      <Button type="button" variant="ghost" size="sm" class="h-8 w-8 p-0" @click="editor?.chain().focus().redo().run()"
+        title="Redo">
         <Redo class="w-4 h-4" />
       </Button>
     </div>

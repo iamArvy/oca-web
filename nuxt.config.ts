@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
@@ -22,12 +21,12 @@ export default defineNuxtConfig({
         '@unovis/vue', 
         '@vee-validate/zod',
         '@vueuse/core',
+        '@lucide/vue',
         'class-variance-authority',
         'clsx',
         'date-fns',
         'embla-carousel-autoplay',
         'embla-carousel-vue',
-        'lucide-vue-next',
         'reka-ui',
         'tailwind-merge',
         'vee-validate',
@@ -38,7 +37,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "@nuxt/a11y",
     "@nuxt/icon",
     "@nuxt/image",
     "shadcn-nuxt",
@@ -66,18 +64,27 @@ export default defineNuxtConfig({
   },
 
   security: {
-    // headers: {
-    //   crossOriginEmbedderPolicy: false,
-    //   contentSecurityPolicy: false,
-    //   crossOriginOpenerPolicy: false,
-    //   crossOriginResourcePolicy: false,
-    //   originAgentCluster: false,
-    //   referrerPolicy: false,
-    //   xFrameOptions: false,
-    //   permissionsPolicy: false,
-    // },
-    headers: false,
-    removeLoggers: false,
+    headers: {
+      crossOriginEmbedderPolicy: 'unsafe-none', // needed for YouTube iframe embeds
+      contentSecurityPolicy: {
+        'script-src': ["'self'", "'unsafe-inline'", 'https://www.googletagmanager.com', 'https://www.google-analytics.com'],
+        'frame-src': ["'self'", 'https://www.youtube.com', 'https://www.youtube-nocookie.com'],
+        'img-src': ["'self'", 'data:', 'https:'], // RSS feed images are allowlisted before rendering.
+        'media-src': ["'self'", 'https://api.oneclickafrica.com'],
+        'connect-src': ["'self'", process.env.NUXT_PUBLIC_API_BASE ?? '', 'https://www.google-analytics.com'],
+      },
+      crossOriginOpenerPolicy: 'same-origin',
+      crossOriginResourcePolicy: 'cross-origin',
+      originAgentCluster: '?1',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      xFrameOptions: 'DENY',
+      permissionsPolicy: {
+        camera: [],
+        microphone: [],
+        geolocation: [],
+      },
+    },
+    removeLoggers: true,
   },
 
   sitemap: {
@@ -86,10 +93,15 @@ export default defineNuxtConfig({
       '/api/__sitemap__/topics',
       '/api/__sitemap__/sources'
     ],
+    exclude: [
+      '/admin/**',
+      '/social/**',
+    ],
   },
 
   robots: {
-    blockNonSeoBots: true
+    blockNonSeoBots: true,
+    disallow: ['/social/*', '/admin/*'],
   },
 
   site: {
@@ -119,7 +131,7 @@ export default defineNuxtConfig({
       redirect: {
         to: '/admin/dashboard',
         statusCode: 301,
-      },
+      }
     },
   },
 });

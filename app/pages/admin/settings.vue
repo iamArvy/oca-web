@@ -6,7 +6,7 @@ import {
   FileText,
   Search as SearchIcon,
   Share2,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 import {
   Button,
   Input,
@@ -360,5 +360,47 @@ const header = {
 <template>
   <div class="space-y-6">
     <AdminPageHeader v-bind="header" />
+    <Tabs default-value="social" class="space-y-6">
+      <TabsList class="bg-muted/50 flex-wrap h-auto gap-1 p-1">
+        <!-- <TabsTrigger value="general" class="gap-2">
+          <Globe class="w-4 h-4" /> General
+        </TabsTrigger>
+        <TabsTrigger value="appearance" class="gap-2">
+          <Palette class="w-4 h-4" /> Appearance
+        </TabsTrigger>
+        <TabsTrigger value="content" class="gap-2">
+          <FileText class="w-4 h-4" /> Content
+        </TabsTrigger>
+        <TabsTrigger value="seo" class="gap-2">
+          <SearchIcon class="w-4 h-4" /> SEO
+        </TabsTrigger> -->
+        <TabsTrigger value="social" class="gap-2">
+          <Icon name="lucide:share-2" class="w-4 h-4" /> Social
+        </TabsTrigger>
+      </TabsList>
+
+      <!-- SOCIAL -->
+      <TabsContent value="social">
+        <AdminSettingsSocialsConnectionsCard />
+        <!-- <div class="bg-card rounded-2xl p-6 card-interactive space-y-6">
+          <h2 class="font-display text-lg font-bold flex items-center gap-2">
+            <Share2 class="w-5 h-5 text-primary" /> Social Media Links
+          </h2>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div v-for="(label, key) in {
+              facebook: 'Facebook',
+              twitter: 'Twitter',
+              instagram: 'Instagram',
+              linkedin: 'LinkedIn',
+              youtube: 'YouTube',
+            }" :key="key">
+              <Label :for="key">{{ label }}</Label>
+              <Input :id="key" v-model="settings.social[key]" class="mt-1.5" :placeholder="`https://${key}.com/...`" />
+            </div>
+          </div>
+        </div> -->
+      </TabsContent>
+    </Tabs>
   </div>
 </template>

@@ -1,56 +1,33 @@
 <template>
-  <div
-    :class="[
-      'mt-1.5 border-2 border-dashed rounded-xl p-4 transition-colors cursor-pointer',
-      isDragging ? 'border-primary bg-primary/5' : 'border-border',
-    ]"
-    @dragover.prevent="handleDragOver"
-    @dragleave.prevent="handleDragLeave"
-    @drop.prevent="handleDrop"
-    @click="openFilePicker"
-  >
+  <div :class="[
+    'mt-1.5 border-2 border-dashed rounded-xl p-4 transition-colors cursor-pointer',
+    isDragging ? 'border-primary bg-primary/5' : 'border-border',
+  ]" @dragover.prevent="handleDragOver" @dragleave.prevent="handleDragLeave" @drop.prevent="handleDrop"
+    @click="openFilePicker">
     <!-- Image Preview -->
     <div v-if="preview" class="relative">
-      <NuxtImg
-        :src="preview"
-        alt="Uploaded"
-        class="w-full h-48 object-cover rounded-lg"
-      />
-      <Button
-        variant="destructive"
-        size="icon"
-        class="absolute top-2 right-2 h-8 w-8"
-        type="button"
-        @click="clearImage"
-      >
+      <NuxtImg :src="preview" alt="Uploaded" class="w-full h-48 object-cover rounded-lg" />
+      <Button variant="destructive" size="icon" class="absolute top-2 right-2 h-8 w-8" type="button"
+        @click="clearImage">
         <X class="w-4 h-4" />
       </Button>
     </div>
 
     <!-- Upload Placeholder -->
-    <div
-      v-else
-      class="flex flex-col items-center justify-center py-8 text-muted-foreground"
-    >
+    <div v-else class="flex flex-col items-center justify-center py-8 text-muted-foreground">
       <ImageIcon class="w-10 h-10 mb-2" />
       <p class="text-sm font-medium">Drag & drop, paste, or click to upload</p>
       <p class="text-xs mt-1">PNG, JPG, GIF up to 10MB</p>
     </div>
 
     <!-- Hidden File Input -->
-    <input
-      ref="fileInput"
-      type="file"
-      accept="image/*"
-      class="hidden"
-      @change="handleFileSelect"
-    />
+    <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="handleFileSelect" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { X, ImageIcon } from "lucide-vue-next";
+import { X, ImageIcon } from "@lucide/vue";
 import { Button } from "@/components/ui/button";
 
 /**

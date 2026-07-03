@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDebounceFn } from "@vueuse/core";
-import { Search, Shield } from "lucide-vue-next";
+import { Search, Shield } from "@lucide/vue";
 import { USER_ROLE_OPTIONS } from "~/constants";
 import type { UserRole } from "~/enums/roles.enum";
 

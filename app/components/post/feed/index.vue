@@ -6,7 +6,7 @@ import { computed } from "vue";
 import basic from "./basic.vue";
 import base from "./default.vue";
 
-import { Plus } from "lucide-vue-next";
+import { Plus } from "@lucide/vue";
 
 interface Props {
   query: Record<string, any>;

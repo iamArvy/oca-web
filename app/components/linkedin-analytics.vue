@@ -1,8 +1,11 @@
-<script setup>
-const config = useRuntimeConfig()
-const pid = config.public.linkedinPartnerId;
+<script setup lang="ts">
+interface Props {
+  id: string
+}
+
+const props = defineProps<Props>()
 onMounted(() => {
-  const _linkedin_partner_id = pid;
+  const _linkedin_partner_id = props.id;
 
   window._linkedin_data_partner_ids =
     window._linkedin_data_partner_ids || [];
@@ -11,6 +14,7 @@ onMounted(() => {
 
   (function (l) {
     if (!l) {
+      s
       window.lintrk = function (a, b) {
         window.lintrk.q.push([a, b]);
       };
@@ -32,6 +36,6 @@ onMounted(() => {
 <template>
   <noscript>
     <img height="1" width="1" style="display: none" alt="linked-in"
-      :src="`https://px.ads.linkedin.com/collect/?pid=${pid}&fmt=gif`" />
+      :src="`https://px.ads.linkedin.com/collect/?pid=${id}&fmt=gif`" />
   </noscript>
 </template>

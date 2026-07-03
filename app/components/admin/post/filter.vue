@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDebounceFn } from "@vueuse/core";
-import { Search, Filter as FilterIcon } from "lucide-vue-next";
+import { Search, Filter as FilterIcon } from "@lucide/vue";
 
 interface PostFilter {
   q?: string;

@@ -16,7 +16,7 @@ import {
   Megaphone,
   Video,
   Mail,
-} from "lucide-vue-next";
+} from "@lucide/vue";
 
 import {
   useSidebar,
@@ -150,7 +150,7 @@ const isActive = (url: string) => {
     </SidebarContent>
 
     <SidebarFooter class="py-4 border-t border-border">
-      <NuxtLink to="/" as-child>
+      <NuxtLink to="/" target="__blank" as-child>
         <Button variant="ghost" class="w-full justify-start gap-3 text-muted-foreground hover:text-foreground"
           :class="collapsed && 'justify-center px-2'">
           <Globe class="w-5 h-5 shrink-0" />

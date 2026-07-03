@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { User as UserIcon, Save } from "lucide-vue-next";
+import { User as UserIcon, Save } from "@lucide/vue";
 
 const { user } = useAuth();
 

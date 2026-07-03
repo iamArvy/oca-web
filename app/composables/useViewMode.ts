@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@vueuse/core";
-import { LayoutGrid, List, Text } from "lucide-vue-next";
+import { LayoutGrid, List, Text } from "@lucide/vue";
 import type { Component } from "vue";
 
 export enum ViewMode {

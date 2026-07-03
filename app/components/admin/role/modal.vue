@@ -1,6 +1,6 @@
 <!-- <script setup lang="ts">
 import { ref, computed, watch } from "vue";
-import { Users, Edit, Shield } from "lucide-vue-next";
+import { Users, Edit, Shield } from "@lucide/vue";
 
 interface Props {
   open: boolean;

@@ -4,7 +4,7 @@ import { useRouter } from "vue-router"
 const { email, password, errors, isSubmitting, submit } = useLoginForm()
 const { passwordButton, toggleHidePassword } = usePasswordButton()
 
-import { Eye, EyeOff, Mail, Lock } from "lucide-vue-next"
+import { Eye, EyeOff, Mail, Lock } from "@lucide/vue"
 import { APP_ROUTES } from "~/constants";
 
 

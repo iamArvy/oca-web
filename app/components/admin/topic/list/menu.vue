@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Edit, Trash2, MoreHorizontal, Plus } from "lucide-vue-next";
+import { Edit, Trash2, MoreHorizontal, Plus } from "@lucide/vue";
 
 import type { Topic } from "~/types";
 

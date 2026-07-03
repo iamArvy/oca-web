@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Plus } from "lucide-vue-next";
+import { Plus } from "@lucide/vue";
 
 interface Props {
   title: string;
@@ -23,11 +23,7 @@ defineProps<Props>();
 
     <div class="flex items-center space-x-2 md:space-x-4">
       <slot />
-      <Button
-        v-if="action"
-        class="bg-primary hover:opacity-90 gap-2"
-        @click="action.value"
-      >
+      <Button v-if="action" class="bg-primary hover:opacity-90 gap-2" @click="action.value">
         <Plus class="w-4 h-4" />
         <span class="hidden md:block">{{ action.label }}</span>
       </Button>

@@ -35,7 +35,7 @@ const nav = [
           <li v-for="item in socials" :key="item.name">
             <NuxtLink :href="item.url" :aria-label="item.name"
               class="w-10 h-10 rounded-full bg-primary-foreground/10 hover:bg-primary hover:text-white flex items-center justify-center transition-colors">
-              <component :is="item.icon" class="w-4 h-4" />
+              <Icon :name="item.icon" class="w-4 h-4" />
             </NuxtLink>
           </li>
         </ul>

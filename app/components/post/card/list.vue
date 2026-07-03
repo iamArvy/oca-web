@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Dot } from "lucide-vue-next";
+import { Dot } from "@lucide/vue";
 import { APP_ROUTES } from "~/constants";
 import type { PostWebsiteListData } from "~/types";
 
